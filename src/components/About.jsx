@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import resumeData from '../data/data.json';
 
 const AboutSection = styled.section`
   min-height: 100vh;
@@ -78,22 +79,26 @@ const SectionTitle = styled(motion.h2)`
 `;
 
 const About = () => {
+  // Calculate years of experience
+  const calculateExperience = () => {
+    const startDate = new Date(resumeData.work_experience[0].start_date);
+    const currentDate = new Date();
+    return Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24 * 365));
+  };
+
+  // Get latest work experience achievements
+  const latestAchievements = resumeData.work_experience[0].achievements;
+
   return (
     <AboutSection>
-
       <AboutContent>
         <AboutText>
           <h3>My Journey</h3>
           <p>
-            I embarked on my web development journey with a passion for creating
-            digital experiences that make a difference. Over the years, I've
-            worked on various projects ranging from small business websites to
-            complex web applications.
+            {resumeData.career_objective}
           </p>
           <p>
-            My approach combines technical expertise with creative problem-solving,
-            ensuring that every project I undertake is both functional and
-            aesthetically pleasing.
+            {latestAchievements[0]}
           </p>
         </AboutText>
         <ExperienceGrid>
@@ -101,22 +106,29 @@ const About = () => {
             whileHover={{ y: -5 }}
             transition={{ duration: 0.3 }}
           >
-            <h3>5+ Years</h3>
-            <p>Experience in Web Development</p>
+            <h3>{calculateExperience()}+ Years</h3>
+            <p>Experience in {resumeData.skills.advanced[0]}</p>
           </ExperienceCard>
           <ExperienceCard
             whileHover={{ y: -5 }}
             transition={{ duration: 0.3 }}
           >
-            <h3>50+ Projects</h3>
+            <h3>{resumeData.projects.length}+ Projects</h3>
             <p>Successfully Completed</p>
           </ExperienceCard>
           <ExperienceCard
             whileHover={{ y: -5 }}
             transition={{ duration: 0.3 }}
           >
-            <h3>20+ Clients</h3>
-            <p>Satisfied Customers</p>
+            <h3>100K+ Users</h3>
+            <p>Daily Active Users</p>
+          </ExperienceCard>
+          <ExperienceCard
+            whileHover={{ y: -5 }}
+            transition={{ duration: 0.3 }}
+          >
+            <h3>40% Improvement</h3>
+            <p>In Development Efficiency</p>
           </ExperienceCard>
         </ExperienceGrid>
       </AboutContent>
@@ -124,4 +136,4 @@ const About = () => {
   );
 };
 
-export default About; 
+export default About;    

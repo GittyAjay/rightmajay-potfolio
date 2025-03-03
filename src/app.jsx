@@ -8,7 +8,8 @@ import BackgroundAnimation from './components/BackgroundAnimation';
 import FontStyles from './styles/fonts';
 import About from './pages/About';
 import ProjectDetail from './pages/ProjectDetail';
-
+import FullSkills from './pages/FullSkills';
+import AllProjects from './pages/AllProjects';
 const AppWrapper = styled.div`
   position: relative;
   min-height: 100vh;
@@ -56,6 +57,8 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/skills" element={<Skills />} />
             <Route path="/project/:id" element={<ProjectDetail />} />
+            <Route path="/skills" element={<FullSkills />} />
+            <Route path="/projects" element={<AllProjects />} />
           </Routes>
         </ContentWrapper>
       </AppWrapper>

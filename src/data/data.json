@@ -1,0 +1,243 @@
+{
+    "name": "Ajay",
+    "email": "rightmajay@gmail.com",
+    "phone": "6392363003",
+    "location": "Mumbai",
+    "linkedin": "https://linkedin.com/in/rightmajay",
+    "career_objective": "Experienced React Native Developer with 3.5+ years in high-performance mobile apps (100K+ daily users). Seeking a technical leadership role to leverage my expertise in cross-platform development and app optimization. Proven success in reducing app launch times by 25% and enhancing development efficiency by 30% through modular architecture. Aiming to drive technical excellence and mentor teams, particularly in fintech or e-commerce sectors with experience in native modules integration, offline-first architecture, and mobile payment systems.",
+    "skills": {
+        "advanced": [
+            "React Native",
+            "TypeScript",
+            "Redux",
+            "React Query",
+            "Context API"
+        ],
+        "performance": [
+            "Code Splitting",
+            "Lazy Loading",
+            "Bundle Analysis",
+            "Native Module Optimization"
+        ],
+        "architecture": [
+            "Modular Architecture",
+            "Monorepos",
+            "Component Design Patterns",
+            "Navigation Patterns (React Navigation)"
+        ],
+        "frameworks": [
+            "React Native Paper",
+            "NativeBase",
+            "Styled Components"
+        ],
+        "styling": [
+            "CSS-in-JS",
+            "Tailwind CSS (React Native-tailwind)",
+            "Flexbox"
+        ],
+        "animation": [
+            "Reanimated 2",
+            "Lottie",
+            "React Native Gesture Handler",
+            "Framer Motion (Web Components)"
+        ],
+        "design_tools": [
+            "Figma",
+            "Adobe XD"
+        ],
+        "testing": {
+            "unit_integration": [
+                "Jest",
+                "React Native Testing Library"
+            ],
+            "e2e": [
+                "Detox",
+                "Appium"
+            ],
+            "performance": [
+                "Flipper",
+                "Android Studio Profiler",
+                "Xcode Instruments"
+            ]
+        },
+        "code_quality": [
+            "ESLint",
+            "Prettier",
+            "TypeScript"
+        ],
+        "backend": [
+            "Express.js",
+            "NestJS"
+        ],
+        "api_technologies": [
+            "REST",
+            "GraphQL (Apollo)",
+            "WebSocket"
+        ],
+        "databases": [
+            "MongoDB",
+            "PostgreSQL"
+        ],
+        "authentication": [
+            "JWT",
+            "OAuth",
+            "Firebase Auth"
+        ],
+        "documentation": [
+            "Storybook",
+            "Swagger"
+        ],
+        "analytics": [
+            "Google Analytics",
+            "Firebase Analytics"
+        ]
+    },
+    "work_experience": [
+        {
+            "title": "React Native Developer",
+            "company": "e.Soft Technologies",
+            "location": "Mumbai",
+            "start_date": "2021-10",
+            "end_date": "2023-02",
+            "achievements": [
+                "Reduced load times by 25% across four Full-Stack applications through TypeScript and Redux optimization, driving a 30% boost in user satisfaction and a 40% increase in accessibility scores.",
+                "Engineered a reusable component library that cut development time by 30%, enabling faster project launches within six months.",
+                "Implemented payment gateway systems with three third-party APIs, improving transaction efficiency by 25% and reducing processing time significantly.",
+                "Revamped website layouts for responsiveness, resulting in a 50% increase in mobile traffic and enhanced navigation ease, reducing user errors by 30%."
+            ]
+        },
+        {
+            "title": "Senior React Native Developer",
+            "company": "e.Soft Technologies",
+            "location": "Mumbai",
+            "start_date": "2023-02",
+            "end_date": "current",
+            "achievements": [
+                "Spearheaded a staffing system managing 10,000+ monthly shift allocations, streamlining workforce management.",
+                "Led the creation of an e-commerce platform serving 100K+ daily users, ensuring robust scalability and performance.",
+                "Optimized bundle size by 40% through code splitting and lazy loading, improving load times and user experience.",
+                "Coached and guided a team of six developers, conducting code reviews to maintain high standards and knowledge sharing.",
+                "Established automated testing strategies, achieving 85% code coverage to enhance application stability."
+            ]
+        }
+    ],
+    "education": [
+        {
+            "degree": "BCA",
+            "institution": "Mahatma Gandhi Kashi Vidyapith",
+            "start_date": "2016-02",
+            "end_date": "2019-05",
+            "location": "Varanasi"
+        },
+        {
+            "degree": "MCA",
+            "institution": "Galgotias College of Engineering and Technology",
+            "start_date": "2019-02",
+            "end_date": "2022-02",
+            "location": "Noida, India"
+        }
+    ],
+    "certifications": [
+        {
+            "title": "Machine Learning and AI Certification",
+            "issuer": "Google",
+            "year": 2025
+        },
+        {
+            "title": "Prompt Engineering for Generative AI",
+            "issuer": "Google",
+            "year": 2025
+        },
+        {
+            "title": "AWS Developer Associate",
+            "issuer": "AWS",
+            "status": "Currently pursuing"
+        }
+    ],
+    "projects": [
+        {
+            "title": "StaffWorks",
+            "platform": [
+                "Android",
+                "iOS",
+                "Web"
+            ],
+            "start_date": "2021-11",
+            "end_date": "2022-07",
+            "achievements": [
+                "Designed and launched an efficient platform for job and volunteer management, boosting user satisfaction by 25%.",
+                "Implemented a system that connected 300+ users with tailored opportunities, increasing placement rates by 40%.",
+                "Created a user-friendly dashboard, improving task visibility and accelerating work acceptance time by 40%."
+            ]
+        },
+        {
+            "title": "EventWorks",
+            "platform": [
+                "Android",
+                "iOS",
+                "Web"
+            ],
+            "start_date": "2022-09",
+            "end_date": "2023-04",
+            "achievements": [
+                "Enabled efficient workforce management, ensuring optimal resource allocation.",
+                "Reduced manual entry time by 40% with an integrated attendance system.",
+                "Implemented robust security features to ensure attendee and staff safety."
+            ]
+        },
+        {
+            "title": "Carehudl",
+            "platform": [
+                "Android",
+                "iOS",
+                "Web"
+            ],
+            "start_date": "2023-05",
+            "end_date": "2023-12",
+            "achievements": [
+                "Improved scheduling efficiency, reducing manual coordination time.",
+                "Simplified documentation processes, reducing paperwork and improving accuracy."
+            ]
+        },
+        {
+            "title": "Prop News Times",
+            "platform": [
+                "Android",
+                "iOS",
+                "Web"
+            ],
+            "achievements": [
+                "Generated timely real estate updates, attracting 5,000 new users and enhancing credibility.",
+                "Compiled and analyzed 50+ property news articles weekly, driving a 20% increase in audience engagement."
+            ]
+        },
+        {
+            "title": "Elynker",
+            "platform": [
+                "Android",
+                "iOS",
+                "Web"
+            ],
+            "start_date": "2023-04",
+            "end_date": "current",
+            "achievements": [
+                "Guided digital transformation initiatives for 75 clients, achieving a 40% average improvement in operational efficiency.",
+                "Developed a React-based web application, attracting 5,000 active users and driving a 15% revenue growth within six months."
+            ]
+        },
+        {
+            "title": "Inasquare",
+            "platform": [
+                "Android",
+                "iOS",
+                "Web"
+            ],
+            "start_date": "2019-02",
+            "end_date": "2019-06",
+            "achievements": [
+                "Launched an app in Oman, driving a 30% growth in regional sales within three months.",
+                "Elevated the online shopping experience, attracting 25,000 active users in the first year."
+            ]
+        }
+    ]
+}

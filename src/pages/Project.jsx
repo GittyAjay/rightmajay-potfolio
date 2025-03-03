@@ -1,238 +1,71 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import resumeData from '../data/data.json';
+import {
+  PageContainer,
+  ProjectsSection,
+  ContentWrapper,
+  HeaderSection,
+  Title,
+  Subtitle,
+  ProjectsGrid,
+  ProjectCard,
+  ProjectImage,
+  ProjectContent,
+  ProjectTitle,
+  ProjectDescription,
+  TechList,
+  TechTag
+} from '../styles/ProjectStyles';
 
-const PageContainer = styled.div`
-  min-height: 100vh;
-`;
-
-const ProjectsSection = styled.section`
-  padding: 6rem 1rem;
-  position: relative;
+const SeeMoreButton = styled(motion.button)`
+  background: rgba(157, 0, 255, 0.1);
+  border: 1px solid rgba(157, 0, 255, 0.3);
   color: #fff;
-
-  @media (min-width: 768px) {
-    padding: 8rem 2rem;
-  }
-`;
-
-const ContentWrapper = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  position: relative;
-  z-index: 1;
-
-  @media (min-width: 768px) {
-    gap: 4rem;
-  }
-`;
-
-const HeaderSection = styled.div`
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 1rem;
-`;
-
-const Title = styled(motion.h1)`
-  font-size: clamp(2rem, 6vw, 5rem);
-  font-weight: 900;
-  margin: 0;
-  background: linear-gradient(135deg, #fff 0%, #8a8a8a 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  line-height: 1.1;
-`;
-
-const Subtitle = styled(motion.h2)`
-  font-size: clamp(1rem, 2.5vw, 1.8rem);
-  color: #B4B4B4;
-  margin: 1rem 0 1.5rem;
-  font-weight: 400;
-  line-height: 1.6;
-
-  @media (min-width: 768px) {
-    margin: 1.5rem 0 2rem;
-  }
-`;
-
-const ProjectsGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  width: 100%;
-  padding: 0 0.5rem;
-
-  @media (min-width: 640px) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    padding: 0 1rem;
-  }
-
-  @media (min-width: 1024px) {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
-`;
-
-const ProjectCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  cursor: pointer;
-  transition: transform 0.3s ease, border-color 0.3s ease;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-
-  @media (hover: hover) {
-    &:hover {
-      transform: translateY(-5px);
-      border-color: rgba(157, 0, 255, 0.3);
-    }
-  }
-
-  @media (hover: none) {
-    &:active {
-      transform: scale(0.98);
-      border-color: rgba(157, 0, 255, 0.3);
-    }
-  }
-
-  @media (min-width: 768px) {
-    border-radius: 24px;
-  }
-`;
-
-const ProjectImage = styled.div`
-  width: 100%;
-  height: 180px;
-  background: ${props => `url(${props.image}) center/cover no-repeat` || 'rgba(255, 255, 255, 0.05)'};
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-
-  @media (min-width: 768px) {
-    height: 200px;
-  }
-`;
-
-const ProjectContent = styled.div`
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-
-  @media (min-width: 768px) {
-    padding: 2rem;
-  }
-`;
-
-const ProjectTitle = styled.h3`
-  font-size: 1.25rem;
-  color: #fff;
-  margin-bottom: 0.75rem;
-  font-weight: 500;
-
-  @media (min-width: 768px) {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-`;
-
-const ProjectDescription = styled.p`
-  color: #B4B4B4;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  margin-bottom: 1.25rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-
-  @media (min-width: 768px) {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-  }
-`;
-
-const TechList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: auto;
-
-  @media (min-width: 768px) {
-    gap: 0.5rem;
-  }
-`;
-
-const TechTag = styled.span`
-  background: rgba(255, 255, 255, 0.1);
-  padding: 0.3rem 0.6rem;
+  padding: 0.8rem 2rem;
   border-radius: 12px;
-  font-size: 0.75rem;
-  color: #fff;
-  white-space: nowrap;
-  
-  @media (hover: hover) {
-    &:hover {
-      background: rgba(157, 0, 255, 0.2);
-    }
-  }
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 2rem auto 0;
+  transition: all 0.3s ease;
+  display: block;
 
-  @media (min-width: 768px) {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
-    border-radius: 20px;
+  &:hover {
+    background: rgba(157, 0, 255, 0.2);
+    transform: translateY(-2px);
   }
 `;
 
 const Projects = () => {
   const navigate = useNavigate();
 
-  const projects = [
-    {
-      id: 1,
-      title: "Project One",
-      subtitle: "A modern web application",
-      description: "A sophisticated web application built with modern technologies, focusing on user experience and performance.",
-      image: "https://via.placeholder.com/400x200",
-      technologies: ["React", "Node.js", "MongoDB"],
-      role: "Full Stack Developer",
-      timeline: "3 months",
-      client: "Client Name"
-    },
-    {
-      id: 2,
-      title: "Project Two",
-      subtitle: "Mobile-first platform",
-      description: "A responsive mobile-first platform designed to provide seamless experience across all devices.",
-      image: "https://via.placeholder.com/400x200",
-      technologies: ["React Native", "Firebase", "TypeScript"],
-      role: "Frontend Developer",
-      timeline: "4 months",
-      client: "Client Name"
-    },
-    {
-      id: 3,
-      title: "Project Three",
-      subtitle: "E-commerce Solution",
-      description: "A full-featured e-commerce platform with advanced product management and analytics.",
-      image: "https://via.placeholder.com/400x200",
-      technologies: ["Next.js", "PostgreSQL", "Stripe"],
-      role: "Lead Developer",
-      timeline: "6 months",
-      client: "Client Name"
-    }
-  ];
+  const projects = resumeData.projects.map((project, index) => ({
+    id: index + 1,
+    title: project.title,
+    subtitle: project.platform?.join(', ') || '',
+    description: project.achievements.join('. '),
+    image: "https://via.placeholder.com/400x200",
+    technologies: [
+      "React Native",
+      "TypeScript",
+      "Redux",
+      ...project.platform || []
+    ],
+    role: "Lead Developer",
+    timeline: project.start_date ? `${project.start_date} - ${project.end_date || 'Present'}` : 'Ongoing',
+    client: "Various Clients"
+  }));
+
+  const displayedProjects = projects.slice(0, 4);
 
   const handleProjectClick = (projectId) => {
     navigate(`/project/${projectId}`);
+  };
+
+  const handleSeeMore = () => {
+    navigate('/projects');
   };
 
   return (
@@ -252,12 +85,12 @@ const Projects = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              A collection of my recent work and personal projects
+              A showcase of my work in mobile and web development
             </Subtitle>
           </HeaderSection>
 
           <ProjectsGrid>
-            {projects.map((project, index) => (
+            {displayedProjects.map((project, index) => (
               <ProjectCard
                 key={project.id}
                 onClick={() => handleProjectClick(project.id)}
@@ -278,6 +111,15 @@ const Projects = () => {
               </ProjectCard>
             ))}
           </ProjectsGrid>
+
+          <SeeMoreButton
+            onClick={handleSeeMore}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8 }}
+          >
+            See All Projects →
+          </SeeMoreButton>
         </ContentWrapper>
       </ProjectsSection>
     </PageContainer>

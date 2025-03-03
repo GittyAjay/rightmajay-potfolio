@@ -1,77 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-
-const PageContainer = styled.div`
-  font-family: 'Satoshi', sans-serif;
-`;
-
-const SkillsSection = styled.section`
-  min-height: 100vh;
-  color: #fff;
-  padding: 6rem 2rem;
-  position: relative;
-  // Remove or make this more transparent:
-  // background: rgba(157, 0, 255, 0.05);
-`;
-
-const SectionTitle = styled(motion.h2)`
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 700;
-  margin-bottom: 3rem;
-  background: linear-gradient(135deg, #fff 0%, #8a8a8a 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-`;
-
-const ContentWrapper = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  z-index: 1;
-  padding: 0 2rem;
-`;
-
-const SkillsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  width: 100%;
-  margin: 0 auto;
-
-  @media (max-width: 1200px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 640px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const SkillCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 20px;
-  padding: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  transition: all 0.3s ease;
-  height: 100%;
-
-  &:hover {
-    border-color: rgba(157, 0, 255, 0.5);
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.08);
-  }
-`;
+import { useNavigate } from 'react-router-dom';
+import resumeData from '../data/data.json';
+import {
+  PageContainer,
+  SkillsSection,
+  ContentWrapper,
+  SectionTitle,
+  SkillsGrid,
+  SkillCard,
+  SkillTitle,
+  SkillDescription
+} from '../styles/SharedStyles';
 
 const SkillIcon = styled.div`
   font-size: 2.5rem;
@@ -79,21 +20,83 @@ const SkillIcon = styled.div`
   color: #9D00FF;
 `;
 
-const SkillTitle = styled.h3`
-  font-size: 1.5rem;
+const SeeMoreButton = styled(motion.button)`
+  background: rgba(157, 0, 255, 0.1);
+  border: 1px solid rgba(157, 0, 255, 0.3);
   color: #fff;
-  margin-bottom: 1rem;
-  font-weight: 500;
-`;
-
-const SkillDescription = styled.p`
-  color: #a0a0a0;
+  padding: 0.8rem 2rem;
+  border-radius: 12px;
   font-size: 1rem;
-  line-height: 1.6;
-  font-weight: 400;
+  cursor: pointer;
+  margin-top: 8rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(157, 0, 255, 0.2);
+    transform: translateY(-2px);
+  }
 `;
 
 export default function Skills() {
+  const navigate = useNavigate();
+  const [showAll, setShowAll] = useState(false);
+
+  const skillsData = [
+    {
+      icon: '⚛️',
+      title: 'Advanced Skills',
+      desc: resumeData.skills.advanced.join(', ')
+    },
+    {
+      icon: '⚡',
+      title: 'Performance',
+      desc: resumeData.skills.performance.join(', ')
+    },
+    {
+      icon: '🏗️',
+      title: 'Architecture',
+      desc: resumeData.skills.architecture.join(', ')
+    },
+    {
+      icon: '🎨',
+      title: 'UI/UX & Styling',
+      desc: [...resumeData.skills.frameworks, ...resumeData.skills.styling].join(', ')
+    },
+    {
+      icon: '✨',
+      title: 'Animation & Design',
+      desc: [...resumeData.skills.animation, ...resumeData.skills.design_tools].join(', ')
+    },
+    {
+      icon: '🧪',
+      title: 'Testing & Quality',
+      desc: [
+        ...resumeData.skills.testing.unit_integration,
+        ...resumeData.skills.testing.e2e,
+        ...resumeData.skills.testing.performance
+      ].join(', ')
+    },
+    {
+      icon: '🔧',
+      title: 'Backend & APIs',
+      desc: [
+        ...resumeData.skills.backend,
+        ...resumeData.skills.api_technologies
+      ].join(', ')
+    },
+    {
+      icon: '📊',
+      title: 'Documentation & Analytics',
+      desc: [...resumeData.skills.documentation, ...resumeData.skills.analytics].join(', ')
+    }
+  ];
+
+  const displayedSkills = showAll ? skillsData : skillsData.slice(0, 4);
+
+  const handleSeeMore = () => {
+    navigate('/skills');
+  };
+
   return (
     <PageContainer>
       <SkillsSection>
@@ -107,12 +110,7 @@ export default function Skills() {
             Skills & Expertise ↘
           </SectionTitle>
           <SkillsGrid>
-            {[
-              { icon: '⚛️', title: 'Frontend Development', desc: 'Creating beautiful and responsive user interfaces with React, Vue, and modern CSS.' },
-              { icon: '🛠️', title: 'Backend Development', desc: 'Building robust server-side applications with Node.js, Python, and databases.' },
-              { icon: '📱', title: 'Mobile Development', desc: 'Developing cross-platform mobile applications using React Native.' },
-              { icon: '🎨', title: 'UI/UX Design', desc: 'Designing intuitive and engaging user experiences with Figma and Adobe XD.' }
-            ].map((skill, index) => (
+            {displayedSkills.map((skill, index) => (
               <SkillCard
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -122,10 +120,26 @@ export default function Skills() {
               >
                 <SkillIcon>{skill.icon}</SkillIcon>
                 <SkillTitle>{skill.title}</SkillTitle>
-                <SkillDescription>{skill.desc}</SkillDescription>
+                <SkillDescription>
+                  {skill.desc.length > 150
+                    ? `${skill.desc.substring(0, 150)}...`
+                    : skill.desc}
+                </SkillDescription>
               </SkillCard>
             ))}
           </SkillsGrid>
+          {!showAll && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              style={{ textAlign: 'center' }}
+            >
+              <SeeMoreButton onClick={handleSeeMore}>
+                See All Skills →
+              </SeeMoreButton>
+            </motion.div>
+          )}
         </ContentWrapper>
       </SkillsSection>
     </PageContainer>

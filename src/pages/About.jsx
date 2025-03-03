@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import resumeData from '../data/data.json';
 
 const AboutContainer = styled.div`
   min-height: 100vh;
@@ -196,11 +197,25 @@ const ScrollingText = styled.div`
 `;
 
 const About = () => {
+    // Calculate years of experience from work experience
+    const calculateExperience = () => {
+        const startDate = new Date(resumeData.work_experience[0].start_date);
+        const currentDate = new Date();
+        return Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24 * 365));
+    };
+
+    // Get advanced skills for scrolling text
+    const skillsText = [
+        ...resumeData.skills.advanced,
+        ...resumeData.skills.performance,
+        ...resumeData.skills.architecture
+    ].join(' • ');
+
     return (
         <AboutContainer>
             <TechStack>
                 <ScrollingText>
-                    BACK END • WEBFLOW • FULL STACK • FRONT END • BACK END • WEBFLOW • FULL STACK • FRONT END
+                    {skillsText} • {skillsText} {/* Repeated for continuous scroll */}
                 </ScrollingText>
             </TechStack>
             <ContentWrapper>
@@ -213,14 +228,14 @@ const About = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        About me <Arrow>↘</Arrow>
+                        {resumeData.name} <Arrow>↘</Arrow>
                     </Title>
                     <Description
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
-                        Description of the developer's biography and skills. Mattis in dui euismod sit egestas ac sit. Mollis eu urna pulvinar mi felis consectetur. Dapibus vivamus ornare feugiat vitae arcu.
+                        {resumeData.career_objective}
                     </Description>
                     <Stats>
                         <StatItem
@@ -228,23 +243,25 @@ const About = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.4 }}
                         >
-                            <StatNumber>310<span>+</span></StatNumber>
-                            <StatLabel>Project Complete</StatLabel>
+                            <StatNumber>{resumeData.projects.length}<span>+</span></StatNumber>
+                            <StatLabel>Projects Completed</StatLabel>
                         </StatItem>
                         <StatItem
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.5 }}
                         >
-                            <StatNumber>10<span>+</span></StatNumber>
+                            <StatNumber>{calculateExperience()}<span>+</span></StatNumber>
                             <StatLabel>Years Experience</StatLabel>
                         </StatItem>
                     </Stats>
                     <HireButton
+                        as="a"
+                        href={`mailto:${resumeData.email}`}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        HIRE ME ↗
+                        Contact Me ↗
                     </HireButton>
                 </TextContent>
             </ContentWrapper>

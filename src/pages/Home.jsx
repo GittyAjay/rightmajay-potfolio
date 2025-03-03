@@ -8,6 +8,8 @@ import Skills from './Skills';
 import About from '../components/About';
 import Contact from '../components/Contact';
 import devon from '../assets/images/ajay-1.webp';
+import resumeData from '../data/data.json';
+
 const PageContainer = styled.div`
   background: linear-gradient(135deg, rgba(19, 17, 28, 0.8) 0%, rgba(30, 27, 46, 0.8) 100%);
   position: relative;
@@ -246,31 +248,31 @@ const Home = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              Ajay
-              <br />
-              Pandey
+              {resumeData.name.split(' ').map((word, index) => (
+                <React.Fragment key={index}>
+                  {word}
+                  {index < resumeData.name.split(' ').length - 1 && <br />}
+                </React.Fragment>
+              ))}
             </Title>
             <Subtitle
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              FULL-STACK WEB DEVELOPER
+              REACT NATIVE DEVELOPER
             </Subtitle>
             <Description
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              I'm a passionate full-stack web developer with expertise in modern web technologies.
-              Based in South America, I specialize in creating responsive, user-friendly applications
-              that solve real-world problems. With a strong foundation in both front-end and back-end
-              development, I bring ideas to life through clean, efficient code and intuitive user experiences.
+              {resumeData.career_objective}
             </Description>
             <DownloadCV />
           </TextContent>
           <ImageSection>
-            <img src={devon} alt="Devon Lane" />
+            <img src={devon} alt="Ajay Kumar Pandey" />
           </ImageSection>
         </ContentWrapper>
         <SocialLinks />
@@ -278,7 +280,6 @@ const Home = () => {
       <About />
       <Project />
       <Skills />
-
       <Contact />
     </PageContainer>
   );

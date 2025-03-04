@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import resumeData from '../data/data.json';
+import { ref, onValue } from 'firebase/database';
+import { db } from '../firebase/config';
 import {
   PageContainer,
   SkillsSection,
@@ -197,79 +198,133 @@ const animation = require("../assets/images/adv_skills.png");
 
 export default function Skills({ showAll = false }) {
   const navigate = useNavigate();
+  const [skillsData, setSkillsData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const skillsData = [
-    {
-      icon: adv_skills,
-      title: 'Advanced Skills',
-      desc: resumeData.skills.advanced.join(', '),
-      level: 95,
-      tags: resumeData.skills.advanced
-    },
-    {
-      icon: performance,
-      title: 'Performance',
-      desc: resumeData.skills.performance.join(', '),
-      level: 85,
-      tags: resumeData.skills.performance
-    },
-    {
-      icon: architecture,
-      title: 'Architecture',
-      desc: resumeData.skills.architecture.join(', '),
-      level: 90,
-      tags: resumeData.skills.architecture
-    },
-    {
-      icon: uiux,
-      title: 'UI/UX & Styling',
-      desc: [...resumeData.skills.frameworks, ...resumeData.skills.styling].join(', '),
-      level: 80,
-      tags: [...resumeData.skills.frameworks, ...resumeData.skills.styling]
-    },
-    {
-      icon: animation,
-      title: 'Animation & Design',
-      desc: [...resumeData.skills.animation, ...resumeData.skills.design_tools].join(', '),
-      level: 75,
-      tags: [...resumeData.skills.animation, ...resumeData.skills.design_tools]
-    },
-    {
-      icon: '🧪',
-      title: 'Testing & Quality',
-      desc: [
-        ...resumeData.skills.testing.unit_integration,
-        ...resumeData.skills.testing.e2e,
-        ...resumeData.skills.testing.performance
-      ].join(', '),
-      level: 85,
-      tags: [
-        ...resumeData.skills.testing.unit_integration,
-        ...resumeData.skills.testing.e2e,
-        ...resumeData.skills.testing.performance
-      ]
-    },
-    {
-      icon: '🔧',
-      title: 'Backend & APIs',
-      desc: [
-        ...resumeData.skills.backend,
-        ...resumeData.skills.api_technologies
-      ].join(', '),
-      level: 90,
-      tags: [
-        ...resumeData.skills.backend,
-        ...resumeData.skills.api_technologies
-      ]
-    },
-    {
-      icon: '📊',
-      title: 'Documentation & Analytics',
-      desc: [...resumeData.skills.documentation, ...resumeData.skills.analytics].join(', '),
-      level: 70,
-      tags: [...resumeData.skills.documentation, ...resumeData.skills.analytics]
-    }
-  ];
+  useEffect(() => {
+    const portfolioRef = ref(db, 'portfolio');
+    const unsubscribe = onValue(portfolioRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        // Transform Firebase data into the format needed for skills
+        const transformedSkills = [
+          {
+            icon: adv_skills,
+            title: 'Advanced Skills',
+            desc: data.skills.advanced.join(', '),
+            level: 95,
+            tags: data.skills.advanced
+          },
+          {
+            icon: performance,
+            title: 'Performance',
+            desc: data.skills.performance.join(', '),
+            level: 85,
+            tags: data.skills.performance
+          },
+          {
+            icon: architecture,
+            title: 'Architecture',
+            desc: data.skills.architecture.join(', '),
+            level: 90,
+            tags: data.skills.architecture
+          },
+          {
+            icon: uiux,
+            title: 'UI/UX & Styling',
+            desc: [...data.skills.frameworks, ...data.skills.styling].join(', '),
+            level: 80,
+            tags: [...data.skills.frameworks, ...data.skills.styling]
+          },
+          {
+            icon: animation,
+            title: 'Animation & Design',
+            desc: [...data.skills.animation, ...data.skills.design_tools].join(', '),
+            level: 75,
+            tags: [...data.skills.animation, ...data.skills.design_tools]
+          },
+          {
+            icon: '🧪',
+            title: 'Testing & Quality',
+            desc: [
+              ...data.skills.testing.unit_integration,
+              ...data.skills.testing.e2e,
+              ...data.skills.testing.performance
+            ].join(', '),
+            level: 85,
+            tags: [
+              ...data.skills.testing.unit_integration,
+              ...data.skills.testing.e2e,
+              ...data.skills.testing.performance
+            ]
+          },
+          {
+            icon: '🔧',
+            title: 'Backend & APIs',
+            desc: [
+              ...data.skills.backend,
+              ...data.skills.api_technologies
+            ].join(', '),
+            level: 90,
+            tags: [
+              ...data.skills.backend,
+              ...data.skills.api_technologies
+            ]
+          },
+          {
+            icon: '📊',
+            title: 'Documentation & Analytics',
+            desc: [...data.skills.documentation, ...data.skills.analytics].join(', '),
+            level: 70,
+            tags: [...data.skills.documentation, ...data.skills.analytics]
+          }
+        ];
+        setSkillsData(transformedSkills);
+        setLoading(false);
+      }
+    }, (error) => {
+      console.error('Error fetching skills:', error);
+      setError('Error loading skills data');
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  if (loading) {
+    return (
+      <PageContainer>
+        <SkillsSection>
+          <ContentWrapper>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              Loading skills...
+            </motion.div>
+          </ContentWrapper>
+        </SkillsSection>
+      </PageContainer>
+    );
+  }
+
+  if (error) {
+    return (
+      <PageContainer>
+        <SkillsSection>
+          <ContentWrapper>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              {error}
+            </motion.div>
+          </ContentWrapper>
+        </SkillsSection>
+      </PageContainer>
+    );
+  }
 
   const displayedSkills = showAll ? skillsData : skillsData.slice(0, 4);
 

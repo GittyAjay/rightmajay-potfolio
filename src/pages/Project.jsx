@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import resumeData from '../data/data.json';
+import { ref, onValue } from 'firebase/database';
+import { db } from '../firebase/config';
 import {
   PageContainer,
   ProjectsSection,
@@ -168,23 +169,77 @@ const GlowingButton = styled(motion.button)`
 const Projects = () => {
   const navigate = useNavigate();
   const isFullList = window.location.pathname === '/projects';
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const projects = resumeData.projects.map((project, index) => ({
-    id: index + 1,
-    title: project.title,
-    subtitle: project.platform?.join(', ') || '',
-    description: project.achievements.join('. '),
-    image: project.image || "https://via.placeholder.com/400x200",
-    technologies: [
-      "React Native",
-      "TypeScript",
-      "Redux",
-      ...project.platform || []
-    ],
-    role: "Lead Developer",
-    timeline: project.start_date ? `${project.start_date} - ${project.end_date || 'Present'}` : 'Ongoing',
-    client: "Various Clients"
-  }));
+  useEffect(() => {
+    const portfolioRef = ref(db, 'portfolio');
+    const unsubscribe = onValue(portfolioRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        // Transform the projects data
+        const transformedProjects = data.projects.map((project, index) => ({
+          id: index + 1,
+          title: project.title,
+          subtitle: project.platform?.join(', ') || '',
+          description: project.achievements.join('. '),
+          image: project.image || "https://via.placeholder.com/400x200",
+          technologies: [
+            "React Native",
+            "TypeScript",
+            "Redux",
+            ...project.platform || []
+          ],
+          role: "Lead Developer",
+          timeline: project.start_date ? `${project.start_date} - ${project.end_date || 'Present'}` : 'Ongoing',
+          client: "Various Clients"
+        }));
+        setProjects(transformedProjects);
+        setLoading(false);
+      }
+    }, (error) => {
+      console.error('Error fetching projects:', error);
+      setError('Error loading projects data');
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  if (loading) {
+    return (
+      <PageContainer>
+        <ProjectsSection>
+          <ContentWrapper>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              Loading projects...
+            </motion.div>
+          </ContentWrapper>
+        </ProjectsSection>
+      </PageContainer>
+    );
+  }
+
+  if (error) {
+    return (
+      <PageContainer>
+        <ProjectsSection>
+          <ContentWrapper>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              {error}
+            </motion.div>
+          </ContentWrapper>
+        </ProjectsSection>
+      </PageContainer>
+    );
+  }
 
   // Use all projects if on full list view, otherwise show only first 3
   const displayedProjects = isFullList ? projects : projects.slice(0, 3);
@@ -257,7 +312,7 @@ const Projects = () => {
               </StyledProjectCard>
             ))}
           </ProjectsGrid>
-
+          
           {!isFullList && (
             <motion.div
               initial={{ opacity: 0 }}

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import resumeData from '../data/data.json';
+import { ref, onValue } from 'firebase/database';
+import { db } from '../firebase/config';
 
 const AboutSection = styled.section`
   min-height: 100vh;
@@ -107,15 +108,66 @@ const SectionTitle = styled(motion.h2)`
 `;
 
 const About = () => {
+  const [portfolioData, setPortfolioData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const portfolioRef = ref(db, 'portfolio');
+    const unsubscribe = onValue(portfolioRef, (snapshot) => {
+      if (snapshot.exists()) {
+        setPortfolioData(snapshot.val());
+        setLoading(false);
+      }
+    }, (error) => {
+      console.error('Error fetching about data:', error);
+      setError('Failed to load data');
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   // Calculate years of experience
   const calculateExperience = () => {
-    const startDate = new Date(resumeData.work_experience[0].start_date);
+    if (!portfolioData) return 0;
+    const startDate = new Date(portfolioData.work_experience[0].start_date);
     const currentDate = new Date();
     return Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24 * 365));
   };
 
+  if (loading) {
+    return (
+      <AboutSection>
+        <AboutContent>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            Loading...
+          </motion.div>
+        </AboutContent>
+      </AboutSection>
+    );
+  }
+
+  if (error) {
+    return (
+      <AboutSection>
+        <AboutContent>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            {error}
+          </motion.div>
+        </AboutContent>
+      </AboutSection>
+    );
+  }
+
   // Get latest work experience achievements
-  const latestAchievements = resumeData.work_experience[0].achievements;
+  const latestAchievements = portfolioData.work_experience[0].achievements;
 
   return (
     <AboutSection>
@@ -123,7 +175,7 @@ const About = () => {
         <AboutText>
           <h3>My Journey</h3>
           <p>
-            {resumeData.career_objective}
+            {portfolioData.career_objective}
           </p>
           <p>
             {latestAchievements[0]}
@@ -135,13 +187,13 @@ const About = () => {
             transition={{ duration: 0.3 }}
           >
             <h3>{calculateExperience()}+ Years</h3>
-            <p>Experience in {resumeData.skills.advanced[0]}</p>
+            <p>Experience in {portfolioData.skills.advanced[0]}</p>
           </ExperienceCard>
           <ExperienceCard
             whileHover={{ y: -5 }}
             transition={{ duration: 0.3 }}
           >
-            <h3>{resumeData.projects.length}+ Projects</h3>
+            <h3>{portfolioData.projects.length}+ Projects</h3>
             <p>Successfully Completed</p>
           </ExperienceCard>
           <ExperienceCard

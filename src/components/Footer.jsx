@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { FaTwitter, FaLinkedinIn, FaGithub, FaInstagram } from 'react-icons/fa';
-import data from '../data/data.json';
+import { ref, onValue } from 'firebase/database';
+import { db } from '../firebase/config';
 
 const FooterContainer = styled.footer`
   background: transparent;
@@ -111,7 +112,40 @@ const SocialLink = styled.a`
 `;
 
 const Footer = () => {
-  const { linkedin, github, instagram, twitter } = data;
+  const [socialLinks, setSocialLinks] = useState({
+    linkedin: '',
+    github: '',
+    instagram: '',
+    twitter: ''
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const portfolioRef = ref(db, 'portfolio');
+    const unsubscribe = onValue(portfolioRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        setSocialLinks({
+          linkedin: data.linkedin || '',
+          github: data.github || '',
+          instagram: data.instagram || '',
+          twitter: data.twitter || ''
+        });
+        setLoading(false);
+      }
+    }, (error) => {
+      console.error('Error fetching footer data:', error);
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  if (loading) {
+    return null; // Or a loading spinner if you prefer
+  }
+
+  const { linkedin, github, instagram, twitter } = socialLinks;
 
   return (
     <FooterContainer>
@@ -120,21 +154,29 @@ const Footer = () => {
         <Column>
           <Logo>Thanks for <span>visiting</span></Logo>
           <Description>
-           created by Ajay Pandey using React, Three.js framer, and styled-components.
+            created by Ajay Pandey using React, Three.js framer, and styled-components.
           </Description>
           <SocialLinks>
-            <SocialLink href={github} target="_blank" rel="noopener noreferrer">
-              <FaGithub />
-            </SocialLink>
-            <SocialLink href={linkedin} target="_blank" rel="noopener noreferrer">
-              <FaLinkedinIn />
-            </SocialLink>
-            <SocialLink href={twitter} target="_blank" rel="noopener noreferrer">
-              <FaTwitter />
-            </SocialLink>
-            <SocialLink href={instagram} target="_blank" rel="noopener noreferrer">
-              <FaInstagram />
-            </SocialLink>
+            {github && (
+              <SocialLink href={github} target="_blank" rel="noopener noreferrer">
+                <FaGithub />
+              </SocialLink>
+            )}
+            {linkedin && (
+              <SocialLink href={linkedin} target="_blank" rel="noopener noreferrer">
+                <FaLinkedinIn />
+              </SocialLink>
+            )}
+            {twitter && (
+              <SocialLink href={twitter} target="_blank" rel="noopener noreferrer">
+                <FaTwitter />
+              </SocialLink>
+            )}
+            {instagram && (
+              <SocialLink href={instagram} target="_blank" rel="noopener noreferrer">
+                <FaInstagram />
+              </SocialLink>
+            )}
           </SocialLinks>
         </Column>
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { ref, get } from 'firebase/database';
+import { db } from '../firebase/config';
 
 const GlowingButton = styled(motion.button)`
   position: relative;
@@ -50,14 +52,22 @@ const GlowingButton = styled(motion.button)`
 `;
 
 const DownloadCV = () => {
-  const handleDownload = () => {
-    // Create a link element
-    const link = document.createElement('a');
-    link.href = 'React_Native.pdf';  
-    link.download = 'React_Native_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const handleDownload = async () => {
+    try {
+      // Get resume URL from Firebase
+      const portfolioRef = ref(db, 'portfolio');
+      const snapshot = await get(portfolioRef);
+      const portfolioData = snapshot.val();
+      
+      if (portfolioData?.resumeURL) {
+        // Open resume URL in new tab
+        window.open(portfolioData.resumeURL, '_blank');
+      } else {
+        console.error('No resume URL found');
+      }
+    } catch (error) {
+      console.error('Error fetching resume URL:', error);
+    }
   };
 
   return (

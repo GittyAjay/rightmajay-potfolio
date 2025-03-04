@@ -11,6 +11,7 @@ import ProjectDetail from './pages/ProjectDetail';
 import FullSkills from './pages/FullSkills';
 import AllProjects from './pages/AllProjects';
 import AllSkills from './pages/AllSkills';
+import Admin from './pages/Admin';
 import emailjs from '@emailjs/browser';
 
 emailjs.init('YOUR_PUBLIC_KEY');
@@ -65,6 +66,7 @@ function App() {
             <Route path="/skills" element={<FullSkills />} />
             <Route path="/projects" element={<AllProjects />} />
             <Route path="/all-skills" element={<AllSkills />} />
+            <Route path="/admin" element={<Admin />} />
           </Routes>
         </ContentWrapper>
       </AppWrapper>

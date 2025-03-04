@@ -157,6 +157,7 @@
     "projects": [
         {
             "title": "StaffWorks",
+            "image": "https://www.gigflex.com/wp-content/uploads/2024/04/screenshot@.jpg",
             "platform": [
                 "Android",
                 "iOS",
@@ -172,6 +173,7 @@
         },
         {
             "title": "EventWorks",
+            "image": "https://www.gigflex.com/wp-content/uploads/2021/07/event_02.png",
             "platform": [
                 "Android",
                 "iOS",
@@ -187,6 +189,7 @@
         },
         {
             "title": "Carehudl",
+            "image": "https://www.gigflex.com/wp-content/uploads/2021/07/CareHudl_03.jpg",
             "platform": [
                 "Android",
                 "iOS",
@@ -201,6 +204,7 @@
         },
         {
             "title": "Prop News Times",
+            "image": "https://media.licdn.com/dms/image/v2/D5612AQFY6ojlJtBw6A/article-cover_image-shrink_720_1280/B56ZVfVysQHsAI-/0/1741061303927?e=1746662400&v=beta&t=AlvlvTNTHP8Lxp8Lll7tn86FQMM2_7sfsMDKrnwaABU",
             "platform": [
                 "Android",
                 "iOS",
@@ -213,6 +217,7 @@
         },
         {
             "title": "Elynker",
+            "image": "https://media.licdn.com/dms/image/v2/D4D22AQElPugfA0SAnw/feedshare-shrink_800/feedshare-shrink_800/0/1726032502682?e=1744243200&v=beta&t=aCpUSMTUXAyDNeeLs3J3WJHgq0XiP0dMMJ5a8lYzYxw",
             "platform": [
                 "Android",
                 "iOS",
@@ -227,6 +232,7 @@
         },
         {
             "title": "Inasquare",
+            "image": "https://unctad.org/sites/default/files/2021-03/2021-03-15_eCommerceCOVID19report-1-1220x675px.jpg",
             "platform": [
                 "Android",
                 "iOS",

@@ -10,6 +10,7 @@ export const SkillsSection = styled.section`
   color: #fff;
   padding: 6rem 2rem;
   position: relative;
+
 `;
 
 export const SectionTitle = styled(motion.h2)`
@@ -92,4 +93,33 @@ export const SkillDescription = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   max-height: 6em;
+`;
+
+export const HeaderSection = styled.div`
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+`;
+
+export const Title = styled(motion.h1)`
+  font-size: clamp(2rem, 6vw, 5rem);
+  font-weight: 900;
+  margin: 0;
+  background: linear-gradient(135deg, #fff 0%, #8a8a8a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+`;
+
+export const Subtitle = styled(motion.h2)`
+  font-size: clamp(1rem, 2.5vw, 1.8rem);
+  color: #B4B4B4;
+  margin: 1rem 0 1.5rem;
+  font-weight: 400;
+  line-height: 1.6;
+
+  @media (min-width: 768px) {
+    margin: 1.5rem 0 2rem;
+  }
 `; 

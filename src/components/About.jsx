@@ -29,14 +29,14 @@ const AboutText = styled.div`
   h3 {
     font-size: 2rem;
     margin-bottom: 1.5rem;
-    background: linear-gradient(135deg, #fff 0%, #8a8a8a 100%);
+    background: linear-gradient(90deg, #9D00FF, #FF00E5);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 700;
   }
 
   p {
-    color: #888;
+    color: rgba(255, 255, 255, 0.8);
     font-size: 1.1rem;
     line-height: 1.8;
     margin-bottom: 1.5rem;
@@ -51,18 +51,46 @@ const ExperienceGrid = styled.div`
 `;
 
 const ExperienceCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 20px;
+  background: rgba(157, 0, 255, 0.05);
+  border: 1px solid rgba(157, 0, 255, 0.1);
+  border-radius: 16px;
   padding: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-5px);
+    background: rgba(157, 0, 255, 0.1);
+    box-shadow: 0 10px 20px rgba(157, 0, 255, 0.1);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #9D00FF, #FF00E5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
 
   h3 {
     font-weight: 700;
     margin-bottom: 1rem;
+    color: #9D00FF;
   }
 
   p {
     font-weight: 400;
+    color: #fff;
   }
 `;
 

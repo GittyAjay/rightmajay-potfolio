@@ -10,6 +10,11 @@ import About from './pages/About';
 import ProjectDetail from './pages/ProjectDetail';
 import FullSkills from './pages/FullSkills';
 import AllProjects from './pages/AllProjects';
+import AllSkills from './pages/AllSkills';
+import emailjs from '@emailjs/browser';
+
+emailjs.init('YOUR_PUBLIC_KEY');
+
 const AppWrapper = styled.div`
   position: relative;
   min-height: 100vh;
@@ -59,10 +64,11 @@ function App() {
             <Route path="/project/:id" element={<ProjectDetail />} />
             <Route path="/skills" element={<FullSkills />} />
             <Route path="/projects" element={<AllProjects />} />
+            <Route path="/all-skills" element={<AllSkills />} />
           </Routes>
         </ContentWrapper>
       </AppWrapper>
-    </Router>
+    </Router> 
   );
 }
 

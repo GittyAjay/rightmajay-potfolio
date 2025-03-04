@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
+import emailjs from '@emailjs/browser';
+import { ref, push } from 'firebase/database';
+import { db } from '../firebase/config';
 
 const ContactSection = styled.section`
   min-height: 100vh;
@@ -76,42 +79,47 @@ const TextArea = styled.textarea`
   }
 `;
 
-const SubmitButton = styled(motion.button)`
-  background: linear-gradient(135deg, #9D00FF 0%, #6B00B3 100%);
+const SendButton = styled(motion.button)`
+  position: relative;
+  padding: 16px 48px;
+  background: linear-gradient(90deg, #9D00FF, #FF00E5);
   border: none;
-  border-radius: 10px;
-  padding: 1rem 2rem;
-  color: #fff;
-  font-size: 1rem;
+  border-radius: 16px;
+  color: white;
+  font-size: 18px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
   overflow: hidden;
+  z-index: 1;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    transition: 0.5s;
+  }
+
+  &:hover::before {
+    transform: translateX(100%);
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(157, 0, 255, 0.3);
+  }
 
   &:disabled {
     opacity: 0.7;
     cursor: not-allowed;
-  }
-
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      120deg,
-      transparent,
-      rgba(255, 255, 255, 0.2),
-      transparent
-    );
-    transition: 0.5s;
-  }
-
-  &:hover:before {
-    left: 100%;
+    transform: none;
+    box-shadow: none;
   }
 `;
 
@@ -202,9 +210,16 @@ const Contact = () => {
 
         setIsSubmitting(true);
 
-        // Simulate API call
         try {
-            await new Promise(resolve => setTimeout(resolve, 1500));
+            // Create a new message reference in the 'messages' node
+            const messagesRef = ref(db, 'messages');
+            await push(messagesRef, {
+                name: formData.name,
+                email: formData.email,
+                message: formData.message,
+                timestamp: new Date().toISOString()
+            });
+            
             setSubmitSuccess(true);
             setFormData({ name: '', email: '', message: '' });
             setTimeout(() => setSubmitSuccess(false), 5000);
@@ -294,14 +309,14 @@ const Contact = () => {
                         </AnimatePresence>
                     </InputWrapper>
 
-                    <SubmitButton
+                    <SendButton
                         type="submit"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         disabled={isSubmitting}
                     >
                         {isSubmitting ? 'Sending...' : 'Send Message'}
-                    </SubmitButton>
+                    </SendButton>
 
                     <AnimatePresence>
                         {submitSuccess && (

@@ -5,26 +5,34 @@ import DownloadCV from '../components/DownloadCV';
 import SocialLinks from '../components/SocialLinks';
 import Project from './Project';
 import Skills from './Skills';
-import About from '../components/About';
+// import About from '../components/About';
+import About from './About';
 import Contact from '../components/Contact';
+import Footer from '../components/Footer';
 import devon from '../assets/images/ajay-1.webp';
 import resumeData from '../data/data.json';
 
 const PageContainer = styled.div`
-  background: linear-gradient(135deg, rgba(19, 17, 28, 0.8) 0%, rgba(30, 27, 46, 0.8) 100%);
   position: relative;
   overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  > footer {
+    margin-top: auto;
+  }
 `;
 
 const HomeContainer = styled.section`
   min-height: 100vh;
   color: #fff;
-  padding: 2rem;
+  padding: 4rem 2rem;
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.4);
 `;
 
 const ProjectsSection = styled.section`
@@ -32,6 +40,7 @@ const ProjectsSection = styled.section`
   color: #fff;
   padding: 6rem 2rem;
   position: relative;
+  background: rgba(0, 0, 0, 0.4);
 `;
 
 const SkillsSection = styled.section`
@@ -39,7 +48,7 @@ const SkillsSection = styled.section`
   color: #fff;
   padding: 6rem 2rem;
   position: relative;
-  background: rgba(157, 0, 255, 0.05);
+  background: rgba(0, 0, 0, 0.4);
 `;
 
 const SectionTitle = styled(motion.h2)`
@@ -154,30 +163,62 @@ const ContentWrapper = styled.div`
 
 const TextContent = styled.div`
   z-index: 1;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: -20px;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(157, 0, 255, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(15px);
+  }
 `;
 
 const Title = styled(motion.h1)`
-  font-size: clamp(2rem, 8vw, 5rem);
-  font-weight: 700;
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
+  font-weight: 800;
   margin: 0;
-  background: linear-gradient(135deg, #fff 0%, #8a8a8a 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(157, 0, 255, 0.95) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   line-height: 1.1;
+  letter-spacing: -1px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
 const Subtitle = styled(motion.h2)`
-  font-size: clamp(1rem, 3vw, 1.5rem);
-  color: #B4B4B4;
-  margin: 1rem 0 2rem;
+  font-size: clamp(1.1rem, 3vw, 1.6rem);
+  color: rgba(180, 180, 180, 0.95);
+  margin: 1.5rem 0 2rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: rgba(157, 0, 255, 0.7);
+    margin-top: 1rem;
+    
+    @media (max-width: 768px) {
+      margin: 1rem auto 0;
+    }
+  }
 `;
 
 const Description = styled(motion.p)`
-  color: #888;
+  color: rgba(255, 255, 255, 0.85);
   font-size: 1.1rem;
   margin-bottom: 2rem;
   max-width: 500px;
   line-height: 1.8;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 768px) {
     margin: 1rem auto 2rem;
@@ -199,7 +240,7 @@ const ImageSection = styled.div`
     right: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(157, 0, 255, 0.2) 0%, rgba(157, 0, 255, 0) 70%);
+    background: radial-gradient(circle, rgba(157, 0, 255, 0.3) 0%, rgba(157, 0, 255, 0) 70%);
     z-index: 0;
   }
 
@@ -207,10 +248,15 @@ const ImageSection = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 20px;
+    border-radius: 30px;
     position: relative;
     z-index: 1;
-    filter: drop-shadow(0 0 20px rgba(157, 0, 255, 0.3));
+    filter: drop-shadow(0 0 30px rgba(157, 0, 255, 0.4));
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.02);
+    }
   }
 
   @media (max-width: 768px) {
@@ -237,6 +283,23 @@ const codeSnippets = [
   { text: 'npm install react', x: '60%', y: '80%', size: '1.1rem' },
 ];
 
+const HireButton = styled(motion.button)`
+    background: rgba(157, 0, 255, 0.1);
+    border: 1px solid rgba(157, 0, 255, 0.3);
+    color: #fff;
+    padding: 0.8rem 2rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    margin: 2rem auto 0;
+
+    &:hover {
+        background: rgba(157, 0, 255, 0.2);
+    }
+`;
+
 const Home = () => {
   return (
     <PageContainer>
@@ -244,9 +307,9 @@ const Home = () => {
         <ContentWrapper>
           <TextContent>
             <Title
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
             >
               {resumeData.name.split(' ').map((word, index) => (
                 <React.Fragment key={index}>
@@ -256,24 +319,36 @@ const Home = () => {
               ))}
             </Title>
             <Subtitle
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
             >
               REACT NATIVE DEVELOPER
             </Subtitle>
             <Description
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
             >
               {resumeData.career_objective}
             </Description>
-            <DownloadCV />
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
+            >
+              <DownloadCV />
+            </motion.div>
           </TextContent>
-          <ImageSection>
-            <img src={devon} alt="Ajay Kumar Pandey" />
-          </ImageSection>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
+          >
+            <ImageSection>
+              <img src={devon} alt="Ajay Kumar Pandey" />
+            </ImageSection>
+          </motion.div>
         </ContentWrapper>
         <SocialLinks />
       </HomeContainer>
@@ -281,6 +356,7 @@ const Home = () => {
       <Project />
       <Skills />
       <Contact />
+      <Footer />
     </PageContainer>
   );
 };

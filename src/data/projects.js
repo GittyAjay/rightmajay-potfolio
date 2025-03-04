@@ -2,7 +2,128 @@ export const projects = [
     {
         "id": 1,
         "title": "Staffworks",
-        // ... existing Staffworks data ...
+        "description": "Enterprise workforce management platform enabling efficient staff scheduling, real-time tracking, and automated payroll processing. Features advanced geofencing, shift management, and comprehensive reporting tools.",
+        "status": "Completed",
+        "timeline": "2023-01 - 2023-08",
+        "role": "Lead Developer",
+        "client": "Enterprise Staffing Solutions",
+        "team": "5 Developers, 2 UI/UX Designers, 1 Project Manager",
+        "tools": "React Native, TypeScript, Redux, Node.js, MongoDB",
+        "achievements": [
+            "Developed and launched a workforce management platform serving 10,000+ monthly users",
+            "Reduced scheduling conflicts by 85% through intelligent allocation algorithms",
+            "Improved staff attendance tracking accuracy by 95% using geofencing",
+            "Decreased payroll processing time by 60% through automation",
+            "Achieved 99.9% system uptime with robust offline functionality",
+            "Increased staff satisfaction by 40% through improved shift management",
+            "Implemented real-time analytics reducing reporting time by 70%",
+            "Streamlined onboarding process reducing training time by 50%"
+        ],
+        "technicalStack": {
+            "core": [
+                {
+                    "title": "Workforce Management",
+                    "items": [
+                        "Advanced staff scheduling",
+                        "Real-time tracking system",
+                        "Automated payroll processing",
+                        "Geofencing integration",
+                        "Shift management",
+                        "Reporting dashboard"
+                    ]
+                },
+                {
+                    "title": "Core Technologies",
+                    "items": [
+                        "React Native with TypeScript",
+                        "Redux for state management",
+                        "Node.js backend services",
+                        "MongoDB database",
+                        "WebSocket for real-time"
+                    ]
+                }
+            ],
+            "additional": [
+                {
+                    "title": "Security Features",
+                    "items": [
+                        "Role-based access",
+                        "Data encryption",
+                        "Audit logging"
+                    ]
+                },
+                {
+                    "title": "Integration Services",
+                    "items": [
+                        "Payroll systems",
+                        "HR management",
+                        "Time tracking"
+                    ]
+                }
+            ]
+        },
+        "implementation": {
+            "core": [
+                {
+                    "title": "Staff Management",
+                    "items": [
+                        "Scheduling system",
+                        "Attendance tracking",
+                        "Performance monitoring",
+                        "Leave management"
+                    ]
+                },
+                {
+                    "title": "Data Management",
+                    "items": [
+                        "Real-time sync",
+                        "Offline support",
+                        "Data backup",
+                        "Analytics engine"
+                    ]
+                }
+            ],
+            "optimization": [
+                {
+                    "title": "Performance Features",
+                    "items": [
+                        "Caching system",
+                        "Load balancing",
+                        "Query optimization"
+                    ]
+                },
+                {
+                    "title": "Mobile Features",
+                    "items": [
+                        "Push notifications",
+                        "Location services",
+                        "Offline mode"
+                    ]
+                }
+            ]
+        },
+        "future": {
+            "features": [
+                {
+                    "title": "AI Integration",
+                    "items": [
+                        "Smart scheduling",
+                        "Predictive analytics",
+                        "Automated reporting"
+                    ]
+                },
+                {
+                    "title": "Platform Expansion",
+                    "items": [
+                        "Multi-tenant support",
+                        "API marketplace",
+                        "White-label solution"
+                    ]
+                }
+            ]
+        },
+        "videoUrl": "https://www.youtube.com/embed/YOUR_VIDEO_ID",
+        "imageUrl": "https://www.gigflex.com/wp-content/uploads/2021/07/staff_01.png"
     },
     {
         "id": 2,

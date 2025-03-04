@@ -161,62 +161,62 @@
         {
             "id": 1,
             "title": "Staffworks",
-            "description": "Mobile app for workforce scheduling management that assigns right employees to right locations at right times. Provides real-time shift visibility, enables schedule swapping, and features location-based check-ins for verification.",
+            "description": "Enterprise workforce management platform enabling efficient staff scheduling, real-time tracking, and automated payroll processing. Features advanced geofencing, shift management, and comprehensive reporting tools.",
             "status": "Completed",
-            "timeline": "2023",
+            "timeline": "2023-01 - 2023-08",
             "role": "Lead Developer",
-            "client": "Staffing Agency",
-            "team": "5 Developers, 2 Designers, 1 Project Manager",
-            "tools": "React Native, Redux, Firebase, TypeScript, Node.js",
+            "client": "Enterprise Staffing Solutions",
+            "team": "5 Developers, 2 UI/UX Designers, 1 Project Manager",
+            "tools": "React Native, TypeScript, Redux, Node.js, MongoDB",
             "achievements": [
-                "Developed a comprehensive mobile workforce management solution",
-                "Implemented real-time location tracking and geofencing features",
-                "Created an efficient shift swapping system with automated approvals",
-                "Integrated with multiple third-party APIs for payroll and invoicing",
-                "Achieved 99.9% uptime with robust offline functionality",
-                "Reduced scheduling conflicts by 85% through automated system",
-                "Improved staff attendance tracking accuracy by 95%",
-                "Streamlined payroll processing time by 60%"
+                "Developed and launched a workforce management platform serving 10,000+ monthly users",
+                "Reduced scheduling conflicts by 85% through intelligent allocation algorithms",
+                "Improved staff attendance tracking accuracy by 95% using geofencing",
+                "Decreased payroll processing time by 60% through automation",
+                "Achieved 99.9% system uptime with robust offline functionality",
+                "Increased staff satisfaction by 40% through improved shift management",
+                "Implemented real-time analytics reducing reporting time by 70%",
+                "Streamlined onboarding process reducing training time by 50%"
             ],
             "technicalStack": {
                 "core": [
                     {
-                        "title": "Geo-intelligent Platform Features",
+                        "title": "Workforce Management Features",
                         "items": [
-                            "Location-based scheduling algorithms",
-                            "Real-time schedule synchronization",
-                            "Geofencing capabilities",
-                            "Shift exchange functionality",
-                            "Time tracking integration",
-                            "Payroll & invoicing API connections"
+                            "Intelligent staff allocation system",
+                            "Real-time location tracking",
+                            "Automated shift management",
+                            "Attendance verification",
+                            "Payroll integration",
+                            "Performance analytics"
                         ]
                     },
                     {
                         "title": "Core Technologies",
                         "items": [
-                            "React Native - Mobile Development",
-                            "Redux/Context API - State Management",
-                            "WebSocket/Firebase - Real-time Updates",
-                            "AsyncStorage - Offline Data",
-                            "React Native Maps - Location Services"
+                            "React Native with TypeScript",
+                            "Redux for state management",
+                            "Node.js backend services",
+                            "MongoDB for data storage",
+                            "WebSocket for real-time updates"
                         ]
                     }
                 ],
                 "additional": [
                     {
-                        "title": "Authentication & Security",
+                        "title": "Location Services",
                         "items": [
-                            "JWT-based authentication",
-                            "Biometric access options",
-                            "Encrypted local storage"
+                            "Geofencing implementation",
+                            "Location verification",
+                            "Route optimization"
                         ]
                     },
                     {
-                        "title": "Integration & Services",
+                        "title": "Integration Services",
                         "items": [
-                            "Firebase Cloud Messaging (FCM)",
-                            "Apple Push Notification Service (APNS)",
-                            "RESTful API Integration"
+                            "Payroll system integration",
+                            "Time tracking APIs",
+                            "Reporting services"
                         ]
                     }
                 ]
@@ -224,21 +224,21 @@
             "implementation": {
                 "core": [
                     {
-                        "title": "Communication Features",
+                        "title": "Staff Management",
                         "items": [
-                            "Twilio Programmable Chat API",
-                            "STOMP Protocol Integration",
-                            "Video/Audio Calling Support",
-                            "Background Call Handling"
+                            "Shift allocation engine",
+                            "Attendance tracking",
+                            "Performance monitoring",
+                            "Communication system"
                         ]
                     },
                     {
-                        "title": "Offline Architecture",
+                        "title": "Data Management",
                         "items": [
-                            "Realm Database Integration",
-                            "Custom Sync Protocol",
-                            "Queue-based Operations",
-                            "State Reconciliation Logic"
+                            "Real-time synchronization",
+                            "Offline data access",
+                            "Data analytics",
+                            "Automated backups"
                         ]
                     }
                 ],
@@ -246,17 +246,17 @@
                     {
                         "title": "Performance Features",
                         "items": [
-                            "Memoization Techniques",
-                            "Lazy Loading Implementation",
-                            "Background Task Management"
+                            "Background processing",
+                            "Data compression",
+                            "Cache optimization"
                         ]
                     },
                     {
-                        "title": "Data Management",
+                        "title": "Security Measures",
                         "items": [
-                            "Conflict Resolution System",
-                            "Differential Sync",
-                            "Encrypted Storage"
+                            "Role-based access",
+                            "Data encryption",
+                            "Audit logging"
                         ]
                     }
                 ]
@@ -264,19 +264,19 @@
             "future": {
                 "features": [
                     {
-                        "title": "Enhanced Location Services",
+                        "title": "AI Integration",
                         "items": [
-                            "Advanced Geofencing",
-                            "Predictive Location Tracking",
-                            "Multi-site Management"
+                            "Predictive scheduling",
+                            "Automated skill matching",
+                            "Performance forecasting"
                         ]
                     },
                     {
-                        "title": "Integration Expansions",
+                        "title": "Platform Expansion",
                         "items": [
-                            "Additional Payment Gateways",
-                            "Extended HR Systems Support",
-                            "Advanced Analytics Dashboard"
+                            "Multi-tenant architecture",
+                            "Advanced reporting",
+                            "Integration marketplace"
                         ]
                     }
                 ]

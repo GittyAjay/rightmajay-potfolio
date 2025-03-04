@@ -8,9 +8,9 @@ export const PageContainer = styled.div`
 export const SkillsSection = styled.section`
   min-height: 100vh;
   color: #fff;
-  padding: 6rem 2rem;
+  padding: 2rem 0;
   position: relative;
-
+  background: rgba(10, 0, 20, 0.3);
 `;
 
 export const SectionTitle = styled(motion.h2)`
@@ -33,93 +33,115 @@ export const ContentWrapper = styled.div`
   flex-direction: column;
   position: relative;
   z-index: 1;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
 `;
 
 export const SkillsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2.5rem;
+  gap: 1.5rem;
   width: 100%;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 0;
 
-  @media (min-width: 1400px) {
-    grid-template-columns: repeat(4, 1fr);
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
   }
 `;
 
 export const SkillCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 20px;
-  padding: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  transition: all 0.3s ease;
-  min-height: 320px;
-  height: 100%;
-  gap: 1rem;
+background: rgba(255, 255, 255, 0.05);
+border - radius: 20px;
+padding: 2rem;
+border: 1px solid rgba(255, 255, 255, 0.1);
+display: flex;
+flex - direction: column;
+align - items: center;
+text - align: center;
+transition: all 0.3s ease;
+min - height: 320px;
+height: 100 %;
+gap: 1rem;
 
   &:hover {
-    border-color: rgba(157, 0, 255, 0.5);
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.08);
-  }
+  border - color: rgba(157, 0, 255, 0.5);
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.08);
+}
 `;
 
 export const SkillTitle = styled.h3`
-  font-size: 1.25rem;
-  color: #fff;
-  font-weight: 500;
-  margin: 0;
-  min-height: 1.5em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+font - size: 1.25rem;
+color: #fff;
+font - weight: 500;
+margin: 0;
+min - height: 1.5em;
+display: flex;
+align - items: center;
+justify - content: center;
 `;
 
 export const SkillDescription = styled.p`
-  color: #a0a0a0;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  font-weight: 400;
-  margin: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-height: 6em;
+color: #a0a0a0;
+font - size: 0.9rem;
+line - height: 1.6;
+font - weight: 400;
+margin: 0;
+display: -webkit - box;
+-webkit - line - clamp: 4;
+-webkit - box - orient: vertical;
+overflow: hidden;
+text - overflow: ellipsis;
+max - height: 6em;
 `;
 
 export const HeaderSection = styled.div`
   text-align: center;
   max-width: 800px;
-  margin: 0 auto;
-  padding: 0 1rem;
+  margin: 0 auto 2.5rem;
+  padding: 0;
+
+  @media (max-width: 768px) {
+    margin-bottom: 2rem;
+    padding: 0 0.5rem;
+  }
 `;
 
 export const Title = styled(motion.h1)`
-  font-size: clamp(2rem, 6vw, 5rem);
-  font-weight: 900;
+  font-size: 3rem;
+  font-weight: 700;
   margin: 0;
-  background: linear-gradient(135deg, #fff 0%, #8a8a8a 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  line-height: 1.1;
+  color: #fff;
+  text-align: center;
+  line-height: 1.2;
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
 `;
 
 export const Subtitle = styled(motion.h2)`
-  font-size: clamp(1rem, 2.5vw, 1.8rem);
-  color: #B4B4B4;
-  margin: 1rem 0 1.5rem;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0.75rem 0 0;
   font-weight: 400;
   line-height: 1.6;
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 
-  @media (min-width: 768px) {
-    margin: 1.5rem 0 2rem;
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    color: rgba(255, 255, 255, 0.6);
   }
-`; 
+`;

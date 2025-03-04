@@ -8,7 +8,7 @@ import { db } from '../firebase/config';
 const ContactSection = styled.section`
   min-height: 100vh;
   color: #fff;
-  padding: 6rem 2rem;
+  padding: 4rem 0;
   position: relative;
   background: rgba(157, 0, 255, 0.05);
   font-family: 'Satoshi', sans-serif;
@@ -18,14 +18,25 @@ const ContactContent = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   text-align: center;
+  padding: 0 1.5rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
 `;
 
 const ContactForm = styled.form`
   max-width: 600px;
-  margin: 3rem auto;
+  margin: 2.5rem auto;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    margin: 2rem auto;
+    gap: 1.25rem;
+  }
 `;
 
 const InputWrapper = styled.div`
@@ -145,11 +156,15 @@ const SuccessMessage = styled(motion.div)`
 const SectionTitle = styled(motion.h2)`
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   background: linear-gradient(135deg, #fff 0%, #8a8a8a 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-align: center;
+
+  @media (max-width: 768px) {
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const SectionSubtitle = styled.p`
@@ -160,6 +175,12 @@ const SectionSubtitle = styled.p`
   margin-left: auto;
   margin-right: auto;
   font-weight: 400;
+  padding: 0 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const Contact = () => {
@@ -219,7 +240,7 @@ const Contact = () => {
                 message: formData.message,
                 timestamp: new Date().toISOString()
             });
-            
+
             setSubmitSuccess(true);
             setFormData({ name: '', email: '', message: '' });
             setTimeout(() => setSubmitSuccess(false), 5000);

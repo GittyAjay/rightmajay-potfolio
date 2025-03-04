@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FaTwitter, FaLinkedinIn, FaGithub, FaInstagram } from 'react-icons/fa';
+import data from '../data/data.json';
 
 const FooterContainer = styled.footer`
   background: transparent;
@@ -109,6 +111,8 @@ const SocialLink = styled.a`
 `;
 
 const Footer = () => {
+  const { linkedin, github, instagram, twitter } = data;
+
   return (
     <FooterContainer>
       <FooterContent>
@@ -119,17 +123,17 @@ const Footer = () => {
            created by Ajay Pandey using React, Three.js framer, and styled-components.
           </Description>
           <SocialLinks>
-            <SocialLink href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-github"></i>
+            <SocialLink href={github} target="_blank" rel="noopener noreferrer">
+              <FaGithub />
             </SocialLink>
-            <SocialLink href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-linkedin"></i>
+            <SocialLink href={linkedin} target="_blank" rel="noopener noreferrer">
+              <FaLinkedinIn />
             </SocialLink>
-            <SocialLink href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-twitter"></i>
+            <SocialLink href={twitter} target="_blank" rel="noopener noreferrer">
+              <FaTwitter />
             </SocialLink>
-            <SocialLink href="https://instagram.com/yourusername" target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-instagram"></i>
+            <SocialLink href={instagram} target="_blank" rel="noopener noreferrer">
+              <FaInstagram />
             </SocialLink>
           </SocialLinks>
         </Column>

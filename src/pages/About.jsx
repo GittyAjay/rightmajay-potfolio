@@ -391,52 +391,18 @@ const ProjectStat = styled.div`
 
 const About = () => {
     const navigate = useNavigate();
-    // Calculate years of experience from work experience
+    
     const calculateExperience = () => {
         const startDate = new Date(resumeData.work_experience[0].start_date);
         const currentDate = new Date();
         return Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24 * 365));
     };
 
-    // Get advanced skills for scrolling text
     const skillsText = [
         ...resumeData.skills.advanced,
         ...resumeData.skills.performance,
         ...resumeData.skills.architecture
     ].join(' • ');
-
-    const journeyData = [
-        {
-            title: "Senior React Native Developer",
-            date: "2021 - Present",
-            description: "Leading development of high-performance mobile applications with 100K+ daily users. Specializing in app optimization, team mentorship, and architectural improvements.",
-            stats: [
-                { value: "100K+", label: "Daily Users" },
-                { value: "40%", label: "Performance Boost" },
-                { value: "85%", label: "Code Coverage" }
-            ]
-        },
-        {
-            title: "React Native Developer",
-            date: "2020 - 2021",
-            description: "Focused on cross-platform development and app optimization. Implemented modular architecture and reusable component libraries.",
-            stats: [
-                { value: "25%", label: "Load Time Improvement" },
-                { value: "30%", label: "Development Efficiency" },
-                { value: "50+", label: "Reusable Components" }
-            ]
-        },
-        {
-            title: "Mobile App Developer",
-            date: "2019 - 2020",
-            description: "Started journey in mobile development. Worked on fundamental app architectures and native module integration.",
-            stats: [
-                { value: "10+", label: "Apps Delivered" },
-                { value: "15+", label: "Native Modules" },
-                { value: "20K+", label: "Lines of Code" }
-            ]
-        }
-    ];
 
     return (
         <AboutContainer>
@@ -488,7 +454,7 @@ const About = () => {
                 </Stats>
                 <Journey>
                     <TimelineContainer>
-                        {journeyData.map((item, index) => (
+                        {resumeData.journey.map((item, index) => (
                             <TimelineItem
                                 key={index}
                                 initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}

@@ -4,6 +4,9 @@
     "phone": "6392363003",
     "location": "Mumbai",
     "linkedin": "https://linkedin.com/in/rightmajay",
+    "github": "https://github.com/gittyajay",
+    "instagram": "https://www.instagram.com/ajay.paandey_",
+    "twitter": "https://x.com/im_Ajaypandey",
     "career_objective": "Experienced React Native Developer with 3.5+ years in high-performance mobile apps (100K+ daily users). Seeking a technical leadership role to leverage my expertise in cross-platform development and app optimization. Proven success in reducing app launch times by 25% and enhancing development efficiency by 30% through modular architecture. Aiming to drive technical excellence and mentor teams, particularly in fintech or e-commerce sectors with experience in native modules integration, offline-first architecture, and mobile payment systems.",
     "skills": {
         "advanced": [
@@ -157,6 +160,7 @@
     "projects": [
         {
             "title": "StaffWorks",
+            "id": 1,
             "image": "https://www.gigflex.com/wp-content/uploads/2024/04/screenshot@.jpg",
             "platform": [
                 "Android",
@@ -173,6 +177,7 @@
         },
         {
             "title": "EventWorks",
+            "id": 2,
             "image": "https://www.gigflex.com/wp-content/uploads/2021/07/event_02.png",
             "platform": [
                 "Android",
@@ -189,6 +194,7 @@
         },
         {
             "title": "Carehudl",
+            "id": 3,
             "image": "https://www.gigflex.com/wp-content/uploads/2021/07/CareHudl_03.jpg",
             "platform": [
                 "Android",
@@ -204,6 +210,7 @@
         },
         {
             "title": "Prop News Times",
+            "id": 4,
             "image": "https://media.licdn.com/dms/image/v2/D5612AQFY6ojlJtBw6A/article-cover_image-shrink_720_1280/B56ZVfVysQHsAI-/0/1741061303927?e=1746662400&v=beta&t=AlvlvTNTHP8Lxp8Lll7tn86FQMM2_7sfsMDKrnwaABU",
             "platform": [
                 "Android",
@@ -217,6 +224,7 @@
         },
         {
             "title": "Elynker",
+            "id": 5,
             "image": "https://media.licdn.com/dms/image/v2/D4D22AQElPugfA0SAnw/feedshare-shrink_800/feedshare-shrink_800/0/1726032502682?e=1744243200&v=beta&t=aCpUSMTUXAyDNeeLs3J3WJHgq0XiP0dMMJ5a8lYzYxw",
             "platform": [
                 "Android",
@@ -232,6 +240,7 @@
         },
         {
             "title": "Inasquare",
+            "id": 6,
             "image": "https://unctad.org/sites/default/files/2021-03/2021-03-15_eCommerceCOVID19report-1-1220x675px.jpg",
             "platform": [
                 "Android",
@@ -243,6 +252,68 @@
             "achievements": [
                 "Launched an app in Oman, driving a 30% growth in regional sales within three months.",
                 "Elevated the online shopping experience, attracting 25,000 active users in the first year."
+            ]
+        }
+    ],
+    "journey": [
+        {
+            "title": "Senior React Native Developer",
+            "id": 7,
+            "date": "2021 - Present",
+            "description": "Leading development of high-performance mobile applications with 100K+ daily users. Specializing in app optimization, team mentorship, and architectural improvements.",
+            "stats": [
+                {
+                    "value": "100K+",
+                    "label": "Daily Users"
+                },
+                {
+                    "value": "40%",
+                    "label": "Performance Boost"
+                },
+                {
+                    "value": "85%",
+                    "label": "Code Coverage"
+                }
+            ]
+        },
+        {
+            "title": "React Native Developer",
+            "id": 8,
+            "date": "2020 - 2021",
+            "description": "Focused on cross-platform development and app optimization. Implemented modular architecture and reusable component libraries.",
+            "stats": [
+                {
+                    "value": "25%",
+                    "label": "Load Time Improvement"
+                },
+                {
+                    "value": "30%",
+                    "label": "Development Efficiency"
+                },
+                {
+                    "value": "50+",
+                    "label": "Reusable Components"
+                }
+            ]
+        },
+        {
+            "title": "Mobile App Developer",
+            "id": 9,
+            "date": "2019 - 2020",
+            "description": "Started journey in mobile development. Worked on fundamental app architectures and native module integration.",
+            "stats": [
+                {
+                    "value": "10+",
+                    "label": "Apps Delivered"
+                },
+                {
+                    "value": "15+",
+                    "label": "Native Modules"
+                },
+                {
+                    "value": "20K+",
+                    "label": "Lines of Code"
+                }
             ]
         }
     ]

@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { FaTwitter, FaLinkedinIn, FaGithub, FaInstagram, FaBehance, FaDiscord } from 'react-icons/fa';
+import data from '../data/data.json';
 
 const SocialLinksContainer = styled.div`
   position: fixed;
@@ -29,34 +31,45 @@ const SocialLink = styled(motion.a)`
 `;
 
 const SocialLinks = () => {
+    const { linkedin, github, instagram, twitter } = data;
+
     return (
         <SocialLinksContainer>
             <SocialLink
-                href="https://twitter.com"
+                href={twitter}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
             >
-                𝕏
+                <FaTwitter />
             </SocialLink>
             <SocialLink
-                href="https://behance.net"
+                href={linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
             >
-                Bē
+                <FaLinkedinIn />
             </SocialLink>
             <SocialLink
-                href="https://discord.com"
+                href={github}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
             >
-                ⌬
+                <FaGithub />
+            </SocialLink>
+            <SocialLink
+                href={instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+            >
+                <FaInstagram />
             </SocialLink>
         </SocialLinksContainer>
     );

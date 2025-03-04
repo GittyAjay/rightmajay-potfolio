@@ -50,11 +50,22 @@ const GlowingButton = styled(motion.button)`
 `;
 
 const DownloadCV = () => {
+  const handleDownload = () => {
+    // Create a link element
+    const link = document.createElement('a');
+    link.href = 'React_Native.pdf';  
+    link.download = 'React_Native_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <GlowingButton
       whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.98 }}
       transition={{ duration: 0.2 }}
+      onClick={handleDownload}
     >
       Download CV
     </GlowingButton>

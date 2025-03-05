@@ -70,7 +70,7 @@ function App() {
           </Routes>
         </ContentWrapper>
       </AppWrapper>
-    </Router> 
+    </Router>
   );
 }
 

@@ -360,7 +360,8 @@ const Admin = () => {
     image: '',
     achievements: [''],
     start_date: '',
-    end_date: ''
+    end_date: '',
+    url: ''
   });
   const [openSections, setOpenSections] = useState({
     basicInfo: true,
@@ -908,6 +909,27 @@ const Admin = () => {
                             />
                           </FormGroup>
                           <FormGroup>
+                            <FormLabel>Project URL</FormLabel>
+                            <Input
+                              type="url"
+                              value={project.url || ''}
+                              onChange={(e) => {
+                                const url = e.target.value;
+                                if (url && !isValidUrl(url)) {
+                                  setErrorModal({
+                                    isOpen: true,
+                                    message: 'Please enter a valid URL (e.g., https://example.com)'
+                                  });
+                                  return;
+                                }
+                                const updatedProjects = [...portfolioData.projects];
+                                updatedProjects[index] = { ...project, url: e.target.value };
+                                updateField('projects', updatedProjects);
+                              }}
+                              placeholder="Enter project URL"
+                            />
+                          </FormGroup>
+                          <FormGroup>
                             <FormLabel>Project Image URL</FormLabel>
                             <Input
                               type="url"
@@ -1049,6 +1071,25 @@ const Admin = () => {
                               />
                             </FormGroup>
                             <FormGroup>
+                              <FormLabel>Project URL</FormLabel>
+                              <Input
+                                type="url"
+                                value={newProject.url}
+                                onChange={(e) => {
+                                  const url = e.target.value;
+                                  if (url && !isValidUrl(url)) {
+                                    setErrorModal({
+                                      isOpen: true,
+                                      message: 'Please enter a valid URL (e.g., https://example.com)'
+                                    });
+                                    return;
+                                  }
+                                  setNewProject({ ...newProject, url: e.target.value });
+                                }}
+                                placeholder="Enter project URL"
+                              />
+                            </FormGroup>
+                            <FormGroup>
                               <FormLabel>Project Image URL</FormLabel>
                               <Input
                                 type="url"
@@ -1102,7 +1143,8 @@ const Admin = () => {
                                     image: '',
                                     achievements: [''],
                                     start_date: '',
-                                    end_date: ''
+                                    end_date: '',
+                                    url: ''
                                   });
                                   toggleSection('newProject');
                                 }

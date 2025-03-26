@@ -220,12 +220,7 @@ const Projects = () => {
             subtitle: project.platform?.join(', ') || '',
           description: project.achievements.join('. '),
           image: project.image || "https://via.placeholder.com/400x200",
-          technologies: [
-            "React Native",
-            "TypeScript",
-            "Redux",
-            ...project.platform || []
-          ],
+          technologies: project.tools?.split(',') || [],
           role: "Lead Developer",
           timeline: project.start_date ? `${project.start_date} - ${project.end_date || 'Present'}` : 'Ongoing',
           client: "Various Clients"

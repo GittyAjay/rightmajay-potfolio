@@ -9,7 +9,7 @@ import Skills from './Skills';
 import About from './About';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
-import devon from '../assets/images/ajay-1.webp';
+import devon from '../assets/images/ajay.jpeg';
 import resumeData from '../data/data.json';
 
 const PageContainer = styled.div`

@@ -361,7 +361,8 @@ const Admin = () => {
     achievements: [''],
     start_date: '',
     end_date: '',
-    url: ''
+    url: '',
+    tools: ''
   });
   const [openSections, setOpenSections] = useState({
     basicInfo: true,
@@ -979,6 +980,19 @@ const Admin = () => {
                             />
                           </FormGroup>
                           <FormGroup>
+                            <FormLabel>Tools (comma-separated)</FormLabel>
+                            <Input
+                              type="text"
+                              value={project.tools || ''}
+                              onChange={(e) => {
+                                const updatedProjects = [...portfolioData.projects];
+                                updatedProjects[index] = { ...project, tools: e.target.value };
+                                updateField('projects', updatedProjects);
+                              }}
+                              placeholder="React Native, Node.js, MongoDB, etc."
+                            />
+                          </FormGroup>
+                          <FormGroup>
                             <FormLabel>Achievements</FormLabel>
                             {project.achievements.map((achievement, achievementIndex) => (
                               <div key={achievementIndex} style={{
@@ -1125,6 +1139,15 @@ const Admin = () => {
                               />
                             </FormGroup>
                             <FormGroup>
+                              <FormLabel>Tools (comma-separated)</FormLabel>
+                              <Input
+                                type="text"
+                                value={newProject.tools || ''}
+                                onChange={(e) => setNewProject({ ...newProject, tools: e.target.value })}
+                                placeholder="React Native, Node.js, MongoDB, etc."
+                              />
+                            </FormGroup>
+                            <FormGroup>
                               <FormLabel>Achievement</FormLabel>
                               <TextArea
                                 value={newProject.achievements[0]}
@@ -1144,7 +1167,8 @@ const Admin = () => {
                                     achievements: [''],
                                     start_date: '',
                                     end_date: '',
-                                    url: ''
+                                    url: '',
+                                    tools: ''
                                   });
                                   toggleSection('newProject');
                                 }

@@ -166,6 +166,35 @@ const GlowingButton = styled(motion.button)`
   }
 `;
 
+const MoveToProject = styled.button`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(157, 0, 255, 0.1);
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  color: #fff;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: rgba(157, 0, 255, 0.2);
+    transform: translateY(-2px);
+    
+    svg {
+      transform: translate(2px, -2px);
+    }
+  }
+
+  svg {
+    transition: transform 0.3s ease;
+  }
+`;
+
 const Projects = () => {
   const navigate = useNavigate();
   const isFullList = window.location.pathname === '/projects';
@@ -178,11 +207,17 @@ const Projects = () => {
     const unsubscribe = onValue(portfolioRef, (snapshot) => {
       if (snapshot.exists()) {
         const data = snapshot.val();
+        // console.log("initial projects", data.projects);
         // Transform the projects data
-        const transformedProjects = data.projects.map((project, index) => ({
-          id: index + 1,
-          title: project.title,
-          subtitle: project.platform?.join(', ') || '',
+        const transformedProjects = data.projects.map((project, index) => {
+          if(index === 0){
+            console.log("project", project);
+          }
+          return {
+            id: index + 1,
+            title: project.title,
+            projectUrl: project.url,
+            subtitle: project.platform?.join(', ') || '',
           description: project.achievements.join('. '),
           image: project.image || "https://via.placeholder.com/400x200",
           technologies: [
@@ -194,7 +229,8 @@ const Projects = () => {
           role: "Lead Developer",
           timeline: project.start_date ? `${project.start_date} - ${project.end_date || 'Present'}` : 'Ongoing',
           client: "Various Clients"
-        }));
+        }
+      });
         setProjects(transformedProjects);
         setLoading(false);
       }
@@ -243,7 +279,7 @@ const Projects = () => {
 
   // Use all projects if on full list view, otherwise show only first 3
   const displayedProjects = isFullList ? projects : projects.slice(0, 3);
-
+  console.log("displayedProjects1211", projects);
   const handleProjectClick = (projectId) => {
     navigate(`/project/${projectId}`);
   };
@@ -293,6 +329,18 @@ const Projects = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <ProjectHeader>
+                  {project.projectUrl && (
+                    <MoveToProject onClick={(e) => {
+                      e.stopPropagation();
+                      window.open(project.projectUrl, '_blank');
+                    }}>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M15 3H21V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M10 14L21 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </MoveToProject>
+                  )}
                   <ProjectImageWrapper>
                     <img src={project.image} alt={project.title} />
                   </ProjectImageWrapper>

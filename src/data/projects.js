@@ -2,6 +2,7 @@ export const projects = [
   {
     id: 1,
     title: 'Staffworks',
+    projectUrl: 'https://play.google.com/store/apps/details?id=com.gigflex.staffworks&pcampaignid=web_share',
     description:
       'Enterprise workforce management platform enabling efficient staff scheduling, real-time tracking, and automated payroll processing. Features advanced geofencing, shift management, and comprehensive reporting tools.',
     status: 'Completed',
@@ -113,6 +114,7 @@ export const projects = [
   {
     id: 2,
     title: 'EventWorks',
+    projectUrl: 'https://play.google.com/store/apps/details?id=com.gigflex.eventsworks&pcampaignid=web_share',
     description:
       'Comprehensive event management platform that streamlines staff allocation, venue coordination, and real-time event monitoring. Features dynamic scheduling, resource management, and integrated security protocols.',
     status: 'Completed',
@@ -238,6 +240,7 @@ export const projects = [
   {
     id: 3,
     title: 'Carehudl',
+    projectUrl: 'https://carehudl.com',
     description:
       'Healthcare management platform facilitating patient care coordination, staff scheduling, and medical resource allocation. Features real-time patient monitoring and integrated medical records management.',
     status: 'Completed',
@@ -364,6 +367,7 @@ export const projects = [
   {
     id: 4,
     title: 'Prop News Times',
+    projectUrl: 'https://play.google.com/store/apps/details?id=com.propnewstimes&pcampaignid=web_share',
     description:
       'Real estate news and analytics platform providing real-time market insights, property listings, and investment analysis tools. Features automated news aggregation and personalized content delivery.',
     status: 'Active',
@@ -490,6 +494,7 @@ export const projects = [
   {
     id: 5,
     title: 'Elynker',
+    projectUrl: 'https://www.elynker.com/homepage',
     description:
       'Digital transformation platform providing comprehensive business solutions including process automation, analytics, and cloud integration. Features customizable workflows and real-time performance monitoring.',
     status: 'Active',
@@ -616,6 +621,7 @@ export const projects = [
   {
     id: 6,
     title: 'Inasquare',
+    projectUrl: 'https://inasquare.com',
     description:
       'E-commerce platform tailored for the Omani market, featuring localized shopping experience, multi-vendor support, and integrated payment solutions. Supports both B2C and B2B transactions.',
     status: 'Completed',

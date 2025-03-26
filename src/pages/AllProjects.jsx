@@ -40,7 +40,7 @@ const AllProjects = () => {
     const handleBack = () => {
         window.history.back();
     };
-
+    // console.log("resumeData.projects", resumeData);
     // Get all projects from resume data
     const projects = resumeData.projects.map((project, index) => ({
         id: index + 1,

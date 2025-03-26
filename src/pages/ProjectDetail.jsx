@@ -235,7 +235,7 @@ const SidebarSection = styled.div`
 `;
 
 const DetailItem = styled.div`
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
   
   &:last-child {
     margin-bottom: 0;
@@ -244,17 +244,28 @@ const DetailItem = styled.div`
 
 const Label = styled.div`
   color: #9D00FF;
-  font-size: 0.8rem;
-  margin-bottom: 0.25rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
   font-weight: 600;
 `;
 
 const Value = styled.div`
   color: #fff;
   font-size: 0.95rem;
-  line-height: 1.4;
+  line-height: 1.5;
+  word-break: break-word;
+  
+  a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    
+    &:hover {
+      color: #9D00FF;
+    }
+  }
 `;
 
 const PlatformSection = styled.div`
@@ -476,6 +487,15 @@ const CloseButton = styled.button`
   }
 `;
 
+const ProjectLink = styled.a`
+  color: #9D00FF;
+  text-decoration: none;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 const ProjectDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -636,13 +656,26 @@ const ProjectDetail = () => {
               <h3>Project Details</h3>
 
               <DetailItem>
-                <Label>Role</Label>
+                <Label>PROJECT URL</Label>
+                <Value>
+                  {project.projectUrl ? (
+                    <ProjectLink href={project.projectUrl} target="_blank" rel="noopener noreferrer">
+                      {project.projectUrl}
+                    </ProjectLink>
+                  ) : (
+                    <span style={{ color: '#666666' }}>Private</span>
+                  )}
+                </Value>
+              </DetailItem>
+
+              <DetailItem>
+                <Label>ROLE</Label>
                 <Value>{project.role || 'Lead Developer'}</Value>
               </DetailItem>
 
               <DetailItem>
-                <Label>Timeline</Label>
-                <Value>{project.timeline || '2021-11 - 2022-07'}</Value>
+                <Label>TIMELINE</Label>
+                <Value>{project.timeline || '2023-01 - 2023-08'}</Value>
               </DetailItem>
 
               <DetailItem>

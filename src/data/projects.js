@@ -240,7 +240,6 @@ export const projects = [
   {
     id: 3,
     title: 'Carehudl',
-    projectUrl: 'https://carehudl.com',
     description:
       'Healthcare management platform facilitating patient care coordination, staff scheduling, and medical resource allocation. Features real-time patient monitoring and integrated medical records management.',
     status: 'Completed',
@@ -621,7 +620,6 @@ export const projects = [
   {
     id: 6,
     title: 'Inasquare',
-    projectUrl: 'https://inasquare.com',
     description:
       'E-commerce platform tailored for the Omani market, featuring localized shopping experience, multi-vendor support, and integrated payment solutions. Supports both B2C and B2B transactions.',
     status: 'Completed',

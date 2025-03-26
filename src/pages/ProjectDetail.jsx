@@ -496,6 +496,24 @@ const ProjectLink = styled.a`
   }
 `;
 
+const PrivateLabel = styled.div`
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  color: #ff4444;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+`;
+
 const ProjectDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -663,7 +681,13 @@ const ProjectDetail = () => {
                       {project.projectUrl}
                     </ProjectLink>
                   ) : (
-                    <span style={{ color: '#666666' }}>Private</span>
+                    <PrivateLabel>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 17a1 1 0 0 1-1-1v-4a1 1 0 0 1 2 0v4a1 1 0 0 1-1 1Z"/>
+                        <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2ZM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6Z"/>
+                      </svg>
+                      Private Project
+                    </PrivateLabel>
                   )}
                 </Value>
               </DetailItem>

@@ -195,6 +195,18 @@ const MoveToProject = styled.button`
   }
 `;
 
+const PrivateLabel = styled.span`
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  color: #ff4444;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+`;
+
 const Projects = () => {
   const navigate = useNavigate();
   const isFullList = window.location.pathname === '/projects';
@@ -324,7 +336,7 @@ const Projects = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <ProjectHeader>
-                  {project.projectUrl && (
+                  {project.projectUrl ? (
                     <MoveToProject onClick={(e) => {
                       e.stopPropagation();
                       window.open(project.projectUrl, '_blank');
@@ -335,6 +347,8 @@ const Projects = () => {
                         <path d="M10 14L21 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </MoveToProject>
+                  ) : (
+                    <PrivateLabel>Private</PrivateLabel>
                   )}
                   <ProjectImageWrapper>
                     <img src={project.image} alt={project.title} />

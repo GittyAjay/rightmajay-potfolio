@@ -22,14 +22,14 @@ import {
 const StyledGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
+  gap: 4.5rem;
   width: 100%;
   margin: 0 auto;
   padding: 0;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    gap: 1.25rem;
+    gap: 2rem;
     padding: 0;
     width: 100%;
   }
@@ -37,23 +37,22 @@ const StyledGrid = styled.div`
 
 const StyledSkillCard = styled(motion.div)`
   background: rgba(20, 0, 40, 0.4);
-  border: 1px solid rgba(157, 0, 255, 0.1);
-  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(157, 0, 255, 0.15);
+  border-radius: 20px;
   padding: 1.5rem;
   transition: all 0.3s ease;
   cursor: pointer;
   position: relative;
-  overflow: hidden;
   width: 100%;
-  height: auto;
-  min-height: 160px;
+  height: 100%;
+  min-height: 200px;
   display: flex;
   flex-direction: column;
 
-  @media (max-width: 768px) {
-    margin: 0;
-    width: 100%;
-    padding: 1.25rem;
+  &:hover {
+    border-color: rgba(157, 0, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(157, 0, 255, 0.1);
   }
 `;
 
@@ -61,13 +60,14 @@ const SkillContent = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  gap: 2rem;
+  gap: 1.5rem;
 `;
 
 const SkillHeader = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 1rem;
+  margin-bottom: 0.5rem;
 `;
 
 const SkillIconWrapper = styled.div`
@@ -76,7 +76,7 @@ const SkillIconWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(157, 0, 255, 0.1);
+  background: rgba(20, 0, 40, 0.6);
   border-radius: 12px;
   padding: 8px;
 
@@ -89,50 +89,43 @@ const SkillIconWrapper = styled.div`
 
 const SkillInfo = styled.div`
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
 `;
 
 const StyledSkillTitle = styled.h3`
-  font-size: 1.75rem;
-  color: #fff;
+  font-size: 1.5rem;
+  color: #ffffff;
   margin: 0;
   font-weight: 600;
   line-height: 1.2;
+  margin-bottom: 0.25rem;
 `;
 
 const SkillLevel = styled.div`
-  font-size: 1rem;
-  color: rgb(157, 0, 255);
+  font-size: 0.95rem;
+  color: #9D00FF;
   margin: 0;
-  opacity: 1;
 `;
 
 const TagsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 0.5rem;
   margin-top: auto;
-
-  @media (max-width: 768px) {
-    gap: 0.5rem;
-  }
 `;
 
 const SkillTag = styled.span`
   background: rgba(20, 0, 40, 0.6);
   color: #fff;
-  padding: 0.5rem 1.2rem;
-  border-radius: 20px;
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
   border: 1px solid rgba(157, 0, 255, 0.15);
   white-space: nowrap;
+  transition: all 0.2s ease;
 
-  @media (max-width: 768px) {
-    font-size: 0.85rem;
-    padding: 0.4rem 0.9rem;
+  &:hover {
+    background: rgba(157, 0, 255, 0.15);
+    border-color: rgba(157, 0, 255, 0.3);
   }
 `;
 
@@ -372,13 +365,18 @@ export default function Skills({ showAll = false }) {
             </Subtitle>
           </HeaderSection>
 
-          <SkillsGrid>
+          <StyledGrid>
             {displayedSkills.map((skill, index) => (
               <StyledSkillCard
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: index * 0.1,
+                  ease: "easeOut"
+                }}
+                whileHover={{ scale: 1.02 }}
                 viewport={{ once: true }}
               >
                 <SkillContent>
@@ -399,7 +397,7 @@ export default function Skills({ showAll = false }) {
                 </SkillContent>
               </StyledSkillCard>
             ))}
-          </SkillsGrid>
+          </StyledGrid>
 
           {!showAll && (
             <motion.div

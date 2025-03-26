@@ -8,9 +8,9 @@ const CanvasContainer = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 0;
+  z-index: -1;
   pointer-events: none;
-  background: linear-gradient(to bottom, #000000, #1a0f3c);
+  background: linear-gradient(to bottom, #000000, #0a0520);
 `;
 
 const BackgroundAnimation = () => {
@@ -24,9 +24,9 @@ const BackgroundAnimation = () => {
         renderer.setSize(window.innerWidth, window.innerHeight);
         containerRef.current.appendChild(renderer.domElement);
 
-        // Create stars
+        // Create stars with reduced count
         const starGeometry = new THREE.BufferGeometry();
-        const starCount = 2000;
+        const starCount = 800;
         const starPositions = new Float32Array(starCount * 3);
         const starColors = new Float32Array(starCount * 3);
 
@@ -37,7 +37,7 @@ const BackgroundAnimation = () => {
             starPositions[i3 + 2] = (Math.random() - 0.5) * 50;
 
             const color = new THREE.Color();
-            color.setHSL(Math.random() * 0.1 + 0.6, 0.8, 0.5 + Math.random() * 0.5);
+            color.setHSL(Math.random() * 0.2 + 0.5, 0.5, 0.3);
             starColors[i3] = color.r;
             starColors[i3 + 1] = color.g;
             starColors[i3 + 2] = color.b;
@@ -50,7 +50,8 @@ const BackgroundAnimation = () => {
             size: 0.1,
             vertexColors: true,
             transparent: true,
-            opacity: 0.8,
+            opacity: 0.4,
+            blending: THREE.AdditiveBlending,
         });
 
         const stars = new THREE.Points(starGeometry, starMaterial);
@@ -58,7 +59,7 @@ const BackgroundAnimation = () => {
 
         // Create nebula-like clouds
         const nebulaGeometry = new THREE.BufferGeometry();
-        const nebulaCount = 1000;
+        const nebulaCount = 400;
         const nebulaPositions = new Float32Array(nebulaCount * 3);
         const nebulaColors = new Float32Array(nebulaCount * 3);
 
@@ -86,7 +87,7 @@ const BackgroundAnimation = () => {
             size: 0.3,
             vertexColors: true,
             transparent: true,
-            opacity: 0.4,
+            opacity: 0.2,
             blending: THREE.AdditiveBlending,
         });
 
@@ -108,36 +109,33 @@ const BackgroundAnimation = () => {
         let time = 0;
         const animate = () => {
             requestAnimationFrame(animate);
-            time += 0.001;
+            time += 0.0005;
 
-            // Smooth mouse movement
-            mouse.x += (targetMouse.x - mouse.x) * 0.05;
-            mouse.y += (targetMouse.y - mouse.y) * 0.05;
+            // Subtle mouse movement
+            mouse.x += (targetMouse.x - mouse.x) * 0.01;
+            mouse.y += (targetMouse.y - mouse.y) * 0.01;
 
-            // Rotate the entire scene
-            scene.rotation.y += 0.0005;
-            scene.rotation.x += 0.0002;
+            // Very slow rotation
+            scene.rotation.y += 0.0001;
+            scene.rotation.x += 0.00005;
 
-            // Animate stars
+            // Simplified star animation
             const starPositions = stars.geometry.attributes.position.array;
             for (let i = 0; i < starCount; i++) {
                 const i3 = i * 3;
-                starPositions[i3 + 1] += Math.sin(time + i) * 0.01;
+                starPositions[i3] += Math.sin(time + i) * 0.005;
+                starPositions[i3 + 1] += Math.cos(time + i) * 0.005;
             }
             stars.geometry.attributes.position.needsUpdate = true;
 
-            // Animate nebula
+            // Simplified nebula animation
             const nebulaPositions = nebula.geometry.attributes.position.array;
             for (let i = 0; i < nebulaCount; i++) {
                 const i3 = i * 3;
-                nebulaPositions[i3] += Math.sin(time * 0.5 + i) * 0.02;
-                nebulaPositions[i3 + 1] += Math.cos(time * 0.5 + i) * 0.02;
+                nebulaPositions[i3] += Math.sin(time + i * 0.1) * 0.01;
+                nebulaPositions[i3 + 1] += Math.cos(time + i * 0.1) * 0.01;
             }
             nebula.geometry.attributes.position.needsUpdate = true;
-
-            // Mouse influence on the scene
-            scene.rotation.y += mouse.x * 0.0002;
-            scene.rotation.x += mouse.y * 0.0002;
 
             renderer.render(scene, camera);
         };

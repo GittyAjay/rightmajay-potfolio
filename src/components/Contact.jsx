@@ -4,7 +4,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 import { ref, push } from 'firebase/database';
 import { db } from '../firebase/config';
-
+const serviceId = 'service_qdbmwtp';
+const templateId = 'template_a4obxji';
+const publicKey = 'x5nliKQc52XZ-3Uhx';
 const ContactSection = styled.section`
   min-height: 100vh;
   color: #fff;
@@ -232,7 +234,7 @@ const Contact = () => {
         setIsSubmitting(true);
 
         try {
-            // Create a new message reference in the 'messages' node
+            // Send to Firebase
             const messagesRef = ref(db, 'messages');
             await push(messagesRef, {
                 name: formData.name,
@@ -240,6 +242,18 @@ const Contact = () => {
                 message: formData.message,
                 timestamp: new Date().toISOString()
             });
+
+            // Send email using emailjs
+            await emailjs.send(
+                serviceId,
+                templateId,
+                {
+                    from_name: formData.name,
+                    from_email: formData.email,
+                    message: formData.message,
+                },
+                publicKey
+            );
 
             setSubmitSuccess(true);
             setFormData({ name: '', email: '', message: '' });

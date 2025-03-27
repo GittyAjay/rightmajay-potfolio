@@ -8,6 +8,7 @@ const PageContainer = styled.div`
   background: #000;
   color: #fff;
   overflow-x: hidden;
+  font-family: 'Satoshi', sans-serif;
 `;
 
 const ProjectsContainer = styled.div`
@@ -111,6 +112,7 @@ const ProjectTitle = styled.h2`
   background: linear-gradient(90deg, #9d00ff, #ff00e5);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-family: 'Satoshi', sans-serif;
 `;
 
 const TechStack = styled.div`
@@ -127,7 +129,7 @@ const TechTag = styled.span`
   border-radius: 20px;
   font-size: 0.8rem;
   color: #9d00ff;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Satoshi', sans-serif;
 `;
 
 const ViewButton = styled(motion.button)`
@@ -140,6 +142,7 @@ const ViewButton = styled(motion.button)`
   cursor: pointer;
   margin-top: 1rem;
   transition: all 0.3s ease;
+  font-family: 'Satoshi', sans-serif;
 
   &:hover {
     background: rgba(157, 0, 255, 0.2);
@@ -541,6 +544,93 @@ const ProjectSection = ({ project, index, scrollYProgress, totalProjects }) => {
   );
 };
 
+const HeaderSection = styled.div`
+  padding: 4rem 2rem 6rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+`;
+
+const RibbonContainer = styled.div`
+  position: relative;
+  background: rgba(157, 0, 255, 0.1);
+  padding: 2rem 4rem;
+  width: fit-content;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -15px;
+    width: 15px;
+    height: 100%;
+    background: rgba(157, 0, 255, 0.2);
+    transform-origin: right;
+    transform: skewY(45deg);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    background: rgba(157, 0, 255, 0.2);
+    transform-origin: top;
+    transform: skewX(45deg);
+  }
+
+  // Add right side ribbon fold
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -15px;
+    width: 15px;
+    height: 100%;
+    background: rgba(157, 0, 255, 0.2);
+    transform-origin: left;
+    transform: skewY(-45deg);
+  }
+`;
+
+const PortfolioHeading = styled.h1`
+  font-size: clamp(3rem, 8vw, 5rem);
+  text-align: center;
+  font-weight: 800;
+  line-height: 1.1;
+  position: relative;
+  background: linear-gradient(120deg, #9d00ff, #ff00e5, #9d00ff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 8s linear infinite;
+  margin: 0;
+
+  &::before {
+    content: 'Portfolio';
+    position: absolute;
+    top: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.2em;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(157, 0, 255, 0.4);
+    width: 100%;
+    text-align: center;
+  }
+
+  @keyframes shine {
+    to {
+      background-position: 200% center;
+    }
+  }
+`;
+
 const Portfolio = () => {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -550,22 +640,12 @@ const Portfolio = () => {
 
   return (
     <PageContainer>
+      <HeaderSection>
+        <RibbonContainer>
+          <PortfolioHeading>Featured Work</PortfolioHeading>
+        </RibbonContainer>
+      </HeaderSection>
       <ProjectsContainer ref={containerRef}>
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          style={{
-            fontSize: '3.5rem',
-            textAlign: 'center',
-            marginBottom: '4rem',
-            background: 'linear-gradient(90deg, #9d00ff, #ff00e5)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-          }}
-        >
-          My Projects
-        </motion.h1>
-
         {projects.map((project, index) => (
           <ProjectSection
             key={project.id}

@@ -1,24 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import { onValue, ref } from 'firebase/database';
+import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import { ref, onValue } from 'firebase/database';
 import { db } from '../firebase/config';
 import {
-  PageContainer,
-  ProjectsSection,
   ContentWrapper,
   HeaderSection,
-  Title,
-  Subtitle,
-  ProjectsGrid,
-  ProjectCard,
-  ProjectImage,
-  ProjectContent,
-  ProjectTitle,
+  PageContainer,
   ProjectDescription,
+  ProjectsGrid,
+  ProjectsSection,
+  ProjectTitle,
+  Subtitle,
   TechList,
-  TechTag
+  TechTag,
+  Title,
 } from '../styles/ProjectStyles';
 
 const SeeMoreButton = styled(motion.button)`
@@ -62,7 +59,7 @@ const StyledProjectCard = styled(motion.div)`
     left: 0;
     width: 100%;
     height: 4px;
-    background: linear-gradient(90deg, #9D00FF, #FF00E5);
+    background: linear-gradient(90deg, #9d00ff, #ff00e5);
     opacity: 0;
     transition: opacity 0.3s ease;
   }
@@ -140,7 +137,7 @@ const GlowingButton = styled(motion.button)`
     left: -2px;
     right: -2px;
     bottom: -2px;
-    background: linear-gradient(90deg, #9D00FF, #FF00E5);
+    background: linear-gradient(90deg, #9d00ff, #ff00e5);
     border-radius: 18px;
     z-index: -1;
     transition: opacity 0.3s ease;
@@ -184,7 +181,7 @@ const MoveToProject = styled.button`
   &:hover {
     background: rgba(157, 0, 255, 0.2);
     transform: translateY(-2px);
-    
+
     svg {
       transform: translate(2px, -2px);
     }
@@ -216,36 +213,42 @@ const Projects = () => {
 
   useEffect(() => {
     const portfolioRef = ref(db, 'portfolio');
-    const unsubscribe = onValue(portfolioRef, (snapshot) => {
-      if (snapshot.exists()) {
-        const data = snapshot.val();
-        // console.log("initial projects", data.projects);
-        // Transform the projects data
-        const transformedProjects = data.projects.map((project, index) => {
-          if(index === 0){
-            console.log("project", project);
-          }
-          return {
-            id: index + 1,
-            title: project.title,
-            projectUrl: project.url,
-            subtitle: project.platform?.join(', ') || '',
-          description: project.achievements.join('. '),
-          image: project.image || "https://via.placeholder.com/400x200",
-          technologies: project.tools?.split(',') || [],
-          role: "Lead Developer",
-          timeline: project.start_date ? `${project.start_date} - ${project.end_date || 'Present'}` : 'Ongoing',
-          client: "Various Clients"
+    const unsubscribe = onValue(
+      portfolioRef,
+      (snapshot) => {
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          // console.log("initial projects", data.projects);
+          // Transform the projects data
+          const transformedProjects = data.projects.map((project, index) => {
+            if (index === 0) {
+              console.log('project', project);
+            }
+            return {
+              id: index + 1,
+              title: project.title,
+              projectUrl: project.url,
+              subtitle: project.platform?.join(', ') || '',
+              description: project.achievements.join('. '),
+              image: project.image || 'https://via.placeholder.com/400x200',
+              technologies: project.tools?.split(',') || [],
+              role: 'Lead Developer',
+              timeline: project.start_date
+                ? `${project.start_date} - ${project.end_date || 'Present'}`
+                : 'Ongoing',
+              client: 'Various Clients',
+            };
+          });
+          setProjects(transformedProjects);
+          setLoading(false);
         }
-      });
-        setProjects(transformedProjects);
+      },
+      (error) => {
+        console.error('Error fetching projects:', error);
+        setError('Error loading projects data');
         setLoading(false);
       }
-    }, (error) => {
-      console.error('Error fetching projects:', error);
-      setError('Error loading projects data');
-      setLoading(false);
-    });
+    );
 
     return () => unsubscribe();
   }, []);
@@ -255,10 +258,7 @@ const Projects = () => {
       <PageContainer>
         <ProjectsSection>
           <ContentWrapper>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-            >
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
               Loading projects...
             </motion.div>
           </ContentWrapper>
@@ -272,10 +272,7 @@ const Projects = () => {
       <PageContainer>
         <ProjectsSection>
           <ContentWrapper>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-            >
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
               {error}
             </motion.div>
           </ContentWrapper>
@@ -286,7 +283,7 @@ const Projects = () => {
 
   // Use all projects if on full list view, otherwise show only first 3
   const displayedProjects = isFullList ? projects : projects.slice(0, 3);
-  console.log("displayedProjects1211", projects);
+  console.log('displayedProjects1211', projects);
   const handleProjectClick = (projectId) => {
     navigate(`/project/${projectId}`);
   };
@@ -301,7 +298,7 @@ const Projects = () => {
         <ContentWrapper>
           {isFullList && (
             <BackButton
-              onClick={() => navigate('/')} 
+              onClick={() => navigate('/')}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
@@ -337,14 +334,40 @@ const Projects = () => {
               >
                 <ProjectHeader>
                   {project.projectUrl ? (
-                    <MoveToProject onClick={(e) => {
-                      e.stopPropagation();
-                      window.open(project.projectUrl, '_blank');
-                    }}>
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M15 3H21V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M10 14L21 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <MoveToProject
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.open(project.projectUrl, '_blank');
+                      }}
+                    >
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M15 3H21V9"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M10 14L21 3"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                     </MoveToProject>
                   ) : (
@@ -355,7 +378,13 @@ const Projects = () => {
                   </ProjectImageWrapper>
                   <div>
                     <ProjectTitle>{project.title}</ProjectTitle>
-                    <div style={{ color: '#9D00FF', fontSize: '0.9rem', marginTop: '0.5rem' }}>
+                    <div
+                      style={{
+                        color: '#9D00FF',
+                        fontSize: '0.9rem',
+                        marginTop: '0.5rem',
+                      }}
+                    >
                       {project.timeline}
                     </div>
                   </div>
@@ -369,7 +398,7 @@ const Projects = () => {
               </StyledProjectCard>
             ))}
           </ProjectsGrid>
-          
+
           {!isFullList && (
             <motion.div
               initial={{ opacity: 0 }}

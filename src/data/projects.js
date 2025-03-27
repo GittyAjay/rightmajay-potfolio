@@ -1,8 +1,29 @@
+// Import images using relative paths from the assets directory
+import carehudleAudioCall from '../assets/images/carehild-audio-call.webp';
+import carehudlChat from '../assets/images/carehild-chat.webp';
+import carehudlAction from '../assets/images/carehudl-actiions.webp';
+import carehudlContact from '../assets/images/carehudl-contact.webp';
+import carehudlVideoCall from '../assets/images/carehudl-video-call.webp';
+import { default as elynkerHomepage } from '../assets/images/elynker.png';
+import eventwordkAbsent from '../assets/images/eventwordk-absent.webp'; // Profile view with actions
+import eventwordkLeave from '../assets/images/eventwordk-leave.webp'; // Profile view with actions
+import eventworkChat from '../assets/images/eventwork-chat.webp'; // More menu options
+import eventworkDashbaord from '../assets/images/eventwork-dashbaord.webp'; // Chat conversation screen
+import eventworkSchedule from '../assets/images/evenwork-schedule.webp'; // Contacts listing
+import inasquare from '../assets/images/inasuare.png';
+import propnewstimeCategory from '../assets/images/propnewstime-category.webp'; // News categories grid
+import propnewstimeappHomepage from '../assets/images/propnewstimeapp-hom-pahe.webp'; // News homepage with SEBI article
+import staffworkActions from '../assets/images/staffwork-actions.webp';
+import staffworkDashboard from '../assets/images/staffwork-dashboard.webp';
+import staffworkTimeshifts from '../assets/images/staffwork-timeshifts.webp';
+import staffworkShifts from '../assets/images/staffworrk-shifts.webp';
+
 export const projects = [
   {
     id: 1,
     title: 'Staffworks',
-    projectUrl: 'https://play.google.com/store/apps/details?id=com.gigflex.staffworks&pcampaignid=web_share',
+    projectUrl:
+      'https://play.google.com/store/apps/details?id=com.gigflex.staffworks&pcampaignid=web_share',
     description:
       'Enterprise workforce management platform enabling efficient staff scheduling, real-time tracking, and automated payroll processing. Features advanced geofencing, shift management, and comprehensive reporting tools.',
     status: 'Completed',
@@ -110,14 +131,35 @@ export const projects = [
     },
     videoUrl: 'https://www.youtube.com/embed/lr2RxrWqkko',
     imageUrl: 'https://www.gigflex.com/wp-content/uploads/2021/07/staff_01.png',
+    images: [
+      staffworkDashboard,
+      staffworkActions,
+      staffworkTimeshifts,
+      staffworkShifts,
+    ],
+    labels: ['Homepage', 'Actions', 'Shifts', 'New Shift'],
   },
   {
     id: 2,
     title: 'EventWorks',
-    projectUrl: 'https://play.google.com/store/apps/details?id=com.gigflex.eventsworks&pcampaignid=web_share',
+    projectUrl:
+      'https://play.google.com/store/apps/details?id=com.gigflex.eventsworks&pcampaignid=web_share',
     description:
       'Comprehensive event management platform that streamlines staff allocation, venue coordination, and real-time event monitoring. Features dynamic scheduling, resource management, and integrated security protocols.',
     status: 'Completed',
+    // 'Homepage',
+    // 'Present/Absent View',
+    // 'Late View',
+    // 'Daily Schedule',
+    // 'Today View',
+    images: [
+      eventworkDashbaord, // Chat conversation screen
+      eventwordkAbsent, // Contacts listing
+      eventwordkLeave, // Video call interface
+      eventworkSchedule, // Contacts listing
+      eventworkChat, // Profile view with actions
+      eventworkDashbaord, // More menu options
+    ],
     timeline: '2022-09 - 2023-04',
     role: 'Technical Lead',
     client: 'Event Management Company',
@@ -236,10 +278,24 @@ export const projects = [
     },
     videoUrl: 'https://www.youtube.com/embed/UbCDt_tbBWE',
     imageUrl: 'https://www.gigflex.com/wp-content/uploads/2021/07/event_02.png',
+    labels: [
+      'Homepage',
+      'Present/Absent View',
+      'Late View',
+      'Daily Schedule',
+      'Today View',
+    ],
   },
   {
     id: 3,
     title: 'Carehudl',
+    images: [
+      carehudlChat, // Chat messaging interface
+      carehudlVideoCall, // Video call screen
+      carehudleAudioCall, // Audio call screen
+      carehudlContact, // Message thread view
+      carehudlAction, // User profile actions
+    ],
     description:
       'Healthcare management platform facilitating patient care coordination, staff scheduling, and medical resource allocation. Features real-time patient monitoring and integrated medical records management.',
     status: 'Completed',
@@ -362,11 +418,23 @@ export const projects = [
     videoUrl: 'https://www.youtube.com/embed/24f35bO9PzQ',
     imageUrl:
       'https://www.gigflex.com/wp-content/uploads/2021/07/CareHudl_03.jpg',
+    labels: [
+      'User Profile Actions',
+      'Video Call',
+      'Audio Call',
+      'Chat',
+      'Actions',
+    ],
   },
   {
     id: 4,
     title: 'Prop News Times',
-    projectUrl: 'https://play.google.com/store/apps/details?id=com.propnewstimes&pcampaignid=web_share',
+    images: [
+      propnewstimeappHomepage, // News homepage with SEBI article
+      propnewstimeCategory, // News categories grid
+    ],
+    projectUrl:
+      'https://play.google.com/store/apps/details?id=com.propnewstimes&pcampaignid=web_share',
     description:
       'Real estate news and analytics platform providing real-time market insights, property listings, and investment analysis tools. Features automated news aggregation and personalized content delivery.',
     status: 'Active',
@@ -489,10 +557,12 @@ export const projects = [
     videoUrl: 'https://www.youtube.com/embed/8MGV27Rvakg',
     imageUrl:
       'https://media.licdn.com/dms/image/v2/D5612AQFY6ojlJtBw6A/article-cover_image-shrink_720_1280/B56ZVfVysQHsAI-/0/1741061303927?e=1746662400&v=beta&t=AlvlvTNTHP8Lxp8Lll7tn86FQMM2_7sfsMDKrnwaABU',
+    labels: ['Dashboard View', 'Category View'],
   },
   {
     id: 5,
     title: 'Elynker',
+    images: [elynkerHomepage],
     projectUrl: 'https://www.elynker.com/homepage',
     description:
       'Digital transformation platform providing comprehensive business solutions including process automation, analytics, and cloud integration. Features customizable workflows and real-time performance monitoring.',
@@ -616,10 +686,12 @@ export const projects = [
     videoUrl: 'https://www.youtube.com/embed/a37C30HCLtg',
     imageUrl:
       'https://media.licdn.com/dms/image/v2/D4D22AQElPugfA0SAnw/feedshare-shrink_800/0/1726032502682?e=1744243200&v=beta&t=aCpUSMTUXAyDNeeLs3J3WJHgq0XiP0dMMJ5a8lYzYxw',
+    labels: ['Homepage'],
   },
   {
     id: 6,
     title: 'Inasquare',
+    images: [inasquare],
     description:
       'E-commerce platform tailored for the Omani market, featuring localized shopping experience, multi-vendor support, and integrated payment solutions. Supports both B2C and B2B transactions.',
     status: 'Completed',
@@ -742,5 +814,25 @@ export const projects = [
     videoUrl: 'https://www.youtube.com/embed/bsfEurlPbY0',
     imageUrl:
       'https://unctad.org/sites/default/files/2021-03/2021-03-15_eCommerceCOVID19report-1-1220x675px.jpg',
+    labels: ['Homepage'],
   },
 ];
+
+// First, let's create a copy of the projects array
+const projectsData = [...projects];
+
+// Then update the projects with missing data
+const updatedProjects = projectsData.map((project) => ({
+  ...project,
+  labels: project.labels || [
+    'Login/Homepage',
+    'Dashboard View',
+    'Mobile Interface',
+    'Features Overview',
+    'Settings Panel',
+  ],
+  // ... rest of the default values ...
+}));
+
+// Export the updated projects
+export default updatedProjects;

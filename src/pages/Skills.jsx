@@ -1,23 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import { onValue, ref } from 'firebase/database';
 import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ref, onValue } from 'firebase/database';
+import styled from 'styled-components';
 import { db } from '../firebase/config';
+import { HeaderSection, Subtitle, Title } from '../styles/ProjectStyles';
 import {
+  ContentWrapper,
   PageContainer,
   SkillsSection,
-  ContentWrapper,
-  SkillsGrid,
-  SkillCard,
-  SkillTitle,
-  SkillDescription
 } from '../styles/SharedStyles';
-import {
-  HeaderSection,
-  Title,
-  Subtitle
-} from '../styles/ProjectStyles';
 
 const StyledGrid = styled.div`
   display: grid;
@@ -102,7 +94,7 @@ const StyledSkillTitle = styled.h3`
 
 const SkillLevel = styled.div`
   font-size: 0.95rem;
-  color: #9D00FF;
+  color: #9d00ff;
   margin: 0;
 `;
 
@@ -150,7 +142,7 @@ const GlowingButton = styled(motion.button)`
     left: -2px;
     right: -2px;
     bottom: -2px;
-    background: linear-gradient(90deg, #9D00FF, #FF00E5);
+    background: linear-gradient(90deg, #9d00ff, #ff00e5);
     border-radius: 18px;
     z-index: -1;
     transition: opacity 0.3s ease;
@@ -179,7 +171,7 @@ const GlowingButton = styled(motion.button)`
 const ShowMoreButton = styled.button`
   background: none;
   border: none;
-  color: #9D00FF;
+  color: #9d00ff;
   cursor: pointer;
   font-size: 0.9rem;
   padding: 0.5rem 0;
@@ -201,16 +193,16 @@ const SkillProgress = styled.div`
 
 const ProgressBar = styled.div`
   height: 100%;
-  background: #9D00FF;
-  width: ${props => props.level}%;
+  background: #9d00ff;
+  width: ${(props) => props.level}%;
   transition: width 1s ease-out;
 `;
 
-const adv_skills = require("../assets/images/adv_skills.png");
-const performance = require("../assets/images/performance.png");
-const architecture = require("../assets/images/adv_skills.png");
-const uiux = require("../assets/images/adv_skills.png");
-const animation = require("../assets/images/adv_skills.png");
+const adv_skills = require('../assets/images/adv_skills.png');
+const performance = require('../assets/images/performance.png');
+const architecture = require('../assets/images/adv_skills.png');
+const uiux = require('../assets/images/adv_skills.png');
+const animation = require('../assets/images/adv_skills.png');
 
 export default function Skills({ showAll = false }) {
   const navigate = useNavigate();
@@ -220,90 +212,99 @@ export default function Skills({ showAll = false }) {
 
   useEffect(() => {
     const portfolioRef = ref(db, 'portfolio');
-    const unsubscribe = onValue(portfolioRef, (snapshot) => {
-      if (snapshot.exists()) {
-        const data = snapshot.val();
-        // Transform Firebase data into the format needed for skills
-        const transformedSkills = [
-          {
-            icon: adv_skills,
-            title: 'Advanced Skills',
-            desc: data.skills.advanced.join(', '),
-            level: 95,
-            tags: data.skills.advanced
-          },
-          {
-            icon: performance,
-            title: 'Performance',
-            desc: data.skills.performance.join(', '),
-            level: 85,
-            tags: data.skills.performance
-          },
-          {
-            icon: architecture,
-            title: 'Architecture',
-            desc: data.skills.architecture.join(', '),
-            level: 90,
-            tags: data.skills.architecture
-          },
-          {
-            icon: uiux,
-            title: 'UI/UX & Styling',
-            desc: [...data.skills.frameworks, ...data.skills.styling].join(', '),
-            level: 80,
-            tags: [...data.skills.frameworks, ...data.skills.styling]
-          },
-          {
-            icon: animation,
-            title: 'Animation & Design',
-            desc: [...data.skills.animation, ...data.skills.design_tools].join(', '),
-            level: 75,
-            tags: [...data.skills.animation, ...data.skills.design_tools]
-          },
-          {
-            icon: '🧪',
-            title: 'Testing & Quality',
-            desc: [
-              ...data.skills.testing.unit_integration,
-              ...data.skills.testing.e2e,
-              ...data.skills.testing.performance
-            ].join(', '),
-            level: 85,
-            tags: [
-              ...data.skills.testing.unit_integration,
-              ...data.skills.testing.e2e,
-              ...data.skills.testing.performance
-            ]
-          },
-          {
-            icon: '🔧',
-            title: 'Backend & APIs',
-            desc: [
-              ...data.skills.backend,
-              ...data.skills.api_technologies
-            ].join(', '),
-            level: 90,
-            tags: [
-              ...data.skills.backend,
-              ...data.skills.api_technologies
-            ]
-          },
-          {
-            icon: '📊',
-            title: 'Documentation & Analytics',
-            desc: [...data.skills.documentation, ...data.skills.analytics].join(', '),
-            level: 70,
-            tags: [...data.skills.documentation, ...data.skills.analytics]
-          }
-        ];
-        setSkillsData(transformedSkills);
+    const unsubscribe = onValue(
+      portfolioRef,
+      (snapshot) => {
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          // Transform Firebase data into the format needed for skills
+          const transformedSkills = [
+            {
+              icon: adv_skills,
+              title: 'Advanced Skills',
+              desc: data.skills.advanced.join(', '),
+              level: 95,
+              tags: data.skills.advanced,
+            },
+            {
+              icon: performance,
+              title: 'Performance',
+              desc: data.skills.performance.join(', '),
+              level: 85,
+              tags: data.skills.performance,
+            },
+            {
+              icon: architecture,
+              title: 'Architecture',
+              desc: data.skills.architecture.join(', '),
+              level: 90,
+              tags: data.skills.architecture,
+            },
+            {
+              icon: uiux,
+              title: 'UI/UX & Styling',
+              desc: [...data.skills.frameworks, ...data.skills.styling].join(
+                ', '
+              ),
+              level: 80,
+              tags: [...data.skills.frameworks, ...data.skills.styling],
+            },
+            {
+              icon: animation,
+              title: 'Animation & Design',
+              desc: [
+                ...data.skills.animation,
+                ...data.skills.design_tools,
+              ].join(', '),
+              level: 75,
+              tags: [...data.skills.animation, ...data.skills.design_tools],
+            },
+            {
+              icon: '🧪',
+              title: 'Testing & Quality',
+              desc: [
+                ...data.skills.testing.unit_integration,
+                ...data.skills.testing.e2e,
+                ...data.skills.testing.performance,
+              ].join(', '),
+              level: 85,
+              tags: [
+                ...data.skills.testing.unit_integration,
+                ...data.skills.testing.e2e,
+                ...data.skills.testing.performance,
+              ],
+            },
+            {
+              icon: '🔧',
+              title: 'Backend & APIs',
+              desc: [
+                ...data.skills.backend,
+                ...data.skills.api_technologies,
+              ].join(', '),
+              level: 90,
+              tags: [...data.skills.backend, ...data.skills.api_technologies],
+            },
+            {
+              icon: '📊',
+              title: 'Documentation & Analytics',
+              desc: [
+                ...data.skills.documentation,
+                ...data.skills.analytics,
+              ].join(', '),
+              level: 70,
+              tags: [...data.skills.documentation, ...data.skills.analytics],
+            },
+          ];
+          setSkillsData(transformedSkills);
+          setLoading(false);
+        }
+      },
+      (error) => {
+        console.error('Error fetching skills:', error);
+        setError('Error loading skills data');
         setLoading(false);
       }
-    }, (error) => {
-      console.error('Error fetching skills:', error);
-      setError('Error loading skills data');
-      setLoading(false);
-    });
+    );
 
     return () => unsubscribe();
   }, []);
@@ -313,10 +314,7 @@ export default function Skills({ showAll = false }) {
       <PageContainer>
         <SkillsSection>
           <ContentWrapper>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-            >
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
               Loading skills...
             </motion.div>
           </ContentWrapper>
@@ -330,10 +328,7 @@ export default function Skills({ showAll = false }) {
       <PageContainer>
         <SkillsSection>
           <ContentWrapper>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-            >
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
               {error}
             </motion.div>
           </ContentWrapper>
@@ -371,10 +366,10 @@ export default function Skills({ showAll = false }) {
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ 
-                  duration: 0.6, 
+                transition={{
+                  duration: 0.6,
                   delay: index * 0.1,
-                  ease: "easeOut"
+                  ease: 'easeOut',
                 }}
                 whileHover={{ scale: 1.02 }}
                 viewport={{ once: true }}
@@ -390,9 +385,10 @@ export default function Skills({ showAll = false }) {
                     </SkillInfo>
                   </SkillHeader>
                   <TagsContainer>
-                    {Array.isArray(skill.tags) && skill.tags.map((tag, i) => (
-                      <SkillTag key={i}>{tag}</SkillTag>
-                    ))}
+                    {Array.isArray(skill.tags) &&
+                      skill.tags.map((tag, i) => (
+                        <SkillTag key={i}>{tag}</SkillTag>
+                      ))}
                   </TagsContainer>
                 </SkillContent>
               </StyledSkillCard>
@@ -420,5 +416,3 @@ export default function Skills({ showAll = false }) {
     </PageContainer>
   );
 }
-
-

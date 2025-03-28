@@ -22,8 +22,7 @@ const StyledGrid = styled.div`
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 2rem;
-    padding: 0;
-    width: 100%;
+    padding: 0 1rem;
   }
 `;
 
@@ -41,6 +40,11 @@ const StyledSkillCard = styled(motion.div)`
   min-height: 200px;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 768px) {
+    padding: 1.25rem;
+    min-height: 180px;
+  }
 
   &:hover {
     border-color: rgba(157, 0, 255, 0.3);
@@ -60,6 +64,10 @@ const SkillHeader = styled.div`
   align-items: center;
   gap: 1rem;
   margin-bottom: 0.5rem;
+
+  @media (max-width: 768px) {
+    gap: 0.75rem;
+  }
 `;
 
 const SkillIconWrapper = styled.div`
@@ -71,6 +79,12 @@ const SkillIconWrapper = styled.div`
   background: rgba(20, 0, 40, 0.6);
   border-radius: 12px;
   padding: 8px;
+
+  @media (max-width: 768px) {
+    width: 36px;
+    height: 36px;
+    padding: 6px;
+  }
 
   img {
     width: 100%;
@@ -90,6 +104,10 @@ const StyledSkillTitle = styled.h3`
   font-weight: 600;
   line-height: 1.2;
   margin-bottom: 0.25rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const SkillLevel = styled.div`
@@ -103,6 +121,10 @@ const TagsContainer = styled.div`
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: auto;
+
+  @media (max-width: 768px) {
+    gap: 0.4rem;
+  }
 `;
 
 const SkillTag = styled.span`
@@ -114,6 +136,11 @@ const SkillTag = styled.span`
   border: 1px solid rgba(157, 0, 255, 0.15);
   white-space: nowrap;
   transition: all 0.2s ease;
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+  }
 
   &:hover {
     background: rgba(157, 0, 255, 0.15);
@@ -134,6 +161,13 @@ const GlowingButton = styled(motion.button)`
   overflow: hidden;
   z-index: 1;
   letter-spacing: 0.5px;
+
+  @media (max-width: 768px) {
+    padding: 14px 32px;
+    font-size: 16px;
+    width: 90%;
+    max-width: 300px;
+  }
 
   &::before {
     content: '';

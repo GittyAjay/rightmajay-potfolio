@@ -1,8 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import resumeData from '../data/data.json';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import resumeData from '../data/data.json';
 
 const AboutContainer = styled.div`
   min-height: 100vh;
@@ -24,6 +24,13 @@ const ContentWrapper = styled.div`
   align-items: center;
   padding-top: 4rem;
   padding-bottom: 4rem;
+
+  @media (max-width: 768px) {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 `;
 
 const ProfileSection = styled.div`
@@ -110,21 +117,23 @@ const Title = styled(motion.h1)`
   font-size: clamp(3rem, 8vw, 5rem);
   font-weight: 700;
   margin: 0;
-  background: linear-gradient(135deg, #fff 0%, #9D00FF 100%);
+  background: linear-gradient(135deg, #fff 0%, #9d00ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   line-height: 1.1;
   display: flex;
   align-items: center;
   gap: 1rem;
+  text-align: center;
 
   @media (max-width: 768px) {
+    font-size: clamp(2rem, 6vw, 3rem);
     justify-content: center;
   }
 `;
 
 const Arrow = styled.span`
-  color: #9D00FF;
+  color: #9d00ff;
   font-size: 2rem;
   margin-top: 1rem;
 `;
@@ -149,8 +158,9 @@ const Stats = styled.div`
   width: 100%;
 
   @media (max-width: 768px) {
-    justify-content: center;
-    gap: 3rem;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
   }
 `;
 
@@ -171,7 +181,7 @@ const StatNumber = styled.div`
   gap: 0.25rem;
 
   span {
-    color: #9D00FF;
+    color: #9d00ff;
   }
 
   @media (max-width: 768px) {
@@ -206,7 +216,7 @@ const HireButton = styled(motion.button)`
     left: -2px;
     right: -2px;
     bottom: -2px;
-    background: linear-gradient(90deg, #9D00FF, #FF00E5);
+    background: linear-gradient(90deg, #9d00ff, #ff00e5);
     border-radius: 18px;
     z-index: -1;
     transition: opacity 0.3s ease;
@@ -245,7 +255,7 @@ const TechStack = styled.div`
 
 const ScrollingText = styled.div`
   display: inline-block;
-  animation: scroll 20s linear infinite;
+  animation: scroll 40s linear infinite;
   font-family: 'Fira Code', monospace;
   color: #666;
 
@@ -315,13 +325,13 @@ const TimelineContent = styled.div`
   padding: 1.5rem;
   width: 80%;
   position: relative;
-  
+
   &::after {
     content: '';
     position: absolute;
     width: 20px;
     height: 20px;
-    background: #9D00FF;
+    background: #9d00ff;
     border-radius: 50%;
     right: -60px;
     top: 50%;
@@ -337,10 +347,13 @@ const TimelineContent = styled.div`
 
   @media (max-width: 768px) {
     width: 100%;
-    
+    padding: 1rem;
+
     &::after {
       left: -52px;
       right: auto;
+      width: 15px;
+      height: 15px;
     }
 
     ${TimelineItem}:nth-child(even) & {
@@ -358,7 +371,7 @@ const TimelineTitle = styled.h3`
 `;
 
 const TimelineDate = styled.span`
-  color: #9D00FF;
+  color: #9d00ff;
   font-size: 0.9rem;
 `;
 
@@ -374,6 +387,10 @@ const ProjectStats = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 1rem;
   margin-top: 1rem;
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const ProjectStat = styled.div`
@@ -383,121 +400,129 @@ const ProjectStat = styled.div`
   text-align: center;
 
   span {
-    color: #9D00FF;
+    color: #9d00ff;
     font-weight: bold;
     font-size: 1.1rem;
   }
 `;
 
 const About = () => {
-    const navigate = useNavigate();
-    
-    const calculateExperience = () => {
-        const startDate = new Date(resumeData.work_experience[0].start_date);
-        const currentDate = new Date();
-        return Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24 * 365));
-    };
+  const navigate = useNavigate();
 
-    const skillsText = [
-        ...resumeData.skills.advanced,
-        ...resumeData.skills.performance,
-        ...resumeData.skills.architecture
-    ].join(' • ');
+  const calculateExperience = () => {
+    const startDate = new Date(resumeData.work_experience[0].start_date);
+    const currentDate = new Date();
+    return Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24 * 365));
+  };
 
-    return (
-        <AboutContainer>
-            <TechStack>
-                <ScrollingText>
-                    {skillsText} • {skillsText}
-                </ScrollingText>
-            </TechStack>
-            <ContentWrapper>
-                <Title
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                >
-                    My Journey
-                </Title>
-                <Description
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                    {resumeData.career_objective}
-                </Description>
-                <Stats>
-                    <StatItem
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.4 }}
-                    >
-                        <StatNumber>{calculateExperience()}<span>+</span></StatNumber>
-                        <StatLabel>Years Experience</StatLabel>
-                    </StatItem>
-                    <StatItem
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.5 }}
-                    >
-                        <StatNumber>{resumeData.projects.length}<span>+</span></StatNumber>
-                        <StatLabel>Projects Completed</StatLabel>
-                    </StatItem>
-                    <StatItem
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.6 }}
-                    >
-                        <StatNumber>100K<span>+</span></StatNumber>
-                        <StatLabel>Daily Users</StatLabel>
-                    </StatItem>
-                </Stats>
-                <Journey>
-                    <TimelineContainer>
-                        {resumeData.journey.map((item, index) => (
-                            <TimelineItem
-                                key={index}
-                                initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: index * 0.2 }}
-                            >
-                                <TimelineContent>
-                                    <TimelineDate>{item.date}</TimelineDate>
-                                    <TimelineTitle>{item.title}</TimelineTitle>
-                                    <TimelineDescription>{item.description}</TimelineDescription>
-                                    <ProjectStats>
-                                        {item.stats.map((stat, statIndex) => (
-                                            <ProjectStat key={statIndex}>
-                                                <span>{stat.value}</span>
-                                                <br />
-                                                {stat.label}
-                                            </ProjectStat>
-                                        ))}
-                                    </ProjectStats>
-                                </TimelineContent>
-                            </TimelineItem>
-                        ))}
-                    </TimelineContainer>
-                </Journey>
-                <HireButton
-                    as="button"
-                    onClick={() => {
-                        const contactSection = document.getElementById('contact');
-                        if (contactSection) {
-                            contactSection.scrollIntoView({ behavior: 'smooth' });
-                        } else {
-                            navigate('/#contact');
-                        }
-                    }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                >
-                    Get in Touch ↗
-                </HireButton>
-            </ContentWrapper>
-        </AboutContainer>
-    );
+  const skillsText = [
+    ...resumeData.skills.advanced,
+    ...resumeData.skills.performance,
+    ...resumeData.skills.architecture,
+  ].join(' • ');
+
+  return (
+    <AboutContainer>
+      <TechStack>
+        <ScrollingText>
+          {skillsText} • {skillsText}
+        </ScrollingText>
+      </TechStack>
+      <ContentWrapper>
+        <Title
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          My Journey
+        </Title>
+        <Description
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          {resumeData.career_objective}
+        </Description>
+        <Stats>
+          <StatItem
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <StatNumber>
+              {calculateExperience()}
+              <span>+</span>
+            </StatNumber>
+            <StatLabel>Years Experience</StatLabel>
+          </StatItem>
+          <StatItem
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
+            <StatNumber>
+              {resumeData.projects.length}
+              <span>+</span>
+            </StatNumber>
+            <StatLabel>Projects Completed</StatLabel>
+          </StatItem>
+          <StatItem
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            <StatNumber>
+              100K<span>+</span>
+            </StatNumber>
+            <StatLabel>Daily Users</StatLabel>
+          </StatItem>
+        </Stats>
+        <Journey>
+          <TimelineContainer>
+            {resumeData.journey.map((item, index) => (
+              <TimelineItem
+                key={index}
+                initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+              >
+                <TimelineContent>
+                  <TimelineDate>{item.date}</TimelineDate>
+                  <TimelineTitle>{item.title}</TimelineTitle>
+                  <TimelineDescription>{item.description}</TimelineDescription>
+                  <ProjectStats>
+                    {item.stats.map((stat, statIndex) => (
+                      <ProjectStat key={statIndex}>
+                        <span>{stat.value}</span>
+                        <br />
+                        {stat.label}
+                      </ProjectStat>
+                    ))}
+                  </ProjectStats>
+                </TimelineContent>
+              </TimelineItem>
+            ))}
+          </TimelineContainer>
+        </Journey>
+        <HireButton
+          as="button"
+          onClick={() => {
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+              contactSection.scrollIntoView({ behavior: 'smooth' });
+            } else {
+              navigate('/#contact');
+            }
+          }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          Get in Touch ↗
+        </HireButton>
+      </ContentWrapper>
+    </AboutContainer>
+  );
 };
 
 export default About;

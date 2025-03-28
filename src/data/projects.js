@@ -1,9 +1,11 @@
 // Import images using relative paths from the assets directory
+import appgenious from '../assets/images/appgenious.png';
 import carehudleAudioCall from '../assets/images/carehild-audio-call.webp';
 import carehudlChat from '../assets/images/carehild-chat.webp';
 import carehudlAction from '../assets/images/carehudl-actiions.webp';
 import carehudlContact from '../assets/images/carehudl-contact.webp';
 import carehudlVideoCall from '../assets/images/carehudl-video-call.webp';
+import cvzex from '../assets/images/cvzex.png';
 import { default as elynkerHomepage } from '../assets/images/elynker.png';
 import eventwordkAbsent from '../assets/images/eventwordk-absent.webp'; // Profile view with actions
 import eventwordkLeave from '../assets/images/eventwordk-leave.webp'; // Profile view with actions
@@ -17,7 +19,6 @@ import staffworkActions from '../assets/images/staffwork-actions.webp';
 import staffworkDashboard from '../assets/images/staffwork-dashboard.webp';
 import staffworkTimeshifts from '../assets/images/staffwork-timeshifts.webp';
 import staffworkShifts from '../assets/images/staffworrk-shifts.webp';
-
 export const projects = [
   {
     id: 1,
@@ -822,6 +823,387 @@ export const projects = [
       'https://unctad.org/sites/default/files/2021-03/2021-03-15_eCommerceCOVID19report-1-1220x675px.jpg',
     labels: ['Homepage'],
   },
+
+  {
+    id: 8,
+    title: 'AppGenius - Avishkar.Ai',
+    type: 'AI Products',
+    description:
+      'AI-powered application generator that creates complete React Native and Node.js applications from natural language prompts. Features automated code generation, project scaffolding, and intelligent architecture recommendations.',
+    status: 'Active',
+    timeline: '2024-01 - Present',
+    role: 'Lead Architect',
+    client: 'Developer Tools Startup',
+    team: '3 ML Engineers, 2 Full Stack Developers, 1 DevOps Engineer',
+    tools: 'OpenAI API, Node.js, React Native, TypeScript, Docker',
+    achievements: [
+      'Reduced app development initialization time by 80%',
+      'Generated over 1,000 production-ready components',
+      'Achieved 85% accuracy in code generation',
+      'Automated 70% of boilerplate code creation',
+      'Integrated 25+ popular development frameworks',
+      'Reduced project setup time from days to hours',
+      'Successfully generated 100+ complete applications',
+    ],
+    technicalStack: {
+      core: [
+        {
+          title: 'AI Code Generation',
+          items: [
+            'OpenAI API integration',
+            'Code analysis and optimization',
+            'Template generation system',
+            'Architecture pattern recognition',
+            'Component library generation',
+            'Automated testing generation',
+          ],
+        },
+        {
+          title: 'Core Technologies',
+          items: [
+            'Node.js backend services',
+            'React Native templates',
+            'TypeScript type generation',
+            'Docker containerization',
+            'Git integration',
+          ],
+        },
+      ],
+      additional: [
+        {
+          title: 'Project Management',
+          items: [
+            'Dependency management',
+            'Version control integration',
+            'Project structure optimization',
+          ],
+        },
+        {
+          title: 'Code Quality',
+          items: [
+            'Automated code review',
+            'Best practices enforcement',
+            'Security vulnerability scanning',
+          ],
+        },
+      ],
+    },
+    implementation: {
+      core: [
+        {
+          title: 'Generation Features',
+          items: [
+            'Project scaffolding',
+            'Component generation',
+            'API integration',
+            'State management setup',
+          ],
+        },
+        {
+          title: 'Development Tools',
+          items: [
+            'CLI interface',
+            'Configuration management',
+            'Build system integration',
+            'Development environment setup',
+          ],
+        },
+      ],
+      optimization: [
+        {
+          title: 'Performance Features',
+          items: [
+            'Template caching',
+            'Incremental generation',
+            'Parallel processing',
+          ],
+        },
+        {
+          title: 'Developer Experience',
+          items: [
+            'Interactive prompts',
+            'Real-time preview',
+            'Documentation generation',
+          ],
+        },
+      ],
+    },
+    future: {
+      features: [
+        {
+          title: 'Advanced Generation',
+          items: [
+            'Custom design system generation',
+            'Full test coverage generation',
+            'Microservices architecture',
+          ],
+        },
+        {
+          title: 'Platform Enhancement',
+          items: [
+            'Visual editor integration',
+            'Multi-framework support',
+            'CI/CD pipeline generation',
+          ],
+        },
+      ],
+    },
+    videoUrl: 'https://www.youtube.com/embed/example',
+    images: [appgenious],
+    projectUrl: 'https://github.com/GittyAjay/AppGenius',
+    labels: ['Homepage'],
+  },
+  {
+    id: 9,
+    title: 'Cvzex - ResumeAI',
+    type: 'AI Products',
+    description:
+      'AI-powered resume analysis and enhancement platform that provides personalized resume optimization based on job descriptions. Features automated resume scoring, keyword analysis, and intelligent content suggestions to match specific job requirements.',
+    status: 'Active',
+    timeline: '2024-02 - Present',
+    role: 'AI/ML Lead Developer',
+    client: 'Career Tech Startup',
+    team: '3 ML Engineers, 2 Full Stack Developers, 1 NLP Specialist',
+    tools:
+      'OpenAI API, Python, React Native, Node.js, MongoDB, Natural Language Processing',
+    achievements: [
+      'Developed AI model with 92% accuracy in resume-job matching',
+      'Increased interview callback rates by 45% for optimized resumes',
+      'Processed and analyzed 50,000+ job descriptions',
+      'Reduced resume optimization time from hours to minutes',
+      'Generated 10,000+ personalized improvement suggestions',
+      'Achieved 88% user satisfaction rate',
+      'Integrated with major job boards and ATS systems',
+    ],
+    technicalStack: {
+      core: [
+        {
+          title: 'AI/ML Features',
+          items: [
+            'Natural Language Processing',
+            'Resume scoring algorithm',
+            'Keyword extraction and analysis',
+            'Content optimization engine',
+            'ATS compatibility checker',
+            'Job requirement matcher',
+          ],
+        },
+        {
+          title: 'Core Technologies',
+          items: [
+            'OpenAI GPT integration',
+            'React Native frontend',
+            'Node.js backend',
+            'MongoDB database',
+            'PDF parsing engine',
+          ],
+        },
+      ],
+      additional: [
+        {
+          title: 'Analysis Tools',
+          items: [
+            'Skills gap analyzer',
+            'Experience matcher',
+            'Industry-specific scoring',
+          ],
+        },
+        {
+          title: 'Integration Services',
+          items: [
+            'Job board APIs',
+            'LinkedIn integration',
+            'ATS system compatibility',
+          ],
+        },
+      ],
+    },
+    implementation: {
+      core: [
+        {
+          title: 'Resume Analysis',
+          items: [
+            'Document parsing',
+            'Content evaluation',
+            'Format checking',
+            'Keyword optimization',
+          ],
+        },
+        {
+          title: 'Enhancement Features',
+          items: [
+            'Auto-formatting',
+            'Content suggestions',
+            'Skills highlighting',
+            'Achievement optimization',
+          ],
+        },
+      ],
+      optimization: [
+        {
+          title: 'Performance Features',
+          items: ['Real-time analysis', 'Batch processing', 'Caching system'],
+        },
+        {
+          title: 'User Experience',
+          items: [
+            'Interactive feedback',
+            'Progress tracking',
+            'Version comparison',
+          ],
+        },
+      ],
+    },
+    future: {
+      features: [
+        {
+          title: 'Advanced Analysis',
+          items: [
+            'Industry-specific templates',
+            'Career path suggestions',
+            'Interview preparation tips',
+          ],
+        },
+        {
+          title: 'Platform Enhancement',
+          items: [
+            'Multi-language support',
+            'Video resume analysis',
+            'Career coaching integration',
+          ],
+        },
+      ],
+    },
+    videoUrl: 'https://www.youtube.com/embed/example',
+    images: [cvzex],
+    labels: ['Homepage'],
+    projectUrl: 'https://github.com/GittyAjay/cvzex',
+  },
+  // {
+  //   id: 7,
+  //   title: 'AI Style Assistant',
+  //   type: 'AI Products',
+  //   description:
+  //     'AI-powered fashion recommendation platform that generates personalized clothing suggestions using face-swap technology and web-scraped fashion data. Features virtual try-on capabilities and style matching based on user preferences and physical attributes.',
+  //   status: 'Active',
+  //   timeline: '2023-09 - Present',
+  //   role: 'AI/ML Lead Developer',
+  //   client: 'Fashion Tech Startup',
+  //   team: '4 ML Engineers, 2 Frontend Developers, 1 UI/UX Designer',
+  //   tools:
+  //     'Python, TensorFlow, React Native, Google Cloud Vision API, OpenAI API',
+  //   achievements: [
+  //     'Developed AI model with 90% accuracy in style recommendations',
+  //     'Implemented real-time face-swap technology with 95% precision',
+  //     'Processed 100,000+ fashion items for recommendation engine',
+  //     'Reduced average outfit selection time by 65%',
+  //     'Achieved 85% user satisfaction rate',
+  //     'Successfully integrated with major fashion e-commerce platforms',
+  //   ],
+  //   technicalStack: {
+  //     core: [
+  //       {
+  //         title: 'AI/ML Features',
+  //         items: [
+  //           'Deep learning-based face swap',
+  //           'Style recommendation engine',
+  //           'Image processing pipeline',
+  //           'Real-time virtual try-on',
+  //           'Personalization algorithms',
+  //           'Fashion trend analysis',
+  //         ],
+  //       },
+  //       {
+  //         title: 'Core Technologies',
+  //         items: [
+  //           'TensorFlow for AI models',
+  //           'React Native frontend',
+  //           'Python backend services',
+  //           'Computer Vision APIs',
+  //           'Web scraping framework',
+  //         ],
+  //       },
+  //     ],
+  //     additional: [
+  //       {
+  //         title: 'Data Processing',
+  //         items: [
+  //           'Image recognition',
+  //           'Style classification',
+  //           'Color analysis',
+  //         ],
+  //       },
+  //       {
+  //         title: 'Integration Services',
+  //         items: ['E-commerce APIs', 'Social media sharing', 'Cloud storage'],
+  //       },
+  //     ],
+  //   },
+  //   implementation: {
+  //     core: [
+  //       {
+  //         title: 'AI Features',
+  //         items: [
+  //           'Face detection and swap',
+  //           'Outfit recommendation',
+  //           'Style matching',
+  //           'Virtual fitting room',
+  //         ],
+  //       },
+  //       {
+  //         title: 'User Experience',
+  //         items: [
+  //           'Personalized profiles',
+  //           'Style preferences',
+  //           'Outfit history',
+  //           'Sharing capabilities',
+  //         ],
+  //       },
+  //     ],
+  //     optimization: [
+  //       {
+  //         title: 'Performance Features',
+  //         items: [
+  //           'Model optimization',
+  //           'Image processing speed',
+  //           'Real-time rendering',
+  //         ],
+  //       },
+  //       {
+  //         title: 'User Interface',
+  //         items: [
+  //           'Intuitive controls',
+  //           'Smooth transitions',
+  //           'Mobile responsiveness',
+  //         ],
+  //       },
+  //     ],
+  //   },
+  //   future: {
+  //     features: [
+  //       {
+  //         title: 'Advanced AI',
+  //         items: [
+  //           'Body type recognition',
+  //           'Seasonal recommendations',
+  //           'Trend prediction',
+  //         ],
+  //       },
+  //       {
+  //         title: 'Platform Enhancement',
+  //         items: ['AR integration', 'Social shopping', 'Style community'],
+  //       },
+  //     ],
+  //   },
+  //   videoUrl: 'https://www.youtube.com/embed/example',
+  //   imageUrl: 'path/to/ai-style-assistant-image.jpg',
+  //   labels: [
+  //     'Homepage',
+  //     'Virtual Try-on',
+  //     'Style Recommendations',
+  //     'User Profile',
+  //   ],
+  // },
 ];
 
 // First, let's create a copy of the projects array

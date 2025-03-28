@@ -41,6 +41,7 @@ const ProjectWrapper = styled(motion.div)`
     gap: 2rem;
     padding: 0 1rem;
     min-height: auto;
+    margin: 8vh 0;
   }
 `;
 
@@ -109,6 +110,11 @@ const ProjectContent = styled(motion.div)`
   align-self: center;
   max-width: 45%;
   height: fit-content;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    padding: 1.5rem;
+  }
 `;
 
 const ProjectTitle = styled.h2`
@@ -118,6 +124,11 @@ const ProjectTitle = styled.h2`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-family: 'Satoshi', sans-serif;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    text-align: center;
+  }
 `;
 
 const TechStack = styled.div`
@@ -125,6 +136,10 @@ const TechStack = styled.div`
   flex-wrap: wrap;
   gap: 0.5rem;
   margin: 1rem 0;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 `;
 
 const TechTag = styled.span`
@@ -184,16 +199,27 @@ const Modal = styled(motion.div)`
   z-index: 1000;
   padding: 2rem;
 
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+
   .modal-content {
     position: relative;
     max-width: 90vw;
     max-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     img {
       max-width: 100%;
-      max-height: 90vh;
+      max-height: 85vh;
       object-fit: contain;
-      border-radius: 8px;
+    }
+
+    @media (max-width: 768px) {
+      max-width: 95vw;
+      max-height: 80vh;
     }
   }
 
@@ -218,18 +244,12 @@ const Modal = styled(motion.div)`
     top: 50%;
     transform: translateY(-50%);
     background: rgba(157, 0, 255, 0.2);
-    border: 1px solid rgba(157, 0, 255, 0.3);
+    border: none;
     color: white;
-    padding: 1rem;
+    font-size: 1.5rem;
     cursor: pointer;
+    padding: 1rem;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &:hover {
-      background: rgba(157, 0, 255, 0.4);
-    }
 
     &.prev {
       left: 1rem;
@@ -237,6 +257,19 @@ const Modal = styled(motion.div)`
 
     &.next {
       right: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      padding: 0.5rem;
+      font-size: 1rem;
+
+      &.prev {
+        left: 0.5rem;
+      }
+
+      &.next {
+        right: 0.5rem;
+      }
     }
   }
 `;
@@ -423,6 +456,10 @@ const StatusBadge = styled.span`
 
 const ProjectMetadata = styled.div`
   margin: 1rem 0;
+
+  @media (max-width: 768px) {
+    text-align: center;
+  }
 `;
 
 const MetadataItem = styled.div`
@@ -430,6 +467,11 @@ const MetadataItem = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 `;
 
 const MetadataLabel = styled.span`
@@ -441,6 +483,11 @@ const AchievementsList = styled.ul`
   list-style: none;
   padding: 0;
   margin: 1rem 0;
+
+  @media (max-width: 768px) {
+    text-align: left;
+    padding: 0 1rem;
+  }
 `;
 
 const AchievementItem = styled.li`
@@ -556,6 +603,10 @@ const HeaderSection = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    padding: 2rem 1rem 4rem;
+  }
 `;
 
 const RibbonContainer = styled.div`
@@ -564,41 +615,16 @@ const RibbonContainer = styled.div`
   padding: 2rem 4rem;
   width: fit-content;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -15px;
-    width: 15px;
-    height: 100%;
-    background: rgba(157, 0, 255, 0.2);
-    transform-origin: right;
-    transform: skewY(45deg);
+  @media (max-width: 768px) {
+    padding: 1.5rem 2rem;
+    width: 90%;
   }
 
+  &::before,
   &::after {
-    content: '';
-    position: absolute;
-    bottom: -15px;
-    left: 0;
-    width: 100%;
-    height: 15px;
-    background: rgba(157, 0, 255, 0.2);
-    transform-origin: top;
-    transform: skewX(45deg);
-  }
-
-  // Add right side ribbon fold
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: -15px;
-    width: 15px;
-    height: 100%;
-    background: rgba(157, 0, 255, 0.2);
-    transform-origin: left;
-    transform: skewY(-45deg);
+    @media (max-width: 480px) {
+      display: none; // Hide ribbon folds on very small screens
+    }
   }
 `;
 
@@ -615,6 +641,10 @@ const PortfolioHeading = styled.h1`
   animation: shine 8s linear infinite;
   margin: 0;
 
+  @media (max-width: 768px) {
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
+
   &::before {
     content: 'Portfolio';
     position: absolute;
@@ -627,6 +657,11 @@ const PortfolioHeading = styled.h1`
     color: rgba(157, 0, 255, 0.4);
     width: 100%;
     text-align: center;
+
+    @media (max-width: 768px) {
+      top: -1.5rem;
+      font-size: 0.15em;
+    }
   }
 
   @keyframes shine {
@@ -643,6 +678,11 @@ const FilterContainer = styled.div`
   gap: 1rem;
   padding: 2rem;
   flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    gap: 0.5rem;
+  }
 `;
 
 const FilterButton = styled.button`
@@ -655,11 +695,10 @@ const FilterButton = styled.button`
   font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-family: 'Satoshi', sans-serif;
 
-  &:hover {
-    background: rgba(157, 0, 255, 0.2);
-    transform: translateY(-2px);
+  @media (max-width: 768px) {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
   }
 `;
 

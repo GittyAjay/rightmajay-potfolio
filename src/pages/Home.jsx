@@ -27,12 +27,16 @@ const PageContainer = styled.div`
 const HomeContainer = styled.section`
   min-height: 100vh;
   color: #fff;
-  padding: 4rem 2rem;
+  padding: 4rem 1rem;
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
   background: rgba(0, 0, 0, 0.4);
+
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+  }
 `;
 
 const ProjectsSection = styled.section`
@@ -69,6 +73,11 @@ const ProjectGrid = styled.div`
   gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 `;
 
 const ProjectCard = styled(motion.div)`
@@ -113,6 +122,11 @@ const SkillsGrid = styled.div`
   gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 `;
 
 const SkillCard = styled(motion.div)`
@@ -158,6 +172,7 @@ const ContentWrapper = styled.div`
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 1rem;
   }
 `;
 
@@ -196,6 +211,10 @@ const Title = styled(motion.h1)`
   line-height: 1.1;
   letter-spacing: -1px;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 480px) {
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
 `;
 
 const Subtitle = styled(motion.h2)`
@@ -230,6 +249,8 @@ const Description = styled(motion.p)`
 
   @media (max-width: 768px) {
     margin: 1rem auto 2rem;
+    font-size: 1rem;
+    padding: 0 1rem;
   }
 `;
 
@@ -272,8 +293,12 @@ const ImageSection = styled.div`
   }
 
   @media (max-width: 768px) {
-    height: 400px;
-    margin-top: 2rem;
+    height: 300px;
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    height: 250px;
   }
 `;
 

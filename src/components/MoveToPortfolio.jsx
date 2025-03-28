@@ -1,8 +1,6 @@
-import { get, ref } from 'firebase/database';
 import { motion } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
-import { db } from '../firebase/config';
 
 const GlowingButton = styled(motion.button)`
   position: relative;
@@ -51,35 +49,19 @@ const GlowingButton = styled(motion.button)`
   }
 `;
 
-const DownloadCV = () => {
-  const handleDownload = async () => {
-    try {
-      // Get resume URL from Firebase
-      const portfolioRef = ref(db, 'portfolio');
-      const snapshot = await get(portfolioRef);
-      const portfolioData = snapshot.val();
-
-      if (portfolioData?.resumeURL) {
-        // Open resume URL in new tab
-        window.open(portfolioData.resumeURL, '_blank');
-      } else {
-        console.error('No resume URL found');
-      }
-    } catch (error) {
-      console.error('Error fetching resume URL:', error);
-    }
-  };
-
+const MoveToPortfolio = () => {
   return (
     <GlowingButton
       whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.98 }}
       transition={{ duration: 0.2 }}
-      onClick={handleDownload}
+      onClick={() => {
+        window.location.href = '/portfolio';
+      }}
     >
-      Download CV
+      Move to Portfolio
     </GlowingButton>
   );
 };
 
-export default DownloadCV;
+export default MoveToPortfolio;

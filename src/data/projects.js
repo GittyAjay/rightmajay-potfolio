@@ -22,6 +22,7 @@ export const projects = [
   {
     id: 1,
     title: 'Staffworks',
+    type: 'Workforce Management',
     projectUrl:
       'https://play.google.com/store/apps/details?id=com.gigflex.staffworks&pcampaignid=web_share',
     description:
@@ -142,6 +143,7 @@ export const projects = [
   {
     id: 2,
     title: 'EventWorks',
+    type: 'Event Management',
     projectUrl:
       'https://play.google.com/store/apps/details?id=com.gigflex.eventsworks&pcampaignid=web_share',
     description:
@@ -289,6 +291,7 @@ export const projects = [
   {
     id: 3,
     title: 'Carehudl',
+    type: 'Healthcare',
     images: [
       carehudlChat, // Chat messaging interface
       carehudlVideoCall, // Video call screen
@@ -429,6 +432,7 @@ export const projects = [
   {
     id: 4,
     title: 'Prop News Times',
+    type: 'Real Estate News',
     images: [
       propnewstimeappHomepage, // News homepage with SEBI article
       propnewstimeCategory, // News categories grid
@@ -562,6 +566,7 @@ export const projects = [
   {
     id: 5,
     title: 'Elynker',
+    type: 'Digital Transformation',
     images: [elynkerHomepage],
     projectUrl: 'https://www.elynker.com/homepage',
     description:
@@ -691,6 +696,7 @@ export const projects = [
   {
     id: 6,
     title: 'Inasquare',
+    type: 'E-commerce',
     images: [inasquare],
     description:
       'E-commerce platform tailored for the Omani market, featuring localized shopping experience, multi-vendor support, and integrated payment solutions. Supports both B2C and B2B transactions.',

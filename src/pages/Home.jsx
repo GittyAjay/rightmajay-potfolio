@@ -1,17 +1,17 @@
+import { motion } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 import DownloadCV from '../components/DownloadCV';
 import SocialLinks from '../components/SocialLinks';
 import Project from './Project';
 import Skills from './Skills';
 // import About from '../components/About';
-import About from './About';
+import devon from '../assets/images/ajay.jpeg';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
-import devon from '../assets/images/ajay.jpeg';
+import MoveToPortfolio from '../components/MoveToPortfolio';
 import resumeData from '../data/data.json';
-
+import About from './About';
 const PageContainer = styled.div`
   position: relative;
   overflow: hidden;
@@ -89,7 +89,7 @@ const ProjectImage = styled.div`
   width: 100%;
   height: 200px;
   border-radius: 10px;
-  background: ${props => props.bg || '#2A2A2A'};
+  background: ${(props) => props.bg || '#2A2A2A'};
   margin-bottom: 1.5rem;
   overflow: hidden;
   position: relative;
@@ -129,7 +129,7 @@ const SkillCard = styled(motion.div)`
 const SkillIcon = styled.div`
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  color: #9D00FF;
+  color: #9d00ff;
 `;
 
 const SkillTitle = styled.h3`
@@ -164,7 +164,7 @@ const ContentWrapper = styled.div`
 const TextContent = styled.div`
   z-index: 1;
   position: relative;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -172,7 +172,11 @@ const TextContent = styled.div`
     top: -20px;
     width: 100px;
     height: 100px;
-    background: radial-gradient(circle, rgba(157, 0, 255, 0.2) 0%, transparent 70%);
+    background: radial-gradient(
+      circle,
+      rgba(157, 0, 255, 0.2) 0%,
+      transparent 70%
+    );
     border-radius: 50%;
     filter: blur(15px);
   }
@@ -182,7 +186,11 @@ const Title = styled(motion.h1)`
   font-size: clamp(2.5rem, 8vw, 5.5rem);
   font-weight: 800;
   margin: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(157, 0, 255, 0.95) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(157, 0, 255, 0.95) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   line-height: 1.1;
@@ -197,7 +205,7 @@ const Subtitle = styled(motion.h2)`
   letter-spacing: 3px;
   text-transform: uppercase;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  
+
   &::after {
     content: '';
     display: block;
@@ -205,7 +213,7 @@ const Subtitle = styled(motion.h2)`
     height: 3px;
     background: rgba(157, 0, 255, 0.7);
     margin-top: 1rem;
-    
+
     @media (max-width: 768px) {
       margin: 1rem auto 0;
     }
@@ -232,7 +240,7 @@ const ImageSection = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   &::after {
     content: '';
     position: absolute;
@@ -240,7 +248,11 @@ const ImageSection = styled.div`
     right: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(157, 0, 255, 0.3) 0%, rgba(157, 0, 255, 0) 70%);
+    background: radial-gradient(
+      circle,
+      rgba(157, 0, 255, 0.3) 0%,
+      rgba(157, 0, 255, 0) 70%
+    );
     z-index: 0;
   }
 
@@ -253,7 +265,7 @@ const ImageSection = styled.div`
     z-index: 1;
     filter: drop-shadow(0 0 30px rgba(157, 0, 255, 0.4));
     transition: transform 0.3s ease;
-    
+
     &:hover {
       transform: scale(1.02);
     }
@@ -269,7 +281,7 @@ const FloatingCode = styled(motion.div)`
   position: absolute;
   color: rgba(255, 255, 255, 0.1);
   font-family: 'Fira Code', monospace;
-  font-size: ${props => props.size || '1rem'};
+  font-size: ${(props) => props.size || '1rem'};
   white-space: pre;
   pointer-events: none;
   z-index: 0;
@@ -284,20 +296,20 @@ const codeSnippets = [
 ];
 
 const HireButton = styled(motion.button)`
-    background: rgba(157, 0, 255, 0.1);
-    border: 1px solid rgba(157, 0, 255, 0.3);
-    color: #fff;
-    padding: 0.8rem 2rem;
-    border-radius: 12px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: block;
-    margin: 2rem auto 0;
+  background: rgba(157, 0, 255, 0.1);
+  border: 1px solid rgba(157, 0, 255, 0.3);
+  color: #fff;
+  padding: 0.8rem 2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 2rem auto 0;
 
-    &:hover {
-        background: rgba(157, 0, 255, 0.2);
-    }
+  &:hover {
+    background: rgba(157, 0, 255, 0.2);
+  }
 `;
 
 const Home = () => {
@@ -309,7 +321,7 @@ const Home = () => {
             <Title
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
             >
               {resumeData.name.split(' ').map((word, index) => (
                 <React.Fragment key={index}>
@@ -321,23 +333,29 @@ const Home = () => {
             <Subtitle
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+              transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
             >
               REACT NATIVE DEVELOPER
             </Subtitle>
             <Description
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+              transition={{ duration: 0.8, delay: 0.6, ease: 'easeOut' }}
             >
               {resumeData.career_objective}
             </Description>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
+              transition={{ duration: 0.8, delay: 0.9, ease: 'easeOut' }}
+              style={{
+                display: 'flex',
+                gap: '1rem',
+                alignItems: 'center',
+              }}
             >
               <DownloadCV />
+              <MoveToPortfolio />
             </motion.div>
           </TextContent>
           <motion.div

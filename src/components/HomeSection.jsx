@@ -1,7 +1,7 @@
+import { motion } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import DownloadCV from './DownloadCV';
+import MoveToPortfolio from './MoveToPortfolio';
 import SocialLinks from './SocialLinks';
 
 const HomeContainer = styled.section`
@@ -47,7 +47,7 @@ const Title = styled(motion.h1)`
 
 const Subtitle = styled(motion.h2)`
   font-size: clamp(1rem, 3vw, 1.5rem);
-  color: #B4B4B4;
+  color: #b4b4b4;
   margin: 1rem 0 2rem;
 `;
 
@@ -64,7 +64,7 @@ const Description = styled(motion.p)`
 
 const ImageSection = styled.div`
   position: relative;
-  
+
   &::after {
     content: '';
     position: absolute;
@@ -72,7 +72,11 @@ const ImageSection = styled.div`
     right: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(157, 0, 255, 0.2) 0%, rgba(157, 0, 255, 0) 70%);
+    background: radial-gradient(
+      circle,
+      rgba(157, 0, 255, 0.2) 0%,
+      rgba(157, 0, 255, 0) 70%
+    );
     z-index: 0;
   }
 `;
@@ -81,7 +85,7 @@ const FloatingCode = styled(motion.div)`
   position: absolute;
   color: rgba(255, 255, 255, 0.1);
   font-family: 'Fira Code', monospace;
-  font-size: ${props => props.size || '1rem'};
+  font-size: ${(props) => props.size || '1rem'};
   white-space: pre;
   pointer-events: none;
   z-index: 0;
@@ -140,15 +144,14 @@ const HomeSection = () => {
           >
             I'm a full-stack web developer and I work remotely from India.
           </Description>
-          <DownloadCV />
+          {/* <DownloadCV /> */}
+          <MoveToPortfolio />
         </TextContent>
-        <ImageSection>
-          {/* Add your image here */}
-        </ImageSection>
+        <ImageSection>{/* Add your image here */}</ImageSection>
       </ContentWrapper>
       <SocialLinks />
     </HomeContainer>
   );
 };
 
-export default HomeSection; 
+export default HomeSection;

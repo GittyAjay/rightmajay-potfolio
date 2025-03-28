@@ -1,5 +1,10 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import React, { useRef, useState } from 'react';
+import {
+  AnimatePresence,
+  motion,
+  useScroll,
+  useTransform,
+} from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import projects from '../data/projects'; // Update import to use default export
 
@@ -631,12 +636,117 @@ const PortfolioHeading = styled.h1`
   }
 `;
 
+// Add these new styled components
+const FilterContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  flex-wrap: wrap;
+`;
+
+const FilterButton = styled.button`
+  background: ${(props) =>
+    props.active ? 'rgba(157, 0, 255, 0.2)' : 'rgba(157, 0, 255, 0.1)'};
+  border: 1px solid rgba(157, 0, 255, 0.3);
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Satoshi', sans-serif;
+
+  &:hover {
+    background: rgba(157, 0, 255, 0.2);
+    transform: translateY(-2px);
+  }
+`;
+
+// Add this new styled component
+const NoProjectsMessage = styled.div`
+  text-align: center;
+  padding: 4rem 2rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.2rem;
+  background: rgba(157, 0, 255, 0.05);
+  border-radius: 16px;
+  border: 1px solid rgba(157, 0, 255, 0.1);
+  margin: 2rem auto;
+  max-width: 600px;
+`;
+
+// Add these new styled components
+const ScrollToTopButton = styled(motion.button)`
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: rgba(157, 0, 255, 0.2);
+  border: 1px solid rgba(157, 0, 255, 0.3);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  z-index: 100;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(157, 0, 255, 0.4);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    bottom: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+`;
+
 const Portfolio = () => {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end'],
   });
+
+  // Add state for scroll button visibility
+  const [showScrollButton, setShowScrollButton] = useState(false);
+  const [selectedType, setSelectedType] = useState('All');
+
+  const projectTypes = [
+    'All',
+    ...new Set(projects.map((project) => project.type)),
+  ];
+
+  const filteredProjects =
+    selectedType === 'All'
+      ? projects
+      : projects.filter((project) => project.type === selectedType);
+
+  // Add scroll event listener
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollButton(window.scrollY > 400);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Add scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
 
   return (
     <PageContainer>
@@ -645,17 +755,65 @@ const Portfolio = () => {
           <PortfolioHeading>Featured Work</PortfolioHeading>
         </RibbonContainer>
       </HeaderSection>
-      <ProjectsContainer ref={containerRef}>
-        {projects.map((project, index) => (
-          <ProjectSection
-            key={project.id}
-            project={project}
-            index={index}
-            scrollYProgress={scrollYProgress}
-            totalProjects={projects.length}
-          />
+
+      <FilterContainer>
+        {projectTypes.map((type) => (
+          <FilterButton
+            key={type}
+            active={selectedType === type}
+            onClick={() => setSelectedType(type)}
+          >
+            {type}
+          </FilterButton>
         ))}
+      </FilterContainer>
+
+      <ProjectsContainer ref={containerRef}>
+        {filteredProjects.length > 0 ? (
+          filteredProjects.map((project, index) => (
+            <ProjectSection
+              key={project.id}
+              project={project}
+              index={index}
+              scrollYProgress={scrollYProgress}
+              totalProjects={filteredProjects.length}
+            />
+          ))
+        ) : (
+          <NoProjectsMessage>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              No projects found for {selectedType} category.
+              <br />
+              <ViewButton
+                onClick={() => setSelectedType('All')}
+                style={{ margin: '1rem auto', display: 'block' }}
+              >
+                View All Projects
+              </ViewButton>
+            </motion.div>
+          </NoProjectsMessage>
+        )}
       </ProjectsContainer>
+
+      {/* Add Scroll to Top Button */}
+      <AnimatePresence>
+        {showScrollButton && (
+          <ScrollToTopButton
+            onClick={scrollToTop}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            ↑
+          </ScrollToTopButton>
+        )}
+      </AnimatePresence>
     </PageContainer>
   );
 };

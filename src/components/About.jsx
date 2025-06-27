@@ -128,12 +128,18 @@ const About = () => {
     return () => unsubscribe();
   }, []);
 
-  // Calculate years of experience
+  // Calculate years and months of experience
   const calculateExperience = () => {
     if (!portfolioData) return 0;
     const startDate = new Date(portfolioData.work_experience[0].start_date);
     const currentDate = new Date();
-    return Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24 * 365));
+    
+    const totalMonths = (currentDate.getFullYear() - startDate.getFullYear()) * 12 + 
+                       (currentDate.getMonth() - startDate.getMonth());
+    
+    const years = totalMonths / 12;
+    
+    return years.toFixed(1);
   };
 
   if (loading) {
@@ -168,6 +174,9 @@ const About = () => {
 
   // Get latest work experience achievements
   const latestAchievements = portfolioData.work_experience[0].achievements;
+  
+  // Calculate experience once and store it
+  const experience = calculateExperience();
 
   return (
     <AboutSection>
@@ -186,7 +195,7 @@ const About = () => {
             whileHover={{ y: -5 }}
             transition={{ duration: 0.3 }}
           >
-            <h3>{calculateExperience()}+ Years</h3>
+            <h3>{experience} yr</h3>
             <p>Experience in {portfolioData.skills.advanced[0]}</p>
           </ExperienceCard>
           <ExperienceCard

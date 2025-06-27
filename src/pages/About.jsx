@@ -412,7 +412,13 @@ const About = () => {
   const calculateExperience = () => {
     const startDate = new Date(resumeData.work_experience[0].start_date);
     const currentDate = new Date();
-    return Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24 * 365));
+    
+    const totalMonths = (currentDate.getFullYear() - startDate.getFullYear()) * 12 + 
+                       (currentDate.getMonth() - startDate.getMonth());
+    
+    const years = totalMonths / 12;
+    
+    return years.toFixed(1);
   };
 
   const skillsText = [
@@ -420,6 +426,8 @@ const About = () => {
     ...resumeData.skills.performance,
     ...resumeData.skills.architecture,
   ].join(' • ');
+
+  const experience = calculateExperience();
 
   return (
     <AboutContainer>
@@ -450,10 +458,9 @@ const About = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <StatNumber>
-              {calculateExperience()}
-              <span>+</span>
+              {experience} <span>yr</span>
             </StatNumber>
-            <StatLabel>Years Experience</StatLabel>
+            <StatLabel>Experience</StatLabel>
           </StatItem>
           <StatItem
             initial={{ opacity: 0, y: 20 }}

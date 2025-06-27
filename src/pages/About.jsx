@@ -458,7 +458,7 @@ const About = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <StatNumber>
-              {experience} <span>yr</span>
+              {3.9} <span>yr</span>
             </StatNumber>
             <StatLabel>Experience</StatLabel>
           </StatItem>

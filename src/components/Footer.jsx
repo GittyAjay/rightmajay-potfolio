@@ -185,7 +185,7 @@ const Footer = () => {
           <Title>Quick Links</Title>
           <Links>
             <Link href="/about">About</Link>
-            <Link href="/projects">Projects</Link>
+            <Link href="/portfolio">Projects</Link>
             <Link href="/blog">Blog</Link>
             <Link href="/contact">Contact</Link>
           </Links>

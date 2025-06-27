@@ -289,7 +289,7 @@ const Projects = () => {
   };
 
   const handleSeeMore = () => {
-    navigate('/projects');
+    navigate('/portfolio');
   };
 
   return (

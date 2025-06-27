@@ -7,6 +7,7 @@ import {
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import projects from '../data/projects'; // Update import to use default export
+import { useNavigate } from 'react-router-dom';
 
 const PageContainer = styled.div`
   min-height: 100vh;
@@ -524,7 +525,7 @@ const useProjectTransforms = (scrollYProgress, index, total) => {
   return { scale, opacity };
 };
 
-const ProjectSection = ({ project, index, scrollYProgress, totalProjects }) => {
+const ProjectSection = ({ project, index, scrollYProgress, totalProjects, onViewDetail }) => {
   const { scale, opacity } = useProjectTransforms(
     scrollYProgress,
     index,
@@ -582,13 +583,21 @@ const ProjectSection = ({ project, index, scrollYProgress, totalProjects }) => {
           ))}
         </AchievementsList>
 
+        <ViewButton
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => onViewDetail(project.id)}
+        >
+          View Project →
+        </ViewButton>
         {project.projectUrl && (
           <ViewButton
+            style={{ marginLeft: '1rem', background: 'rgba(157,0,255,0.2)' }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => window.open(project.projectUrl, '_blank')}
           >
-            View Project →
+            External Link ↗
           </ViewButton>
         )}
       </ProjectContent>
@@ -754,6 +763,7 @@ const Portfolio = () => {
     target: containerRef,
     offset: ['start start', 'end end'],
   });
+  const navigate = useNavigate();
 
   // Add state for scroll button visibility
   const [showScrollButton, setShowScrollButton] = useState(false);
@@ -816,6 +826,7 @@ const Portfolio = () => {
               index={index}
               scrollYProgress={scrollYProgress}
               totalProjects={filteredProjects.length}
+              onViewDetail={(id) => navigate(`/project/${id}`)}
             />
           ))
         ) : (

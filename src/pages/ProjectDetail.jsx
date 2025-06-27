@@ -561,7 +561,7 @@ const ProjectDetail = () => {
     <PageContainer>
       <ProjectSection>
         <ContentWrapper>
-          <BackButton onClick={() => navigate('/projects')} whileHover={{ x: -5 }}>
+          <BackButton onClick={() => navigate('/portfolio')} whileHover={{ x: -5 }}>
             ← Back to Projects
           </BackButton>
 

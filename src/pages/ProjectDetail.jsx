@@ -694,7 +694,7 @@ const ProjectDetail = () => {
 
               <DetailItem>
                 <Label>ROLE</Label>
-                <Value>{project.role || 'Lead Developer'}</Value>
+                <Value>{project.role || 'Senior Developer'}</Value>
               </DetailItem>
 
               <DetailItem>

@@ -3,7 +3,7 @@ import { ProjectSidebar, DetailItem, Label, Value } from '../styles/ProjectDetai
 
 const ProjectSidebarDetails = ({ project }) => {
     const details = [
-        { label: 'Role', value: project.role || 'Lead Developer' },
+        { label: 'Role', value: project.role || 'Senior Developer' },
         { label: 'Timeline', value: project.timeline || '2021-11 - 2022-07' },
         { label: 'Client', value: project.client || 'Confidential' },
         { label: 'Team', value: project.team || 'Development Team' },

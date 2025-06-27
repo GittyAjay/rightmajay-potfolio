@@ -232,7 +232,7 @@ const Projects = () => {
               description: project.achievements.join('. '),
               image: project.image || 'https://via.placeholder.com/400x200',
               technologies: project.tools?.split(',') || [],
-              role: 'Lead Developer',
+              role: 'Senior Developer',
               timeline: project.start_date
                 ? `${project.start_date} - ${project.end_date || 'Present'}`
                 : 'Ongoing',

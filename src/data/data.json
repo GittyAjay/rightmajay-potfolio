@@ -910,59 +910,39 @@
             "title": "Senior React Native Developer",
             "id": 7,
             "date": "2021 - Present",
-            "description": "Leading development of high-performance mobile applications with 100K+ daily users. Specializing in app optimization, team mentorship, and architectural improvements.",
+            "description": "Spearheading the development of cross-platform mobile apps at e.Soft Technologies with a focus on performance, real-time communication, and system reliability. Mentoring junior developers and leading Agile sprints.",
             "stats": [
                 {
                     "value": "100K+",
                     "label": "Daily Users"
                 },
                 {
-                    "value": "40%",
-                    "label": "Performance Boost"
+                    "value": "99.9%",
+                    "label": "System Uptime"
                 },
                 {
                     "value": "85%",
-                    "label": "Code Coverage"
+                    "label": "Efficiency Gain"
                 }
             ]
         },
         {
             "title": "React Native Developer",
             "id": 8,
-            "date": "2020 - 2021",
-            "description": "Focused on cross-platform development and app optimization. Implemented modular architecture and reusable component libraries.",
+            "date": "2019 - 2021",
+            "description": "Developed scalable mobile apps for Osizone Services, with expertise in Redux, Firebase auth, custom animations, and publishing to Play Store & App Store.",
             "stats": [
                 {
-                    "value": "25%",
-                    "label": "Load Time Improvement"
+                    "value": "6+",
+                    "label": "Live Apps"
                 },
                 {
-                    "value": "30%",
-                    "label": "Development Efficiency"
+                    "value": "3x",
+                    "label": "Code Reusability"
                 },
                 {
-                    "value": "50+",
-                    "label": "Reusable Components"
-                }
-            ]
-        },
-        {
-            "title": "Mobile App Developer",
-            "id": 9,
-            "date": "2019 - 2020",
-            "description": "Started journey in mobile development. Worked on fundamental app architectures and native module integration.",
-            "stats": [
-                {
-                    "value": "10+",
-                    "label": "Apps Delivered"
-                },
-                {
-                    "value": "15+",
-                    "label": "Native Modules"
-                },
-                {
-                    "value": "20K+",
-                    "label": "Lines of Code"
+                    "value": "100%",
+                    "label": "Cross-Platform Coverage"
                 }
             ]
         }

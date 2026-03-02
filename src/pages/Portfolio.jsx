@@ -528,7 +528,7 @@ const ProjectSection = ({ project, index, scrollYProgress, totalProjects, onView
             whileTap={{ scale: 0.95 }}
             onClick={() => window.open(project.projectUrl, '_blank')}
           >
-            External Link ↗
+            Preview ↗
           </ViewButton>
         )}
       </ProjectContent>
@@ -689,6 +689,22 @@ const ScrollToTopButton = styled(motion.button)`
 `;
 
 const Portfolio = () => {
+  const prioritizeMedAnswer = (items) => {
+    const list = [...items];
+    list.sort((a, b) => {
+      const aMed = (a?.title || '').toLowerCase() === 'medanswer';
+      const bMed = (b?.title || '').toLowerCase() === 'medanswer';
+      if (aMed && !bMed) {
+        return -1;
+      }
+      if (!aMed && bMed) {
+        return 1;
+      }
+      return 0;
+    });
+    return list;
+  };
+
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -705,10 +721,11 @@ const Portfolio = () => {
     ...new Set(projects.map((project) => project.type)),
   ];
 
-  const filteredProjects =
+  const filteredProjects = prioritizeMedAnswer(
     selectedType === 'All'
       ? projects
-      : projects.filter((project) => project.type === selectedType);
+      : projects.filter((project) => project.type === selectedType)
+  );
 
   // Add scroll event listener
   useEffect(() => {

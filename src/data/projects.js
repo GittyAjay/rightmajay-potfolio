@@ -13,6 +13,7 @@ import eventworkChat from '../assets/images/eventwork-chat.webp'; // More menu o
 import eventworkDashbaord from '../assets/images/eventwork-dashbaord.webp'; // Chat conversation screen
 import eventworkSchedule from '../assets/images/evenwork-schedule.webp'; // Contacts listing
 import inasquare from '../assets/images/inasuare.png';
+import medanswer from '../assets/images/medanswer.png';
 import propnewstimeCategory from '../assets/images/propnewstime-category.webp'; // News categories grid
 import propnewstimeappHomepage from '../assets/images/propnewstimeapp-hom-pahe.webp'; // News homepage with SEBI article
 import staffworkActions from '../assets/images/staffwork-actions.webp';
@@ -821,6 +822,96 @@ export const projects = [
     videoUrl: 'https://www.youtube.com/embed/bsfEurlPbY0',
     imageUrl:
       'https://unctad.org/sites/default/files/2021-03/2021-03-15_eCommerceCOVID19report-1-1220x675px.jpg',
+    labels: ['Homepage'],
+  },
+  {
+    id: 7,
+    title: 'MedAnswer',
+    type: 'Healthcare',
+    projectUrl: 'https://fertility.medanswers.com/',
+    description:
+      'Fertility-focused healthcare platform for patient education and consultation workflows, enabling users to access trusted information and care pathways. Note: this platform is currently not accessible from India.',
+    status: 'Active',
+    timeline: '2024-01 - Present',
+    role: 'Senior React Native Developer',
+    client: 'MedAnswers',
+    team: '3 Developers, 1 UI/UX Designer, 1 Product Manager',
+    tools: 'React Native, TypeScript, Node.js, REST API',
+    achievements: [
+      'Built and maintained key fertility journey modules for mobile users',
+      'Improved patient information discovery with structured content flows',
+      'Integrated API-driven data rendering for faster feature rollouts',
+      'Enhanced overall app responsiveness and reduced UI latency',
+    ],
+    technicalStack: {
+      core: [
+        {
+          title: 'Healthcare Platform Features',
+          items: [
+            'Patient-focused fertility information modules',
+            'Consultation and workflow-oriented screens',
+            'Role-based content visibility',
+            'Responsive cross-platform UI',
+          ],
+        },
+        {
+          title: 'Core Technologies',
+          items: [
+            'React Native with TypeScript',
+            'Node.js backed APIs',
+            'REST integration patterns',
+            'Reusable component architecture',
+          ],
+        },
+      ],
+      additional: [
+        {
+          title: 'Reliability',
+          items: [
+            'Error handling and fallback flows',
+            'Input validation',
+            'Performance-focused rendering',
+          ],
+        },
+      ],
+    },
+    implementation: {
+      core: [
+        {
+          title: 'Application Modules',
+          items: [
+            'Patient journey information architecture',
+            'Reusable UI components',
+            'Navigation and screen orchestration',
+            'API data binding',
+          ],
+        },
+      ],
+      optimization: [
+        {
+          title: 'Performance Features',
+          items: [
+            'Component memoization',
+            'Lazy rendering patterns',
+            'Optimized list rendering',
+          ],
+        },
+      ],
+    },
+    future: {
+      features: [
+        {
+          title: 'Product Evolution',
+          items: [
+            'Personalized fertility guidance flows',
+            'Improved analytics insights',
+            'Expanded educational content experiences',
+          ],
+        },
+      ],
+    },
+    imageUrl: medanswer,
+    images: [medanswer],
     labels: ['Homepage'],
   },
 

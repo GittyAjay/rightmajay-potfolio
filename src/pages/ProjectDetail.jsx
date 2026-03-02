@@ -383,8 +383,7 @@ const PrivateLabel = styled.div`
 const ProjectDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const projectIndex = parseInt(id) - 1;
-  const project = projects[projectIndex];
+  const project = projects.find((item) => String(item.id) === String(id));
   const [isVideoExpanded, setIsVideoExpanded] = useState(false);
   const [floatingPosition, setFloatingPosition] = useState({ x: 0, y: 0 });
   const [dragConstraints, setDragConstraints] = useState({

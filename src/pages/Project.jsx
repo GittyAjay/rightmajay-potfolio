@@ -187,6 +187,22 @@ const PrivateLabel = styled.span`
 `;
 
 const Projects = () => {
+  const prioritizeMedAnswer = (items) => {
+    const list = [...items];
+    list.sort((a, b) => {
+      const aMed = (a?.title || '').toLowerCase() === 'medanswer';
+      const bMed = (b?.title || '').toLowerCase() === 'medanswer';
+      if (aMed && !bMed) {
+        return -1;
+      }
+      if (!aMed && bMed) {
+        return 1;
+      }
+      return 0;
+    });
+    return list;
+  };
+
   const navigate = useNavigate();
   const isFullList = window.location.pathname === '/projects';
   const [projects, setProjects] = useState([]);
@@ -221,7 +237,7 @@ const Projects = () => {
               client: 'Various Clients',
             };
           });
-          setProjects(transformedProjects);
+          setProjects(prioritizeMedAnswer(transformedProjects));
           setLoading(false);
         }
       },

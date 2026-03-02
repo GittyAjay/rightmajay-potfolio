@@ -14,6 +14,7 @@ import eventwordkLeave from '../assets/images/eventwordk-leave.webp';
 import eventworkChat from '../assets/images/eventwork-chat.webp';
 import eventworksImage from '../assets/images/eventwork-dashbaord.webp';
 import eventworkSchedule from '../assets/images/evenwork-schedule.webp';
+import medanswerImage from '../assets/images/medanswer.png';
 import propnewstimeCategory from '../assets/images/propnewstime-category.webp';
 import propNewsTimesImage from '../assets/images/propnewstime.jpeg';
 import propnewstimeappHomepage from '../assets/images/propnewstimeapp-hom-pahe.webp';
@@ -829,6 +830,21 @@ const formatDate = (value) => {
 };
 
 const formatRange = (start, end) => `${formatDate(start)} - ${formatDate(end)}`;
+const prioritizeMedAnswer = (items) => {
+  const list = [...(items || [])];
+  list.sort((a, b) => {
+    const aMed = (a?.title || '').toLowerCase() === 'medanswer';
+    const bMed = (b?.title || '').toLowerCase() === 'medanswer';
+    if (aMed && !bMed) {
+      return -1;
+    }
+    if (!aMed && bMed) {
+      return 1;
+    }
+    return 0;
+  });
+  return list;
+};
 
 const projectImageByTitle = {
   staffworks: staffworksImage,
@@ -837,6 +853,8 @@ const projectImageByTitle = {
   propnewstimes: propNewsTimesImage,
   'prop news times': propNewsTimesImage,
   elynker: elynkerImage,
+  medanswer: medanswerImage,
+  'med answer': medanswerImage,
 };
 
 const projectLinkByTitle = {
@@ -851,6 +869,8 @@ const projectLinkByTitle = {
   'prop news times':
     'https://play.google.com/store/apps/details?id=com.propnewstimes&hl=en_IN',
   elynker: 'https://www.elynker.com/homepage',
+  medanswer: 'https://fertility.medanswers.com/',
+  'med answer': 'https://fertility.medanswers.com/',
 };
 
 const projectGalleryByTitle = {
@@ -860,6 +880,8 @@ const projectGalleryByTitle = {
   propnewstimes: [propnewstimeappHomepage, propnewstimeCategory, propNewsTimesImage],
   'prop news times': [propnewstimeappHomepage, propnewstimeCategory, propNewsTimesImage],
   elynker: [elynkerImage],
+  medanswer: [medanswerImage],
+  'med answer': [medanswerImage],
 };
 
 const Home = () => {
@@ -882,7 +904,7 @@ const Home = () => {
   }, [D.skills]);
 
   const projects = useMemo(() => {
-    return (D.projects || []).map((project) => ({
+    return prioritizeMedAnswer(D.projects || []).map((project) => ({
       title: project.title,
       subtitle: project.role || project.client,
       period: project.timeline,
@@ -1240,7 +1262,7 @@ const Home = () => {
                       </div>
                       {project.url ? (
                         <OpenAppLink href={project.url} target="_blank" rel="noreferrer">
-                          Open app
+                          Preview ↗
                         </OpenAppLink>
                       ) : (
                         <Badge>Private</Badge>

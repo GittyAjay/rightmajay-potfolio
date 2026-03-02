@@ -33,85 +33,6 @@ const ContentWrapper = styled.div`
   }
 `;
 
-const ProfileSection = styled.div`
-  display: flex;
-  gap: 6rem;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 6rem;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    text-align: center;
-    gap: 3rem;
-  }
-`;
-
-const ImageSection = styled.div`
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1;
-  max-width: 500px;
-  margin: 0 auto;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: -20px;
-    left: -20px;
-    right: -20px;
-    bottom: -20px;
-    border: 3px solid rgba(157, 0, 255, 0.3);
-    border-radius: 50%;
-    animation: rotate 20s linear infinite;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    border: 2px solid rgba(157, 0, 255, 0.5);
-    border-radius: 50%;
-    animation: rotate 15s linear infinite reverse;
-  }
-
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-`;
-
-const CircularImage = styled.div`
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  overflow: hidden;
-  position: relative;
-  background: url('/images/coding-setup.jpg') center center;
-  background-size: cover;
-  box-shadow: 0 0 50px rgba(157, 0, 255, 0.4);
-  border: 3px solid rgba(157, 0, 255, 0.6);
-`;
-
-const TextContent = styled.div`
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  max-width: 600px;
-
-  @media (max-width: 768px) {
-    align-items: center;
-    margin: 0 auto;
-  }
-`;
 
 const Title = styled(motion.h1)`
   font-size: clamp(3rem, 8vw, 5rem);
@@ -130,12 +51,6 @@ const Title = styled(motion.h1)`
     font-size: clamp(2rem, 6vw, 3rem);
     justify-content: center;
   }
-`;
-
-const Arrow = styled.span`
-  color: #9d00ff;
-  font-size: 2rem;
-  margin-top: 1rem;
 `;
 
 const Description = styled(motion.p)`
@@ -409,25 +324,11 @@ const ProjectStat = styled.div`
 const About = () => {
   const navigate = useNavigate();
 
-  const calculateExperience = () => {
-    const startDate = new Date(resumeData.work_experience[0].start_date);
-    const currentDate = new Date();
-    
-    const totalMonths = (currentDate.getFullYear() - startDate.getFullYear()) * 12 + 
-                       (currentDate.getMonth() - startDate.getMonth());
-    
-    const years = totalMonths / 12;
-    
-    return years.toFixed(1);
-  };
-
   const skillsText = [
     ...resumeData.skills.advanced,
     ...resumeData.skills.performance,
     ...resumeData.skills.architecture,
   ].join(' • ');
-
-  const experience = calculateExperience();
 
   return (
     <AboutContainer>

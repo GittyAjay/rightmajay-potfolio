@@ -277,7 +277,7 @@ const Modal = styled(motion.div)`
 
 const ProjectImage = ({ images, labels }) => {
   const [selectedImage, setSelectedImage] = useState(null);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [, setCurrentImageIndex] = useState(0);
   const displayImages = images?.length ? images : fallbackImages;
   const displayLabels = labels?.length ? labels : defaultLabels;
 
@@ -364,75 +364,6 @@ const ProjectImage = ({ images, labels }) => {
     </>
   );
 };
-
-const ProjectCard = styled.div`
-  background: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  position: relative;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  margin: 2rem 0;
-  max-width: 400px;
-
-  // Pin styling
-  &::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 20px;
-    background: #ff6b6b;
-    border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  }
-`;
-
-const ProjectNumber = styled.div`
-  font-size: 1.2rem;
-  color: #ff6b6b;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-`;
-
-const ProjectDescription = styled.p`
-  color: #666;
-  font-size: 1rem;
-  line-height: 1.5;
-  margin-bottom: 1rem;
-`;
-
-const ProjectDetails = styled.div`
-  color: #888;
-  font-size: 0.9rem;
-
-  ul {
-    list-style: none;
-    padding: 0;
-
-    li {
-      margin: 0.5rem 0;
-      display: flex;
-      align-items: center;
-
-      &::before {
-        content: '•';
-        color: #ff6b6b;
-        margin-right: 0.5rem;
-      }
-    }
-  }
-`;
-
-const ProjectsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-`;
 
 const StatusBadge = styled.span`
   padding: 0.3rem 0.8rem;

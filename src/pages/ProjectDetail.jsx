@@ -49,72 +49,11 @@ const BackButton = styled(motion.button)`
   }
 `;
 
-const ProjectHeader = styled.div`
-  margin-bottom: 3rem;
-`;
-
 const ProjectTitle = styled(motion.h1)`
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 800;
   margin: 1rem 0;
   color: #fff;
-`;
-
-const ProjectSubtitle = styled(motion.h2)`
-  font-size: clamp(1rem, 2vw, 1.5rem);
-  color: #B4B4B4;
-  font-weight: 400;
-  margin-bottom: 2rem;
-`;
-
-const ProjectImage = styled(motion.div)`
-  width: 100%;
-  height: 400px;
-  border-radius: 20px;
-  overflow: hidden;
-  margin-bottom: 3rem;
-  background: ${props => `url(${props.image}) center/cover no-repeat` || 'rgba(255, 255, 255, 0.05)'};
-
-  @media (max-width: 768px) {
-    height: 300px;
-  }
-`;
-
-const VideoDemo = styled.div`
-  width: 100%;
-  background: rgba(20, 20, 30, 0.3);
-  border-radius: 16px;
-  overflow: hidden;
-  margin: 1rem 0;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  
-  .video-container {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    height: 0;
-    overflow: hidden;
-    
-    iframe, video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-  }
-`;
-
-const VideoTitle = styled.h3`
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #fff;
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  margin: 0;
-  height: 60px;
-  display: flex;
-  align-items: center;
 `;
 
 const ProjectInfo = styled.div`
@@ -159,55 +98,6 @@ const ProjectDescription = styled.div`
   }
 `;
 
-const ProjectDetails = styled.div`
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 20px;
-  padding: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-
-  h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    color: #fff;
-  }
-`;
-
-const TechList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1rem;
-`;
-
-const TechTag = styled.span`
-  background: rgba(157, 0, 255, 0.1);
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  margin-right: 0.5rem;
-  border: 1px solid rgba(157, 0, 255, 0.2);
-`;
-
-const TechStack = styled.div`
-  h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    color: #fff;
-  }
-`;
-
-const TechItem = styled.span`
-  background: rgba(157, 0, 255, 0.1);
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  color: #fff;
-  font-weight: 400;
-`;
-
 const ProjectSidebar = styled.div`
   background: rgba(20, 20, 30, 0.5);
   border-radius: 16px;
@@ -228,10 +118,6 @@ const ProjectSidebar = styled.div`
   @media (max-width: 1024px) {
     position: static;
   }
-`;
-
-const SidebarSection = styled.div`
-  margin-bottom: 2rem;
 `;
 
 const DetailItem = styled.div`
@@ -266,26 +152,6 @@ const Value = styled.div`
       color: #9D00FF;
     }
   }
-`;
-
-const PlatformSection = styled.div`
-  margin-top: 3rem;
-  
-  h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: #fff;
-  }
-`;
-
-const TreeSection = styled.div`
-  margin: 1rem 0;
-  width: 100%;
-  background: rgba(20, 20, 30, 0.3);
-  border-radius: 16px;
-  padding: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
 `;
 
 const FloatingVideoContainer = styled(motion.div)`

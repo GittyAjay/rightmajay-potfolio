@@ -202,36 +202,6 @@ const GlowingButton = styled(motion.button)`
   }
 `;
 
-const ShowMoreButton = styled.button`
-  background: none;
-  border: none;
-  color: #9d00ff;
-  cursor: pointer;
-  font-size: 0.9rem;
-  padding: 0.5rem 0;
-  margin-top: 0.5rem;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-const SkillProgress = styled.div`
-  width: 100%;
-  height: 6px;
-  background: rgba(157, 0, 255, 0.1);
-  border-radius: 3px;
-  margin: 0.5rem 0;
-  overflow: hidden;
-`;
-
-const ProgressBar = styled.div`
-  height: 100%;
-  background: #9d00ff;
-  width: ${(props) => props.level}%;
-  transition: width 1s ease-out;
-`;
-
 const adv_skills = require('../assets/images/adv_skills.png');
 const performance = require('../assets/images/performance.png');
 const architecture = require('../assets/images/adv_skills.png');

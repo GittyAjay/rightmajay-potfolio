@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FaGithub, FaLinkedinIn, FaMoon, FaSun } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import styled, { createGlobalStyle } from 'styled-components';
@@ -830,6 +830,38 @@ const formatDate = (value) => {
 
 const formatRange = (start, end) => `${formatDate(start)} - ${formatDate(end)}`;
 
+const projectImageByTitle = {
+  staffworks: staffworksImage,
+  eventworks: eventworksImage,
+  carehudl: carehudlImage,
+  propnewstimes: propNewsTimesImage,
+  'prop news times': propNewsTimesImage,
+  elynker: elynkerImage,
+};
+
+const projectLinkByTitle = {
+  staffworks:
+    'https://play.google.com/store/apps/details?id=com.gigflex.staffworks&pcampaignid=web_share',
+  eventworks:
+    'https://play.google.com/store/apps/details?id=com.gigflex.eventsworks&pcampaignid=web_share',
+  carehudl:
+    'https://play.google.com/store/apps/details?id=com.gigflex.carehudl&hl=en_IN',
+  propnewstimes:
+    'https://play.google.com/store/apps/details?id=com.propnewstimes&hl=en_IN',
+  'prop news times':
+    'https://play.google.com/store/apps/details?id=com.propnewstimes&hl=en_IN',
+  elynker: 'https://www.elynker.com/homepage',
+};
+
+const projectGalleryByTitle = {
+  staffworks: [staffworksImage, staffworkActions, staffworkTimeshifts, staffworkShifts],
+  eventworks: [eventworksImage, eventwordkAbsent, eventwordkLeave, eventworkSchedule, eventworkChat],
+  carehudl: [carehudlChat, carehudlVideoCall, carehudleAudioCall, carehudlContact, carehudlImage],
+  propnewstimes: [propnewstimeappHomepage, propnewstimeCategory, propNewsTimesImage],
+  'prop news times': [propnewstimeappHomepage, propnewstimeCategory, propNewsTimesImage],
+  elynker: [elynkerImage],
+};
+
 const Home = () => {
   const D = resumeData;
   const [activeSection, setActiveSection] = useState('projects');
@@ -838,36 +870,6 @@ const Home = () => {
   const [sliderIndices, setSliderIndices] = useState({});
   const [lightboxProjectTitle, setLightboxProjectTitle] = useState(null);
   const [lightboxIndex, setLightboxIndex] = useState(0);
-  const projectImageByTitle = {
-    staffworks: staffworksImage,
-    eventworks: eventworksImage,
-    carehudl: carehudlImage,
-    propnewstimes: propNewsTimesImage,
-    'prop news times': propNewsTimesImage,
-    elynker: elynkerImage,
-  };
-  const projectLinkByTitle = {
-    staffworks:
-      'https://play.google.com/store/apps/details?id=com.gigflex.staffworks&pcampaignid=web_share',
-    eventworks:
-      'https://play.google.com/store/apps/details?id=com.gigflex.eventsworks&pcampaignid=web_share',
-    carehudl:
-      'https://play.google.com/store/apps/details?id=com.gigflex.carehudl&hl=en_IN',
-    propnewstimes:
-      'https://play.google.com/store/apps/details?id=com.propnewstimes&hl=en_IN',
-    'prop news times':
-      'https://play.google.com/store/apps/details?id=com.propnewstimes&hl=en_IN',
-    elynker: 'https://www.elynker.com/homepage',
-  };
-  const projectGalleryByTitle = {
-    staffworks: [staffworksImage, staffworkActions, staffworkTimeshifts, staffworkShifts],
-    eventworks: [eventworksImage, eventwordkAbsent, eventwordkLeave, eventworkSchedule, eventworkChat],
-    carehudl: [carehudlChat, carehudlVideoCall, carehudleAudioCall, carehudlContact, carehudlImage],
-    propnewstimes: [propnewstimeappHomepage, propnewstimeCategory, propNewsTimesImage],
-    'prop news times': [propnewstimeappHomepage, propnewstimeCategory, propNewsTimesImage],
-    elynker: [elynkerImage],
-  };
-
   const skills = useMemo(() => {
     return Object.entries(D.skills || {}).map(([category, value]) => {
       if (Array.isArray(value)) {
@@ -1057,35 +1059,35 @@ const Home = () => {
 
   const lightboxProject = projects.find((project) => project.title === lightboxProjectTitle) || null;
 
-  const closeLightbox = () => {
+  const closeLightbox = useCallback(() => {
     setLightboxProjectTitle(null);
     setLightboxIndex(0);
-  };
+  }, []);
 
-  const openLightbox = (project) => {
+  const openLightbox = useCallback((project) => {
     if (!project.images?.length) {
       return;
     }
 
     setLightboxProjectTitle(project.title);
     setLightboxIndex(sliderIndices[project.title] || 0);
-  };
+  }, [sliderIndices]);
 
-  const goToNextLightbox = () => {
+  const goToNextLightbox = useCallback(() => {
     if (!lightboxProject?.images?.length) {
       return;
     }
 
     setLightboxIndex((prev) => (prev + 1) % lightboxProject.images.length);
-  };
+  }, [lightboxProject]);
 
-  const goToPrevLightbox = () => {
+  const goToPrevLightbox = useCallback(() => {
     if (!lightboxProject?.images?.length) {
       return;
     }
 
     setLightboxIndex((prev) => (prev - 1 + lightboxProject.images.length) % lightboxProject.images.length);
-  };
+  }, [lightboxProject]);
 
   useEffect(() => {
     if (!lightboxProject?.images?.length || lightboxProject.images.length <= 1) {
@@ -1118,7 +1120,7 @@ const Home = () => {
 
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [lightboxProjectTitle, lightboxProject]);
+  }, [closeLightbox, goToNextLightbox, goToPrevLightbox, lightboxProjectTitle]);
 
   return (
     <>

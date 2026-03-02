@@ -18,24 +18,6 @@ import {
   Title,
 } from '../styles/ProjectStyles';
 
-const SeeMoreButton = styled(motion.button)`
-  background: rgba(157, 0, 255, 0.1);
-  border: 1px solid rgba(157, 0, 255, 0.3);
-  color: #fff;
-  padding: 0.8rem 2rem;
-  border-radius: 12px;
-  font-size: 1rem;
-  cursor: pointer;
-  margin: 2rem auto 0;
-  transition: all 0.3s ease;
-  display: block;
-
-  &:hover {
-    background: rgba(157, 0, 255, 0.2);
-    transform: translateY(-2px);
-  }
-`;
-
 const StyledProjectCard = styled(motion.div)`
   background: rgba(157, 0, 255, 0.05);
   border: 1px solid rgba(157, 0, 255, 0.1);

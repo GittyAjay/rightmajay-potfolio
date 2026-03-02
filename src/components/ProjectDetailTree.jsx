@@ -163,24 +163,6 @@ const SubItem = styled.li`
   }
 `;
 
-const CodeSnippet = styled.code`
-  display: block;
-  background: rgba(10, 0, 20, 0.8);
-  padding: 0.75rem;
-  margin: 0.5rem 0;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  color: #a8ff78;
-  font-family: 'Fira Code', monospace;
-  border: 1px solid rgba(157, 0, 255, 0.2);
-
-  @media (max-width: 768px) {
-    padding: 0.5rem;
-    font-size: 0.8rem;
-    overflow-x: auto;
-  }
-`;
-
 // Component for Overview Section
 const OverviewSection = ({ project, isExpanded, onToggle }) => (
     <TreeLevel>

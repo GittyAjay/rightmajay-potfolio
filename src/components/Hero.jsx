@@ -52,7 +52,10 @@ export default function Hero() {
           >
             {profile.blurb}
           </motion.p>
-          <motion.div variants={item} style={{ display: "flex", gap: "1rem", marginTop: "2.25rem", flexWrap: "wrap" }}>
+          <motion.div
+            variants={item}
+            style={{ display: "flex", alignItems: "center", gap: "1rem", marginTop: "2.25rem", flexWrap: "wrap" }}
+          >
             <a
               href="#work"
               className="focus-ring"

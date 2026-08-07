@@ -1083,11 +1083,14 @@ html.dark .aura {
   }
 }
 
+/* matches the padding + border box of the two buttons beside it, so the
+   three sit on one line even before the stylesheet's own rules load */
 .hero-resume {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.85rem 1.5rem;
+  padding: 0.85rem 1.6rem;
+  line-height: 1;
   border-radius: 999px;
   font-weight: 700;
   text-decoration: none;

@@ -96,6 +96,21 @@ export default function Contact() {
           >
             r8majay.web.app
           </a>
+          <a
+            href={profile.resume.url}
+            download={profile.resume.filename}
+            className="focus-ring"
+            style={{
+              padding: "0.85rem 1.6rem",
+              borderRadius: 999,
+              fontWeight: 700,
+              textDecoration: "none",
+              color: "var(--bg)",
+              border: "2px dashed var(--bg)",
+            }}
+          >
+            Download CV
+          </a>
         </div>
         <p style={{ marginTop: "2.75rem", fontSize: "0.8rem", opacity: 0.5, fontFamily: "var(--font-mono)" }}>
           {profile.phone} · Built with React

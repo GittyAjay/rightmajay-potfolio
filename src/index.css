@@ -1083,6 +1083,28 @@ html.dark .aura {
   }
 }
 
+.hero-resume {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--ink-soft);
+  border: 2.5px dashed color-mix(in srgb, var(--border) 40%, transparent);
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.hero-resume:hover {
+  color: var(--ink);
+  border-color: var(--border);
+}
+
+.hero-resume svg {
+  opacity: 0.7;
+}
+
 /* ---------- Hero portrait ---------- */
 
 .hero-grid {

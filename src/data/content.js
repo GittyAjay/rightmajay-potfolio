@@ -34,6 +34,8 @@ export const profile = {
     "I've spent most of that time on healthcare, GST filing, and workforce apps. The work I'm proudest of is usually the unglamorous kind: getting offline sync right, cutting release prep from a day to an hour, figuring out why a list drops frames on a three-year-old Android.",
   email: "rightmajay@gmail.com",
   phone: "+91-6392363003",
+  // served from /public — downloads as the filename below
+  resume: { url: "/React_Native.pdf", filename: "Ajay-Kumar-Pandey-React-Native.pdf" },
   links: {
     linkedin: "https://www.linkedin.com/in/rightmajay/",
     github: "https://github.com/rightmajay",

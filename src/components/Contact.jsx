@@ -94,7 +94,7 @@ export default function Contact() {
               border: "2px solid var(--bg)",
             }}
           >
-            r8majay.web.app
+            ajayonlive.vercel.app
           </a>
           <a
             href={profile.resume.url}

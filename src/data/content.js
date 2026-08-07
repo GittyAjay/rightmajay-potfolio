@@ -39,7 +39,8 @@ export const profile = {
   links: {
     linkedin: "https://www.linkedin.com/in/rightmajay/",
     github: "https://github.com/rightmajay",
-    site: "https://r8majay.web.app",
+    // r8majay.web.app is dead (404) — this is the live one
+    site: "https://ajayonlive.vercel.app",
   },
 };
 

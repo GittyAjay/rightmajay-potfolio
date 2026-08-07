@@ -38,7 +38,8 @@ export const profile = {
   resume: { url: "/React_Native.pdf", filename: "Ajay-Kumar-Pandey-React-Native.pdf" },
   links: {
     linkedin: "https://www.linkedin.com/in/rightmajay/",
-    github: "https://github.com/rightmajay",
+    // rightmajay is a 404 — the account is GittyAjay
+    github: "https://github.com/GittyAjay",
     // r8majay.web.app is dead (404) — this is the live one
     site: "https://ajayonlive.vercel.app",
   },

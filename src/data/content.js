@@ -130,7 +130,7 @@ export const projects = [
       android: "https://play.google.com/store/apps/details?id=com.gigflex.staffworks",
     },
     description:
-      "Shift work for hourly staff: you see your week, accept a shift, then clock in from the venue. Geofencing decides whether you're actually there, and around 5,000 people are on it at once during a busy evening.",
+      "Shift work for hourly staff. You see your week, accept a shift, then clock in once you're at the venue. Geofencing decides whether you actually are. On a busy evening there are around 5,000 people on it at the same time.",
     color: "teal",
   },
   {
@@ -199,7 +199,7 @@ export const projects = [
     images: [shotSmartWMS],
     links: { site: "https://www.smartwms.in/" },
     description:
-      "Warehouse management SaaS I built on my own: dashboard, mobile app, APIs, all of it. Multi-tenant, so most of the hard thinking went into keeping one customer's data properly walled off from the next.",
+      "Warehouse management SaaS, built on my own. Dashboard, mobile app, APIs. It's multi-tenant, so most of the work that took real thought was keeping one customer's data away from the next one's.",
     color: "teal",
   },
   {
@@ -217,7 +217,7 @@ export const projects = [
       android: "https://play.google.com/store/apps/details?id=com.gigflex.carehudl",
     },
     description:
-      "Care coordination for around 500 practitioners: contacts, chat, audio and video calls, all offline-first because a lot of them work in buildings with no usable signal. Charting time dropped 37%, and it cleared a full HIPAA audit, which shaped most of the architecture.",
+      "Care coordination for around 500 practitioners. Contacts, chat, audio and video calls, and all of it offline-first, because a lot of them work in buildings with no usable signal. Charting time dropped 37%. It also went through a full HIPAA audit, which shaped most of the architecture.",
     color: "gold",
   },
   {

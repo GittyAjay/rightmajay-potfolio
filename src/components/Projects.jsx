@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { projects, ROLES } from "../data/content.js";
 import DeviceShowcase from "./DeviceShowcase.jsx";
+import SkillIcon from "./SkillIcon.jsx";
 
 const linkLabels = {
   site: "Website",
@@ -94,6 +95,7 @@ function Stack({ items, color }) {
     <div className="showcase-stack">
       {items.map((s) => (
         <span key={s} style={{ background: `var(--${color}-soft)` }}>
+          <SkillIcon name={s} glyph="code" />
           {s}
         </span>
       ))}

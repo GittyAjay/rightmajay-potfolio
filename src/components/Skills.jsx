@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { skills } from "../data/content.js";
+import SkillIcon, { groupGlyph } from "./SkillIcon.jsx";
 
 const palette = ["violet", "coral", "teal", "gold"];
 
@@ -11,10 +12,11 @@ export default function Skills() {
           <p className="eyebrow">03 / Stack</p>
           <h2>What I actually use</h2>
           <p className="sub">
-            Not an exhaustive list. These are the ones I'd be comfortable being handed a bug in on day one.
+            Not an exhaustive list. These are the ones I'd be comfortable being handed a bug in on
+            day one — and the solid ones are what I'm in most weeks.
           </p>
         </div>
-        <div className="card-grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(240px, 100%), 1fr))" }}>
+        <div className="card-grid skills-grid">
           {skills.map((group, i) => {
             const c = palette[i % palette.length];
             return (
@@ -27,20 +29,14 @@ export default function Skills() {
                 className="sticker card"
                 style={{ background: `var(--${c}-soft)` }}
               >
-                <h3 style={{ fontSize: "1.05rem", marginBottom: "1rem" }}>{group.group}</h3>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+                <h3 className="skill-group-head">{group.group}</h3>
+                <div className="skill-chips">
                   {group.items.map((item) => (
                     <span
                       key={item}
-                      style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: "0.78rem",
-                        background: "var(--bg-raised)",
-                        border: "1.5px solid var(--border)",
-                        borderRadius: 999,
-                        padding: "0.3rem 0.7rem",
-                      }}
+                      className={`skill-chip${group.core?.includes(item) ? " is-core" : ""}`}
                     >
+                      <SkillIcon name={item} glyph={groupGlyph[group.group]} />
                       {item}
                     </span>
                   ))}

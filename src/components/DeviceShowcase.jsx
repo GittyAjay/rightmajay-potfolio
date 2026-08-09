@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import Lightbox from "./Lightbox.jsx";
 
 const CYCLE_MS = 2800;
 
@@ -15,6 +16,7 @@ export default function DeviceShowcase({ images = [], video, name, kind = "phone
   const [index, setIndex] = useState(0);
   const [inView, setInView] = useState(false);
   const [paused, setPaused] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   // how far a full-page screenshot has to travel to reveal its bottom edge
   const [shift, setShift] = useState(0);
   const ref = useRef(null);
@@ -148,7 +150,33 @@ export default function DeviceShowcase({ images = [], video, name, kind = "phone
             ))
           )}
         </div>
+
+        {/* the whole screen is the target — at phone widths a desktop capture
+            renders around a fifth of its real size, so this is the only way the
+            page is actually readable */}
+        <button
+          type="button"
+          className="device-expand focus-ring"
+          onClick={() => setExpanded(true)}
+          aria-label={`View ${name} full screen`}
+        >
+          <span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M15 3h6v6M9 21H3v-6M21 3l-8 8M3 21l8-8" />
+            </svg>
+            Full screen
+          </span>
+        </button>
       </div>
+
+      {expanded && (
+        <Lightbox
+          src={images[index] || images[0]}
+          video={video}
+          alt={`${name} — full view`}
+          onClose={() => setExpanded(false)}
+        />
+      )}
 
       {!video && images.length > 1 && (
         <div className="device-progress" role="presentation">

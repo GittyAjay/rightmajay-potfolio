@@ -36,38 +36,50 @@ export const profile = {
   },
 };
 
+// `core` names the handful in each group I'm in most weeks — those get a solid
+// chip, everything else recedes. Without the split all 40-odd read at the same
+// weight and none of them land. A name in `core` that isn't in `items` is
+// simply ignored.
 export const skills = [
   {
     group: "Languages",
-    items: ["JavaScript", "TypeScript", "Node.js", "SQL", "HTML5", "CSS3"],
+    items: ["JavaScript", "TypeScript", "Node.js", "SQL"],
+    core: ["JavaScript", "TypeScript", "Node.js"],
   },
   {
     group: "Frontend",
-    items: ["React.js", "Next.js 14", "Redux Toolkit", "Context API", "TailwindCSS", "Material-UI", "SSR / SSG"],
+    items: ["React.js", "Next.js 14", "Redux Toolkit", "SSR / SSG", "TailwindCSS", "Context API", "Material-UI"],
+    core: ["React.js", "Next.js 14", "Redux Toolkit"],
   },
   {
     group: "Backend",
-    items: ["Express.js", "NestJS", "REST APIs", "GraphQL", "Socket.io", "BullMQ"],
+    items: ["Express.js", "REST APIs", "BullMQ", "Socket.io", "NestJS", "GraphQL"],
+    core: ["Express.js", "REST APIs", "BullMQ"],
   },
   {
     group: "Databases",
-    items: ["MongoDB", "PostgreSQL", "MySQL", "Redis", "Prisma ORM"],
+    items: ["MongoDB", "PostgreSQL", "Prisma ORM", "Redis", "MySQL"],
+    core: ["MongoDB", "PostgreSQL", "Prisma ORM"],
   },
   {
     group: "AI & GenAI",
-    items: ["OpenAI GPT-4", "Claude API", "RAG pipelines", "Vector databases", "Embeddings"],
+    items: ["OpenAI GPT-4", "RAG pipelines", "Vector databases", "Claude API", "Embeddings"],
+    core: ["OpenAI GPT-4", "RAG pipelines", "Vector databases"],
   },
   {
     group: "Auth & Security",
-    items: ["NextAuth.js v5", "JWT", "RBAC", "TOTP MFA", "bcrypt", "Helmet", "Rate limiting"],
+    items: ["NextAuth.js v5", "RBAC", "JWT", "TOTP MFA", "Rate limiting", "bcrypt", "Helmet"],
+    core: ["NextAuth.js v5", "RBAC", "JWT"],
   },
   {
     group: "Cloud & DevOps",
-    items: ["AWS (EC2, S3, Lambda, CloudFront)", "Azure App Service", "Docker", "GitHub Actions", "Nginx"],
+    items: ["AWS (EC2, S3, Lambda, CloudFront)", "Docker", "GitHub Actions", "Azure App Service", "Nginx"],
+    core: ["AWS (EC2, S3, Lambda, CloudFront)", "Docker", "GitHub Actions"],
   },
   {
     group: "Testing & Quality",
-    items: ["Jest", "React Testing Library", "ESLint", "Prettier", "Sentry"],
+    items: ["Jest", "React Testing Library", "Sentry", "ESLint"],
+    core: ["Jest", "Sentry"],
   },
 ];
 

@@ -210,6 +210,35 @@ button {
   aspect-ratio: 16 / 11;
 }
 
+/* a scrolling full-page shot earns a bigger stage — more page on screen */
+.showcase-media.is-web.is-scroll {
+  aspect-ratio: 5 / 4;
+  padding: clamp(0.9rem, 1.6vw, 1.4rem);
+}
+
+/* and a wider column to sit in — on flipped rows the wide side is the second one */
+.showcase-inner.is-scrollrow {
+  grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
+  gap: clamp(2rem, 4vw, 3.5rem);
+}
+
+.showcase-row.is-flipped .showcase-inner.is-scrollrow {
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+}
+
+/* the browser window fills the stage rather than keeping its own aspect */
+.showcase-media.is-scroll .device-frame {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.showcase-media.is-scroll .device-screen.is-scrolling {
+  aspect-ratio: auto;
+  flex: 1;
+  min-height: 0;
+}
+
 /* ---------- Device frame + auto-cycling screenshots ---------- */
 
 .device {
@@ -333,6 +362,53 @@ button {
 .device-web .device-screen img {
   position: relative;
   object-position: 50% 0;
+}
+
+/* ---------- Full-page screenshot that scrolls inside the window ---------- */
+
+/* taller window than the cropped shots get, so more of the page is in view */
+.device-web .device-screen.is-scrolling {
+  aspect-ratio: 16 / 11;
+}
+
+.device-web .device-screen.is-scrolling img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  opacity: 1;
+  transform: none;
+  transition: none;
+  will-change: transform;
+}
+
+.device-web .device-screen.is-scrolling img.is-running {
+  /* linear and no delay: it should be moving the moment the row lands */
+  animation: shot-scroll var(--shot-duration, 24s) linear infinite alternate;
+}
+
+/* short holds at each end so the turnaround registers, not enough to feel stalled */
+@keyframes shot-scroll {
+  0%, 2% { transform: translateY(0); }
+  98%, 100% { transform: translateY(var(--shot-shift, 0)); }
+}
+
+/* the window edge fades out, so the cut at the bottom reads as "more below" */
+.device-web .device-screen.is-scrolling::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 10%;
+  background: linear-gradient(to top, rgba(13, 11, 18, 0.34), transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .device-web .device-screen.is-scrolling img.is-running {
+    animation: none;
+  }
 }
 
 /* story-style progress bars */
@@ -480,6 +556,27 @@ button {
   padding-top: 1.15rem;
 }
 
+/* compact cards for work with no screenshot to show */
+.brief-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.brief-card .showcase-desc {
+  font-size: 0.9rem;
+  margin-top: 0.75rem;
+  max-width: none;
+}
+
+.brief-card .showcase-stack {
+  margin-top: 1rem;
+  margin-bottom: 1.1rem;
+}
+
+.brief-card .project-links {
+  margin-top: auto;
+}
+
 /* projects with no screenshot: text spans the full row instead of an empty stage */
 .showcase-inner.is-textonly {
   grid-template-columns: 1fr;
@@ -555,6 +652,12 @@ button {
   }
   .showcase-media.is-web {
     aspect-ratio: 3 / 2;
+  }
+  .showcase-media.is-web.is-scroll {
+    aspect-ratio: 4 / 3;
+  }
+  .showcase-inner.is-scrollrow {
+    grid-template-columns: 1fr;
   }
 }
 

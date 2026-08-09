@@ -116,7 +116,7 @@ export default function Hero() {
           </div>
           <div className="hero-badge">
             <strong>7+ yrs</strong>
-            <span>shipping RN apps</span>
+            <span>building for the web</span>
           </div>
         </motion.div>
       </motion.div>

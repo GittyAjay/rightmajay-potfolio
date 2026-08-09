@@ -3,14 +3,12 @@ import { projects } from "../data/content.js";
 import DeviceShowcase from "./DeviceShowcase.jsx";
 
 const linkLabels = {
-  ios: "App Store",
-  android: "Google Play",
   site: "Website",
   github: "Source",
   caseStudy: "Case study",
 };
 
-const linkOrder = ["ios", "android", "site", "github", "caseStudy"];
+const linkOrder = ["site", "github", "caseStudy"];
 
 // a link is either a plain URL string, or { url, label, note } when it needs
 // a different name or a caveat (region locks, differently-named store listing)
@@ -76,13 +74,12 @@ function Stack({ items, color }) {
 }
 
 export default function Projects() {
-  const apps = projects.filter((p) => p.shotType === "phone");
-  const sites = projects.filter((p) => p.shotType !== "phone");
+  const featured = projects.filter((p) => p.tier === "featured");
+  const more = projects.filter((p) => p.tier === "more");
 
-  // count only the store listings that are actually public
-  const isLive = (v) => v && !(typeof v === "object" && (v.isPrivate || !v.url));
-  const onIos = apps.filter((p) => isLive(p.links?.ios)).length;
-  const onAndroid = apps.filter((p) => isLive(p.links?.android)).length;
+  // the zigzag counts only rows that actually have a screenshot, so a
+  // text-only row in the middle doesn't put two images on the same side
+  let mediaSeen = -1;
 
   return (
     <section id="work" className="section">
@@ -91,22 +88,22 @@ export default function Projects() {
           <p className="eyebrow">01 / Work</p>
           <h2>What I've been building</h2>
           <p className="sub">
-            Most of these are live on the Play Store or the web. A couple I built on my own, the rest with small teams.
+            Some of these I owned outright. On the rest I built the core and worked in a small team.
           </p>
         </div>
 
         <p className="group-label">
-          <span>Mobile apps</span>
-          <em>
-            {apps.length} shipped · {onIos} on the App Store, {onAndroid} on Google Play
-          </em>
+          <span>Recent work</span>
+          <em>{featured.length} products, all live</em>
         </p>
       </div>
 
-      {/* ---- mobile apps: full-width alternating rows ---- */}
+      {/* ---- flagship platforms: full-width alternating rows ---- */}
       <div className="showcase">
-        {apps.map((p, i) => {
-          const flipped = i % 2 === 1;
+        {featured.map((p, i) => {
+          const hasMedia = Boolean(p.images?.length || p.video);
+          if (hasMedia) mediaSeen += 1;
+          const flipped = hasMedia && mediaSeen % 2 === 1;
           return (
             <motion.article
               key={p.name}
@@ -116,23 +113,31 @@ export default function Projects() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className="showcase-inner container">
-                <motion.div
-                  className="showcase-media is-phone"
-                  style={{ "--tint": `var(--${p.color})` }}
-                  initial={false}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.75, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <DeviceShowcase
-                    images={p.images}
-                    name={p.name}
-                    kind="phone"
-                    tint={`var(--${p.color})`}
-                    offset={i * 450}
-                  />
-                </motion.div>
+              <div
+                className={`showcase-inner container${hasMedia ? "" : " is-textonly"}${
+                  p.scrollShot ? " is-scrollrow" : ""
+                }`}
+              >
+                {hasMedia && (
+                  <motion.div
+                    className={`showcase-media is-web${p.scrollShot ? " is-scroll" : ""}`}
+                    style={{ "--tint": `var(--${p.color})` }}
+                    initial={false}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.75, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <DeviceShowcase
+                      images={p.images}
+                      video={p.video}
+                      name={p.name}
+                      kind="web"
+                      tint={`var(--${p.color})`}
+                      offset={i * 450}
+                      scrollShot={p.scrollShot}
+                    />
+                  </motion.div>
+                )}
 
                 <div className="showcase-body">
                   <p className="showcase-index">{String(i + 1).padStart(2, "0")}</p>
@@ -148,46 +153,38 @@ export default function Projects() {
         })}
       </div>
 
-      {/* ---- web products: two-up grid of browser cards ---- */}
-      <div className="container web-block">
-        <p className="group-label">
-          <span>Web products</span>
-          <em>{sites.length} live sites and dashboards</em>
-        </p>
+      <div className="container">
+        {/* ---- everything else: text-only cards, no screenshots to show ---- */}
+        {more.length > 0 && (
+          <div className="web-block">
+            <p className="group-label">
+              <span>Also built</span>
+              <em>{more.length} more, backend and platform work</em>
+            </p>
 
-        <div className="web-grid">
-          {sites.map((p, i) => (
-            <motion.article
-              key={p.name}
-              className="web-card sticker"
-              initial={false}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: (i % 2) * 0.08, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className="web-card-media" style={{ "--tint": `var(--${p.color})` }}>
-                <DeviceShowcase
-                  images={p.images}
-                  video={p.video}
-                  name={p.name}
-                  kind="web"
-                  tint={`var(--${p.color})`}
-                  offset={i * 450}
-                />
-              </div>
-
-              <div className="web-card-body">
-                <div className="web-card-head">
-                  <h3>{p.name}</h3>
-                  {p.period && <span className="showcase-period">{p.period}</span>}
-                </div>
-                {p.description && <p className="showcase-desc">{p.description}</p>}
-                <Stack items={p.stack} color={p.color} />
-                <ProjectLinks links={p.links} />
-              </div>
-            </motion.article>
-          ))}
-        </div>
+            <div className="card-grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(300px, 100%), 1fr))" }}>
+              {more.map((p, i) => (
+                <motion.article
+                  key={p.name}
+                  className="sticker card brief-card"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.5, delay: (i % 3) * 0.06, ease: [0.34, 1.56, 0.64, 1] }}
+                  style={{ background: `var(--${p.color}-soft)` }}
+                >
+                  <div className="web-card-head">
+                    <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.15rem" }}>{p.name}</h3>
+                    {p.period && <span className="showcase-period">{p.period}</span>}
+                  </div>
+                  {p.description && <p className="showcase-desc">{p.description}</p>}
+                  <Stack items={p.stack} color={p.color} />
+                  <ProjectLinks links={p.links} />
+                </motion.article>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

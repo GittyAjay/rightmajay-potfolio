@@ -7,6 +7,13 @@ import longSmartWMS from "../assets/projects/smartwms-long.jpg";
 import longAryadhan from "../assets/projects/aryadhan-long.jpg";
 import longFixAi from "../assets/projects/fixai-long.jpg";
 
+// employer logos, saved locally rather than hotlinked off their sites.
+// both are transparent PNGs that only work on one kind of backdrop — eSoft's
+// wordmark is dark grey, Osizone's is white — so each carries the `logoBg` it
+// needs and gets that plate in both themes.
+import logoEsoft from "../assets/logos/esoft.png";
+import logoOsizone from "../assets/logos/osizone.png";
+
 export const profile = {
   name: "Ajay Kumar Pandey",
   role: "Senior Full Stack Developer",
@@ -67,31 +74,41 @@ export const skills = [
 export const experience = [
   {
     company: "e.Soft Technologies",
+    site: "https://www.esoftech.com/",
+    logo: logoEsoft,
+    logoBg: "light",
     role: "Senior Full Stack Developer",
     period: "Oct 2021 — Present",
     location: "Mumbai, India",
+    // the job, not the projects — the Work section already covers those in
+    // detail, and repeating them here just made both read thinner
+    summary:
+      "Nine of the products in the Work section were built here. I take architecture on new builds and stay on them through delivery.",
     points: [
-      "RealEstAi is mine end to end. I did the architecture and I still do most of the delivery: Next.js 14, multi-tenant, running on Azure with CI/CD.",
-      "Its document pipeline runs on GPT-4 and Claude. It reads a legal PDF, pulls the fields out and produces the firm's own version of the document. Drafting that used to be done by hand mostly isn't any more.",
-      "FixAi is the other AI one. A RAG pipeline over a vector database, so a troubleshooting answer comes out of the appliance manual instead of the model's imagination.",
-      "CareHudl was a healthcare staffing build, with shift matching and credential checks.",
-      "On Elynker I was team lead for four developers. Client calls and sprint planning, and I still wrote the microsite and catalog tooling.",
-      "Four juniors come to me for code review. Production bugs are down from where they were, and I think the reviews are most of the reason.",
-      "22 permission levels on NextAuth.js v5, with TOTP MFA and an audit log behind them.",
-      "Spent a while on SSR and SSG for the SEO pages. Lighthouse sits in the 90s now.",
+      "Team lead on Elynker — four developers, sprint planning and client calls alongside my own build work.",
+      "Code review for four juniors. Production bugs are down from where they were, and I think the reviews are most of the reason.",
+      "The last two years have been mostly AI work — document pipelines and RAG, in products clients actually pay for rather than prototypes.",
+      "Auth and permissions across the products: NextAuth.js v5, role-based access, TOTP MFA, audit logging.",
+      "SSR and SSG on everything SEO-facing. Lighthouse sits in the 90s.",
     ],
+    projects: ["RealEstAi", "Aryadhan", "RapidGST", "Elynker", "FertilityAnswers", "SmartWMS", "FixAi", "CareHudl", "StaffWorks"],
   },
   {
     company: "Osizone Services Pvt. Ltd",
+    site: "https://www.osizone.com/",
+    logo: logoOsizone,
+    logoBg: "dark",
     role: "Software Developer",
     period: "Jun 2019 — Aug 2021",
     location: "Noida, India",
+    summary:
+      "My first job out of university, and both products here were mine alone — architecture through deployment, nobody else on the repo.",
     points: [
-      "Adroit was mine alone. An ed-tech platform where instructors sell courses: HLS live streaming, auto-recording, DRM on delivery through S3 and CloudFront.",
-      "Razorpay and Stripe both, covering one-off purchases and subscriptions.",
-      "The transcoding pipeline was the fiddly part. Several quality levels, cache invalidation on the CDN, and access checks at the API rather than in the player, since a player can be lied to.",
-      "Arogyam I also built alone. Multi-vendor medicine ordering, prescription upload, and a pharmacist has to verify before anything ships.",
+      "Learned video the hard way: streaming, transcoding and DRM, with nobody more senior on hand to ask.",
+      "Both products moved real money and gated real access, so payments and authorisation were mine to get right.",
+      "Talked to the clients myself, which is where I learned to ask what a feature is for before building it.",
     ],
+    projects: ["Adroit", "Arogyam"],
   },
 ];
 
@@ -100,6 +117,21 @@ export const experience = [
 // scrolls inside the window instead of sitting still.
 // Any project can carry site / github / caseStudy links — only what you fill in
 // gets rendered.
+//
+// Every project must declare ownership, and it's kept in two separate fields so
+// it can't get lost in the prose:
+//   role          one of the ROLES below — renders as a badge, scannable
+//   contributions the specific things I built, 2–4 short lines
+// `description` is the product, not me. Anything starting "I built…" belongs in
+// contributions instead.
+// three levels, and nothing in between — vague middle ground is the thing that
+// made the old copy unreadable. `weight` orders the badge styling.
+export const ROLES = {
+  solo: { label: "Sole developer", weight: 3 },
+  lead: { label: "Team lead", weight: 2 },
+  core: { label: "Core developer", weight: 1 },
+};
+
 export const projects = [
   {
     name: "Aryadhan",
@@ -110,7 +142,14 @@ export const projects = [
     scrollShot: true,
     links: { site: "https://www.arya.ag/" },
     description:
-      "Loans against commodities sitting in a warehouse. Four partner banks on it so far. My piece is the Finternet Gateway: the APIs that take data out of the Aryadhan system and put it on chain, plus wallet creation, NFT minting, and pledging or burning tokens as loans get issued and settled. Partner banks don't poll for any of that, they get webhooks.",
+      "Loans against commodities sitting in a warehouse, with four partner banks on it so far.",
+    role: "core",
+    roleNote: "owned the Finternet Gateway",
+    contributions: [
+      "Built the Finternet Gateway end to end — the APIs that take data out of the Aryadhan system and put it on chain",
+      "Wallet creation, NFT minting, and pledging or burning tokens as loans get issued and settled",
+      "Webhooks out to the four partner banks, so none of them has to poll",
+    ],
     color: "violet",
   },
   {
@@ -122,7 +161,14 @@ export const projects = [
     scrollShot: true,
     links: { site: "https://www.rapidgst.com/" },
     description:
-      "GST filing for people selling on Amazon, Flipkart and Meesho. I wrote the part that reads each marketplace's invoice export and finds the right fields in it, which sounds simple until you see how differently the three of them lay out a spreadsheet. HSN codes, state codes and GSTINs get validated on the way through. Nothing filed on it has come back rejected from the GST portal yet. The APIs run through BullMQ, so a job survives you refreshing the page or losing signal.",
+      "GST filing for people selling on Amazon, Flipkart and Meesho. Nothing filed on it has come back rejected from the GST portal yet.",
+    role: "core",
+    roleNote: "owned the invoice pipeline",
+    contributions: [
+      "Wrote the parser that reads each marketplace's invoice export and finds the right fields — the three of them lay out a spreadsheet very differently",
+      "Validation for HSN codes, state codes and GSTINs on the way through",
+      "Moved the filing APIs onto BullMQ, so a job survives a page refresh or lost signal",
+    ],
     color: "coral",
   },
   {
@@ -134,7 +180,13 @@ export const projects = [
     scrollShot: true,
     links: { site: "https://www.elynker.com/homepage" },
     description:
-      "For small business owners with no marketing team. Marketplace listing, a digital profile, Google Business setup, social pages. I was team lead for four here, which meant client calls and sprint planning on top of the microsite generator and catalog tooling, which I wrote.",
+      "For small business owners with no marketing team: marketplace listing, a digital profile, Google Business setup, social pages.",
+    role: "lead",
+    roleNote: "4 developers",
+    contributions: [
+      "Led four developers — sprint planning and client calls alongside the build",
+      "Wrote the microsite generator and the catalog tooling myself",
+    ],
     color: "coral",
   },
   {
@@ -146,7 +198,13 @@ export const projects = [
     scrollShot: true,
     links: { site: "https://fertility.medanswers.com/" },
     description:
-      "A question and answer platform for about 300 fertility specialists. Search was keyword-based and kept returning the wrong papers, so we moved it to retrieval: embeddings over the corpus in Pinecone, then OpenAI answering from whatever came back. Much closer to what people were actually asking.",
+      "A question and answer platform for about 300 fertility specialists. Search was keyword-based and kept returning the wrong papers.",
+    role: "core",
+    roleNote: "owned search and retrieval",
+    contributions: [
+      "Replaced keyword search with retrieval — embeddings over the corpus in Pinecone, OpenAI answering from whatever came back",
+      "Results landed much closer to what people were actually asking",
+    ],
     color: "violet",
   },
   {
@@ -158,7 +216,15 @@ export const projects = [
     scrollShot: true,
     links: { site: "https://realestai.ca" },
     description:
-      "Conveyancing for Alberta law firms. You upload the documents, it reads them, checks the details against each other and drafts the closing file for a lawyer to sign off on. A file can't close until those checks pass, and that rule lives on the server, not in the UI, because a gate in the UI isn't a gate. Multi-tenant, 22 permission levels, TOTP MFA, audit trail.",
+      "Conveyancing for Alberta law firms. You upload the documents, it reads them, checks the details against each other and drafts the closing file for a lawyer to sign off on.",
+    role: "solo",
+    roleNote: "architecture and delivery",
+    contributions: [
+      "Architecture and most of the delivery, still — Next.js 14, multi-tenant, Azure with CI/CD",
+      "The document pipeline: GPT-4 and Claude read a legal PDF, pull the fields out and produce the firm's own version. Drafting that used to be done by hand mostly isn't any more",
+      "A file can't close until the cross-checks pass, and that rule lives on the server, not the UI — a gate in the UI isn't a gate",
+      "22 permission levels on NextAuth.js v5, TOTP MFA and an audit trail behind them",
+    ],
     color: "teal",
   },
   {
@@ -170,7 +236,13 @@ export const projects = [
     scrollShot: true,
     links: { site: "https://www.smartwms.in/" },
     description:
-      "Warehouse management, built on my own: dashboard, APIs, billing. It's multi-tenant, so most of the work that took real thought was keeping one customer's data away from the next one's.",
+      "Warehouse management for small operators — stock, orders and billing in one place.",
+    role: "solo",
+    contributions: [
+      "Dashboard, APIs and billing, all of it mine",
+      "Multi-tenant, so most of the work that took real thought was keeping one customer's data away from the next one's",
+      "Razorpay for subscriptions",
+    ],
     color: "teal",
   },
   {
@@ -181,7 +253,13 @@ export const projects = [
     scrollShot: true,
     links: { site: "https://www.fixai.ca/" },
     description:
-      "For people who own appliances and forget they need servicing. Manuals and service history in one place, and an assistant that answers troubleshooting questions out of the documentation rather than guessing.",
+      "For people who own appliances and forget they need servicing. Manuals and service history in one place.",
+    role: "core",
+    roleNote: "owned the RAG assistant",
+    contributions: [
+      "Built the RAG pipeline over a vector database, so a troubleshooting answer comes out of the appliance manual instead of the model's imagination",
+      "Document ingestion and embedding for the manuals",
+    ],
     color: "violet",
   },
   {
@@ -190,7 +268,12 @@ export const projects = [
     period: "May 2023 — Dec 2023",
     stack: ["Node.js", "Socket.io", "Firebase", "FHIR API"],
     description:
-      "Healthcare staffing for around 500 practitioners. Shift matching, credential verification, and the messaging and call plumbing underneath it. It went through a HIPAA audit, which decided a lot of the architecture for us.",
+      "Healthcare staffing for around 500 practitioners. It went through a HIPAA audit, which decided a lot of the architecture.",
+    role: "core",
+    contributions: [
+      "Shift matching and credential verification",
+      "The messaging and call plumbing underneath it",
+    ],
     color: "gold",
   },
   {
@@ -198,8 +281,13 @@ export const projects = [
     tier: "more",
     period: "Oct 2021 — Feb 2023",
     stack: ["MERN", "Socket.io", "Redis", "Docker", "WebRTC"],
-    description:
-      "Scheduling for hourly staff. Clock-in and clock-out go by proximity, over Socket.io geofencing, rather than on the honour system. WebRTC calls between managers and field staff, and role-based access with an audit trail of who changed what.",
+    description: "Scheduling for hourly staff, with managers and field crews on opposite ends of it.",
+    role: "core",
+    contributions: [
+      "Clock-in and clock-out by proximity, over Socket.io geofencing, rather than on the honour system",
+      "WebRTC calls between managers and field staff",
+      "Role-based access with an audit trail of who changed what",
+    ],
     color: "teal",
   },
   {
@@ -207,8 +295,15 @@ export const projects = [
     tier: "more",
     period: "2019 — 2021",
     stack: ["Node.js", "HLS", "S3 / CloudFront", "Razorpay", "Stripe"],
-    description:
-      "Ed-tech, built solo from architecture to deployment. Live streaming with auto-recording, transcoding at several quality levels, DRM on delivery, and per-user access enforced at the API.",
+    description: "Ed-tech — instructors put their courses up and sell them.",
+    role: "solo",
+    roleNote: "architecture through deployment",
+    contributions: [
+      "HLS live streaming with auto-recording, and transcoding at several quality levels",
+      "DRM on delivery through S3 and CloudFront, with CDN cache invalidation",
+      "Access checks at the API rather than in the player, since a player can be lied to",
+      "Razorpay and Stripe, covering one-off purchases and subscriptions",
+    ],
     color: "gold",
   },
   {
@@ -216,8 +311,12 @@ export const projects = [
     tier: "more",
     period: "2019 — 2021",
     stack: ["MERN", "MySQL", "Payments"],
-    description:
-      "Also solo. Multi-vendor medicine ordering with prescription upload, held at a pharmacist verification step before anything ships.",
+    description: "Multi-vendor medicine ordering, pharmacies on one side and patients on the other.",
+    role: "solo",
+    contributions: [
+      "The whole build, alone — ordering, vendor onboarding, payments",
+      "Prescription upload, held at a pharmacist verification step before anything ships",
+    ],
     color: "coral",
   },
 ];

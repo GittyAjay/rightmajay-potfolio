@@ -26,6 +26,13 @@ import sg5 from "../assets/projects/samagra-5.jpg";
 import shotRealEstAi from "../assets/projects/realestai.jpg";
 import videoRapidGST from "../assets/projects/rapidgst.mp4";
 
+// employer logos, saved locally rather than hotlinked off their sites.
+// both are transparent PNGs that only work on one kind of backdrop — eSoft's
+// wordmark is dark grey, Osizone's is white — so each carries the `logoBg` it
+// needs and gets that plate in both themes.
+import logoEsoft from "../assets/logos/esoft.png";
+import logoOsizone from "../assets/logos/osizone.png";
+
 export const profile = {
   name: "Ajay Kumar Pandey",
   role: "React Native Engineer",
@@ -45,36 +52,49 @@ export const profile = {
   },
 };
 
+// `core` names the handful in each group I'm in most weeks — those get a solid
+// chip, everything else recedes. Without the split every entry reads at the
+// same weight and none of them land. A name in `core` that isn't in `items` is
+// simply ignored.
 export const skills = [
   {
     group: "Core",
     items: ["React Native", "Expo", "TypeScript", "JavaScript"],
+    core: ["React Native", "Expo", "TypeScript"],
   },
   {
     group: "Navigation & Animation",
     items: ["React Navigation", "Reanimated 2", "Gesture Handler", "Animated API"],
+    core: ["React Navigation", "Reanimated 2"],
   },
   {
     group: "Device & Platform",
-    items: ["Native Modules", "Deep Linking", "FCM / APNs", "FaceID / TouchID", "EAS Update", "EAS Build"],
+    items: ["EAS Update", "EAS Build", "Native Modules", "FCM / APNs", "Deep Linking", "FaceID / TouchID"],
+    core: ["EAS Update", "EAS Build", "Native Modules"],
   },
   {
     group: "State & Storage",
-    items: ["Redux Toolkit", "Zustand", "Context API", "MMKV", "AsyncStorage", "SQLite"],
+    items: ["Redux Toolkit", "MMKV", "Zustand", "AsyncStorage", "SQLite", "Context API"],
+    core: ["Redux Toolkit", "MMKV"],
   },
   {
     group: "Forms & Validation",
-    items: ["react-hook-form", "Formik", "Yup", "Zod"],
+    items: ["react-hook-form", "Zod", "Formik", "Yup"],
+    core: ["react-hook-form", "Zod"],
   },
   {
     group: "Testing & Release",
-    items: ["Jest", "Detox", "GitHub Actions", "Fastlane", "App Store", "Play Store"],
+    items: ["Fastlane", "GitHub Actions", "Jest", "Detox", "App Store", "Play Store"],
+    core: ["Fastlane", "GitHub Actions", "Jest"],
   },
 ];
 
 export const experience = [
   {
     company: "e.Soft Technologies",
+    site: "https://www.esoftech.com/",
+    logo: logoEsoft,
+    logoBg: "light",
     period: "Oct 2021 — Present",
     location: "Mumbai, India",
     // one company, two titles — the promotion is worth showing
@@ -82,21 +102,30 @@ export const experience = [
       { title: "Senior React Native Developer", period: "Feb 2023 — Present" },
       { title: "React Native Developer", period: "Oct 2021 — Feb 2023" },
     ],
+    // the job, not the projects — the Work section covers those in detail now,
+    // and repeating them here made both read thinner
+    summary:
+      "Every product in the Work section was built here. Mobile the whole time, senior on the team since 2023.",
     points: [
-      "I own StaffWorks, a workforce app that holds around 5,000 people online at once. Live location and shift changes run over Socket.io.",
       "Moved us onto EAS Update. A critical fix used to mean waiting on App Store review; now it's out in about half an hour.",
-      "Release prep was a manual afternoon of signing and uploading. I put it behind GitHub Actions and Fastlane, and the botched-build problem mostly went away with it.",
+      "Release prep was a manual afternoon of signing and uploading. I put it behind GitHub Actions and Fastlane, and the botched-build problem mostly went with it.",
       "I mentor four juniors on the team. The PR checklist we use is one I wrote after getting tired of leaving the same three comments.",
-      "Before that I worked on the core of RapidGST, a GST compliance app with about 50,000 people using it monthly. Reanimated 2 for anything that had to stay at 60fps.",
-      "Wrote its offline layer. Everything lands in MMKV first and syncs in the background whenever the connection comes back, which for a lot of our users is not often.",
-      "Added FaceID and TouchID login with JWT refresh behind it, plus Jest and Detox coverage on the flows we couldn't afford to break.",
+      "The briefs that keep coming back to me are offline-first sync and getting a list to hold 60fps on a three-year-old Android. Both show up across the apps above.",
     ],
+    projects: ["StaffWorks", "RapidGST", "CareHudl", "EventsWorks", "PropNewsTime", "FixAi", "Samagra Enterprises", "SmartWMS", "Elynker", "RealEstAi", "FertilityAnswers"],
   },
   {
     company: "Osizone Services Pvt. Ltd",
+    site: "https://www.osizone.com/",
+    logo: logoOsizone,
+    logoBg: "dark",
     role: "React Native Developer",
     period: "Jun 2019 — Aug 2021",
     location: "Noida, India",
+    // no chips here: the app from this job predates everything in the Work
+    // section, so there is nothing above to link a visitor to
+    summary:
+      "My first job out of university. The app I built here isn't in the Work section above — it shipped before any of those.",
     points: [
       "My first real production app: Aarogyam, used by over 100,000 patients across 12 specialties for appointments, records and billing.",
       "We replaced eight paper workflows in the clinics with actual screens. Staff reckoned it took about 15 minutes off each visit.",
@@ -105,8 +134,19 @@ export const experience = [
   },
 ];
 
+// three levels, and nothing in between — a vague middle ground is what makes
+// ownership unreadable. Every project declares one.
+export const ROLES = {
+  solo: { label: "Sole developer", weight: 3 },
+  lead: { label: "Team lead", weight: 2 },
+  core: { label: "Core developer", weight: 1 },
+};
+
 // Each project can carry any of: ios, android, site, github, caseStudy.
 // Only the ones you fill in get rendered as buttons — leave the rest out.
+//
+// `description` is the product. Anything starting "I built…" belongs in
+// `contributions` instead, so what I did is never buried in the prose.
 export const projects = [
   {
     name: "FertilityAnswers",
@@ -116,7 +156,13 @@ export const projects = [
     images: [shotFertility],
     links: { site: "https://fertility.medanswers.com/" },
     description:
-      "A Q&A app for about 300 fertility specialists. Keyword search kept surfacing the wrong papers, so I put a RAG pipeline behind it with OpenAI and Pinecone. The answers got a lot closer to what people were actually asking.",
+      "A Q&A app for about 300 fertility specialists. Keyword search kept surfacing the wrong papers.",
+    role: "core",
+    roleNote: "owned search and retrieval",
+    contributions: [
+      "Put a RAG pipeline behind search — Pinecone over the corpus, OpenAI answering from what came back",
+      "Answers landed a lot closer to what people were actually asking",
+    ],
     color: "violet",
   },
   {
@@ -130,7 +176,14 @@ export const projects = [
       android: "https://play.google.com/store/apps/details?id=com.gigflex.staffworks",
     },
     description:
-      "Shift work for hourly staff. You see your week, accept a shift, then clock in once you're at the venue. Geofencing decides whether you actually are. On a busy evening there are around 5,000 people on it at the same time.",
+      "Shift work for hourly staff. You see your week, accept a shift, then clock in once you're at the venue.",
+    role: "solo",
+    roleNote: "owned the app end to end",
+    contributions: [
+      "Geofenced clock-in — the app works out whether you're actually at the venue rather than taking your word for it",
+      "Live location and shift changes over Socket.io, holding around 5,000 people online at once on a busy evening",
+      "TypeScript throughout, Redux for state",
+    ],
     color: "teal",
   },
   {
@@ -147,7 +200,13 @@ export const projects = [
       android: "https://play.google.com/store/apps/details?id=com.gigflex.eventsworks",
     },
     description:
-      "The events side of the same business. Staffing a venue, handling the leave and absence requests that always land the morning of, and keeping the crew talking to each other in one thread.",
+      "The events side of the same business — staffing a venue, and the leave and absence requests that always land the morning of.",
+    role: "core",
+    contributions: [
+      "Scheduling and crew screens against a GraphQL API",
+      "Kept the whole crew talking in one thread instead of across four",
+      "Ships under the client's own name on iOS, as CincyMarshals",
+    ],
     color: "gold",
   },
   {
@@ -162,7 +221,13 @@ export const projects = [
       site: "https://www.fixai.ca/",
     },
     description:
-      "Home maintenance for people who own appliances and forget they need servicing. You add what's in the house, it tracks manuals and service history, and when something starts making a noise you describe it to the assistant and get an answer in plain English.",
+      "Home maintenance for people who own appliances and forget they need servicing. It keeps manuals and service history for everything in the house.",
+    role: "core",
+    roleNote: "owned the assistant",
+    contributions: [
+      "The troubleshooting assistant — you describe the noise it's making and get an answer out of the documentation, in plain English",
+      "Appliance inventory and service-history screens",
+    ],
     color: "violet",
   },
   {
@@ -175,8 +240,12 @@ export const projects = [
       ios: { isPrivate: true },
       android: { isPrivate: true },
     },
-    description:
-      "Rooftop solar, from the first quote to the switch being flipped. Customers see their estimated bill savings, approve the quotation in the app, then follow the install through site survey, equipment and commissioning without ringing anyone to ask where it's up to.",
+    description: "Rooftop solar, from the first quote to the switch being flipped.",
+    role: "core",
+    contributions: [
+      "Quotation approval in the app, with estimated bill savings shown before the customer commits",
+      "Install tracking through site survey, equipment and commissioning, so nobody has to ring to ask where it's up to",
+    ],
     color: "gold",
   },
   {
@@ -188,7 +257,15 @@ export const projects = [
     video: videoRapidGST,
     links: { site: "https://www.rapidgst.com/" },
     description:
-      "Sellers were pulling numbers off three or four platforms by hand every filing cycle. This pulls it all in over RabbitMQ and files in one tap. What took an evening now takes five minutes.",
+      "Sellers were pulling numbers off three or four platforms by hand every filing cycle. This pulls it all in and files in one tap — what took an evening now takes five minutes.",
+    role: "core",
+    roleNote: "owned the offline layer",
+    contributions: [
+      "Worked on the core of the app, which about 50,000 people use a month",
+      "Wrote the offline layer — everything lands in MMKV first and syncs in the background when the connection returns, which for a lot of these users is not often",
+      "Reanimated 2 on anything that had to hold 60fps",
+      "FaceID and TouchID login with JWT refresh behind it",
+    ],
     color: "coral",
   },
   {
@@ -198,8 +275,13 @@ export const projects = [
     stack: ["React Native", "TypeScript", "Razorpay"],
     images: [shotSmartWMS],
     links: { site: "https://www.smartwms.in/" },
-    description:
-      "Warehouse management SaaS, built on my own. Dashboard, mobile app, APIs. It's multi-tenant, so most of the work that took real thought was keeping one customer's data away from the next one's.",
+    description: "Warehouse management SaaS for small operators — stock, orders and billing in one place.",
+    role: "solo",
+    contributions: [
+      "Dashboard, mobile app and APIs, all three mine",
+      "Multi-tenant, so most of the work that took real thought was keeping one customer's data away from the next one's",
+      "Razorpay for subscriptions",
+    ],
     color: "teal",
   },
   {
@@ -217,7 +299,13 @@ export const projects = [
       android: "https://play.google.com/store/apps/details?id=com.gigflex.carehudl",
     },
     description:
-      "Care coordination for around 500 practitioners. Contacts, chat, audio and video calls, and all of it offline-first, because a lot of them work in buildings with no usable signal. Charting time dropped 37%. It also went through a full HIPAA audit, which shaped most of the architecture.",
+      "Care coordination for around 500 practitioners. It went through a full HIPAA audit, which shaped most of the architecture.",
+    role: "core",
+    contributions: [
+      "Contacts, chat, and audio and video calling",
+      "Offline-first throughout, because a lot of them work in buildings with no usable signal",
+      "Charting time dropped 37%",
+    ],
     color: "gold",
   },
   {
@@ -228,7 +316,12 @@ export const projects = [
     images: [shotRealEstAi],
     links: { site: "https://realestai.ca" },
     description:
-      "Conveyancing for Alberta law firms. You drop the documents in, it reads them, cross-checks the details against each other and drafts the closing file for a lawyer to approve. A file can't close until the checks actually pass, and that gate is enforced server-side rather than in the UI.",
+      "Conveyancing for Alberta law firms. You drop the documents in, it reads them, cross-checks the details against each other and drafts the closing file for a lawyer to approve.",
+    role: "core",
+    contributions: [
+      "Document upload and review screens in Next.js",
+      "A file can't close until the cross-checks pass, and that gate is enforced server-side rather than in the UI — a gate in the UI isn't a gate",
+    ],
     color: "teal",
   },
   {
@@ -240,6 +333,12 @@ export const projects = [
     links: { site: "https://www.elynker.com/homepage" },
     description:
       "For small business owners who don't have a marketing team: marketplace listing, a digital profile, Google Business setup, social pages. Everything they'd otherwise pay an agency for, in one place.",
+    role: "lead",
+    roleNote: "4 developers",
+    contributions: [
+      "Led four developers — sprint planning and client calls alongside my own build work",
+      "Wrote the microsite generator and the catalog tooling myself",
+    ],
     color: "coral",
   },
   {
@@ -253,7 +352,12 @@ export const projects = [
       android: "https://play.google.com/store/apps/details?id=com.propnewstimes",
     },
     description:
-      "Indian real estate news, aggregated daily and sorted by category. Readers save the stories they want to come back to. Around 5,000 people signed up in the first stretch after launch.",
+      "Indian real estate news, aggregated daily and sorted by category. Around 5,000 people signed up in the first stretch after launch.",
+    role: "core",
+    contributions: [
+      "Feed, category sorting, and saved stories readers come back to",
+      "Node.js and MongoDB behind it, on AWS",
+    ],
     color: "violet",
   },
 ];

@@ -1,6 +1,17 @@
 import { profile } from "../data/content.js";
 import portrait from "../assets/img.jpg";
 
+// one primary action, the rest outlined — the shape is identical, so it lives
+// here rather than being spelled out on every anchor
+const pill = {
+  padding: "0.85rem 1.6rem",
+  borderRadius: 999,
+  fontWeight: 700,
+  textDecoration: "none",
+  color: "var(--bg)",
+  border: "2px solid var(--bg)",
+};
+
 export default function Contact() {
   return (
     <footer id="contact" className="section">
@@ -37,83 +48,27 @@ export default function Contact() {
           <a
             href={`mailto:${profile.email}`}
             className="focus-ring"
-            style={{
-              background: "var(--violet)",
-              color: "white",
-              padding: "0.85rem 1.6rem",
-              borderRadius: 999,
-              fontWeight: 700,
-              textDecoration: "none",
-            }}
+            style={{ ...pill, background: "var(--violet)", color: "white", border: "2px solid var(--violet)" }}
           >
             {profile.email}
           </a>
-          <a
-            href={profile.links.linkedin}
-            target="_blank"
-            rel="noreferrer"
-            className="focus-ring"
-            style={{
-              padding: "0.85rem 1.6rem",
-              borderRadius: 999,
-              fontWeight: 700,
-              textDecoration: "none",
-              color: "var(--bg)",
-              border: "2px solid var(--bg)",
-            }}
-          >
+          <a href={profile.links.linkedin} target="_blank" rel="noreferrer" className="focus-ring" style={pill}>
             LinkedIn
           </a>
-          <a
-            href={profile.links.github}
-            target="_blank"
-            rel="noreferrer"
-            className="focus-ring"
-            style={{
-              padding: "0.85rem 1.6rem",
-              borderRadius: 999,
-              fontWeight: 700,
-              textDecoration: "none",
-              color: "var(--bg)",
-              border: "2px solid var(--bg)",
-            }}
-          >
+          <a href={profile.links.github} target="_blank" rel="noreferrer" className="focus-ring" style={pill}>
             GitHub
-          </a>
-          <a
-            href={profile.links.site}
-            target="_blank"
-            rel="noreferrer"
-            className="focus-ring"
-            style={{
-              padding: "0.85rem 1.6rem",
-              borderRadius: 999,
-              fontWeight: 700,
-              textDecoration: "none",
-              color: "var(--bg)",
-              border: "2px solid var(--bg)",
-            }}
-          >
-            ajayonlive.vercel.app
           </a>
           <a
             href={profile.resume.url}
             download={profile.resume.filename}
             className="focus-ring"
-            style={{
-              padding: "0.85rem 1.6rem",
-              borderRadius: 999,
-              fontWeight: 700,
-              textDecoration: "none",
-              color: "var(--bg)",
-              border: "2px dashed var(--bg)",
-            }}
+            style={{ ...pill, border: "2px dashed var(--bg)" }}
           >
             Download CV
           </a>
         </div>
         <p style={{ marginTop: "2.75rem", fontSize: "0.8rem", opacity: 0.5, fontFamily: "var(--font-mono)" }}>
-          {profile.phone} · Built with React
+          {profile.phone}
         </p>
       </div>
     </footer>

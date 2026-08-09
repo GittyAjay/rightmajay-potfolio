@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { projects } from "../data/content.js";
+import { projects, ROLES } from "../data/content.js";
 import DeviceShowcase from "./DeviceShowcase.jsx";
+import SkillIcon from "./SkillIcon.jsx";
 
 const linkLabels = {
   ios: "App Store",
@@ -62,12 +63,41 @@ function ProjectLinks({ links }) {
   );
 }
 
+// the badge answers "was this yours?" before anyone reads a word of prose.
+// the note sits outside the pill so a long one wraps instead of stretching it
+// past the edge of a narrow card
+function RoleBadge({ role, note }) {
+  const meta = ROLES[role];
+  if (!meta) return null;
+  return (
+    <span className="role-line">
+      <span className={`role-badge is-${role}`}>{meta.label}</span>
+      {note && <span className="role-note">{note}</span>}
+    </span>
+  );
+}
+
+function Contributions({ items, color }) {
+  if (!items?.length) return null;
+  return (
+    <div className="contributions" style={{ "--accent": `var(--${color})` }}>
+      <p className="contributions-label">Some of what I built</p>
+      <ul>
+        {items.map((c) => (
+          <li key={c}>{c}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 function Stack({ items, color }) {
   if (!items?.length) return null;
   return (
     <div className="showcase-stack">
       {items.map((s) => (
         <span key={s} style={{ background: `var(--${color}-soft)` }}>
+          <SkillIcon name={s} glyph="code" />
           {s}
         </span>
       ))}
@@ -91,7 +121,8 @@ export default function Projects() {
           <p className="eyebrow">01 / Work</p>
           <h2>What I've been building</h2>
           <p className="sub">
-            Most of these are live on the Play Store or the web. A couple I built on my own, the rest with small teams.
+            Most of these are live on the Play Store or the web. Every one says what I actually did
+            on it — sole developer, team lead, or the specific pieces I owned.
           </p>
         </div>
 
@@ -137,8 +168,12 @@ export default function Projects() {
                 <div className="showcase-body">
                   <p className="showcase-index">{String(i + 1).padStart(2, "0")}</p>
                   <h3>{p.name}</h3>
-                  {p.period && <p className="showcase-period">{p.period}</p>}
+                  <div className="showcase-meta">
+                    <RoleBadge role={p.role} note={p.roleNote} />
+                    {p.period && <span className="showcase-period">{p.period}</span>}
+                  </div>
                   {p.description && <p className="showcase-desc">{p.description}</p>}
+                  <Contributions items={p.contributions} color={p.color} />
                   <Stack items={p.stack} color={p.color} />
                   <ProjectLinks links={p.links} />
                 </div>
@@ -181,7 +216,9 @@ export default function Projects() {
                   <h3>{p.name}</h3>
                   {p.period && <span className="showcase-period">{p.period}</span>}
                 </div>
+                <RoleBadge role={p.role} note={p.roleNote} />
                 {p.description && <p className="showcase-desc">{p.description}</p>}
+                <Contributions items={p.contributions} color={p.color} />
                 <Stack items={p.stack} color={p.color} />
                 <ProjectLinks links={p.links} />
               </div>

@@ -32,6 +32,46 @@ src/data/content.js
 
 Change it there and everything on the page updates.
 
+### The architecture diagrams
+
+Backend work has no screenshots, so every project in `content.js` carries a
+`diagram` instead. Nodes sit on a grid — `col` runs left to right, `row` top to
+bottom — and edges join them by `id`. Positions, curves, arrowheads and the
+legend are worked out in `src/components/SystemDiagram.jsx`.
+
+```js
+diagram: {
+  caption: "one line on what the picture is actually saying",
+  nodes: [
+    // label = what it is, sub = what it runs on, meta = the one fact worth drawing
+    { id: "api", label: "Orders API", sub: "Spring Boot", meta: "idempotency key",
+      kind: "service", col: 1, row: 0 },
+  ],
+  edges: [
+    // label = what the arrow is, note = what it carries or promises
+    { from: "api", to: "kafka", label: "order.placed", note: "acks=all" },
+  ],
+  facts: [
+    { k: "Ordering", v: "keyed by order id, so two edits can't land out of order" },
+  ],
+}
+```
+
+`kind` is one of `client · service · broker · store · guard · chain · external`
+and picks the colour and the legend entry. `facts` renders under the caption —
+that's the ordering/delivery/failure detail an interviewer asks about, so it
+belongs with the picture rather than in the prose below it.
+
+Nothing wraps, so text has to fit its shape: `label` under about 18 characters,
+`sub` and `meta` under 22, edge `label` and `note` under 19. Stay within four
+columns, and don't route an edge across a column that already has a node in
+that row — it will pass behind the box.
+
+### The CV
+
+The download and the embedded viewer both read `profile.resume.url`, which
+points at a file in `public/`. Drop the PDF in there under the same name.
+
 ## Structure
 
 ```

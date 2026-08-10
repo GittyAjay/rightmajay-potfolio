@@ -1,31 +1,3 @@
-import sw1 from "../assets/projects/staffworks-1.jpg";
-import sw2 from "../assets/projects/staffworks-2.jpg";
-import sw3 from "../assets/projects/staffworks-3.jpg";
-import sw4 from "../assets/projects/staffworks-4.jpg";
-import ew1 from "../assets/projects/eventsworks-1.jpg";
-import ew2 from "../assets/projects/eventsworks-2.jpg";
-import ew3 from "../assets/projects/eventsworks-3.jpg";
-import ew4 from "../assets/projects/eventsworks-4.jpg";
-import ew5 from "../assets/projects/eventsworks-5.jpg";
-import ch1 from "../assets/projects/carehudl-1.jpg";
-import ch2 from "../assets/projects/carehudl-2.jpg";
-import pn1 from "../assets/projects/propnewstime-1.jpg";
-import pn2 from "../assets/projects/propnewstime-2.jpg";
-import shotElynker from "../assets/projects/elynker.jpg";
-import shotFertility from "../assets/projects/fertilityanswers.jpg";
-import shotRapidGST from "../assets/projects/rapidgst.jpg";
-import shotSmartWMS from "../assets/projects/smartwms.jpg";
-import fx1 from "../assets/projects/fixai-1.jpg";
-import fx2 from "../assets/projects/fixai-2.jpg";
-import fx3 from "../assets/projects/fixai-3.jpg";
-import sg1 from "../assets/projects/samagra-1.jpg";
-import sg2 from "../assets/projects/samagra-2.jpg";
-import sg3 from "../assets/projects/samagra-3.jpg";
-import sg4 from "../assets/projects/samagra-4.jpg";
-import sg5 from "../assets/projects/samagra-5.jpg";
-import shotRealEstAi from "../assets/projects/realestai.jpg";
-import videoRapidGST from "../assets/projects/rapidgst.mp4";
-
 // employer logos, saved locally rather than hotlinked off their sites.
 // both are transparent PNGs that only work on one kind of backdrop — eSoft's
 // wordmark is dark grey, Osizone's is white — so each carries the `logoBg` it
@@ -35,20 +7,20 @@ import logoOsizone from "../assets/logos/osizone.png";
 
 export const profile = {
   name: "Ajay Kumar Pandey",
-  role: "React Native Engineer",
-  tagline: "React Native developer, seven years in.",
+  role: "Senior Java Backend Engineer",
+  tagline: "Java and Spring Boot, seven years in.",
   blurb:
-    "I've spent most of that time on healthcare, GST filing, and workforce apps. The work I'm proudest of is usually the unglamorous kind: getting offline sync right, cutting release prep from a day to an hour, figuring out why a list drops frames on a three-year-old Android.",
+    "Most of that time has gone on Kafka pipelines, change-data-capture, and keeping a dozen services talking to each other when one of them is having a bad day. The work I'm proudest of is the unglamorous kind: finding the connection pool behind a week of 504s, or shipping a Spring Boot 3 upgrade across every service without anyone noticing.",
   email: "rightmajay@gmail.com",
   phone: "+91-6392363003",
   // served from /public — downloads as the filename below
-  resume: { url: "/React_Native.pdf", filename: "Ajay-Kumar-Pandey-React-Native.pdf" },
+  resume: { url: "/Java_Resume.pdf", filename: "Ajay-Kumar-Pandey-Java.pdf" },
+  // the number the hero badge shows, kept here so the copy has one home
+  badge: { value: "7+ yrs", label: "on JVM backends" },
   links: {
     linkedin: "https://www.linkedin.com/in/rightmajay/",
     // rightmajay is a 404 — the account is GittyAjay
     github: "https://github.com/GittyAjay",
-    // r8majay.web.app is dead (404) — this is the live one
-    site: "https://ajayonlive.vercel.app",
   },
 };
 
@@ -59,33 +31,38 @@ export const profile = {
 export const skills = [
   {
     group: "Core",
-    items: ["React Native", "Expo", "TypeScript", "JavaScript"],
-    core: ["React Native", "Expo", "TypeScript"],
+    items: ["Java", "Spring Boot", "Spring MVC", "Spring Data JPA", "Hibernate", "REST APIs", "Maven", "Gradle"],
+    core: ["Java", "Spring Boot", "Spring Data JPA"],
   },
   {
-    group: "Navigation & Animation",
-    items: ["React Navigation", "Reanimated 2", "Gesture Handler", "Animated API"],
-    core: ["React Navigation", "Reanimated 2"],
+    group: "JVM & Concurrency",
+    items: ["ExecutorService", "Thread Pools", "CompletableFuture", "Streams API", "Collections", "JVM tuning"],
+    core: ["ExecutorService", "CompletableFuture", "Streams API"],
   },
   {
-    group: "Device & Platform",
-    items: ["EAS Update", "EAS Build", "Native Modules", "FCM / APNs", "Deep Linking", "FaceID / TouchID"],
-    core: ["EAS Update", "EAS Build", "Native Modules"],
+    group: "Messaging & Streaming",
+    items: ["Apache Kafka", "Kafka Connect", "Debezium", "RabbitMQ", "Change data capture", "Event sourcing"],
+    core: ["Apache Kafka", "Debezium", "Kafka Connect"],
   },
   {
-    group: "State & Storage",
-    items: ["Redux Toolkit", "MMKV", "Zustand", "AsyncStorage", "SQLite", "Context API"],
-    core: ["Redux Toolkit", "MMKV"],
+    group: "Data & Search",
+    items: ["MySQL", "PostgreSQL", "MongoDB", "Redis", "Elasticsearch", "Query tuning"],
+    core: ["MySQL", "MongoDB", "Elasticsearch", "Redis"],
   },
   {
-    group: "Forms & Validation",
-    items: ["react-hook-form", "Zod", "Formik", "Yup"],
-    core: ["react-hook-form", "Zod"],
+    group: "Resilience & Observability",
+    items: ["Resilience4j", "OpenTelemetry", "Jaeger", "Kibana", "New Relic", "CloudWatch"],
+    core: ["Resilience4j", "OpenTelemetry"],
   },
   {
-    group: "Testing & Release",
-    items: ["Fastlane", "GitHub Actions", "Jest", "Detox", "App Store", "Play Store"],
-    core: ["Fastlane", "GitHub Actions", "Jest"],
+    group: "Security & Testing",
+    items: ["Spring Security", "JWT", "HashiCorp Vault", "JUnit", "Mockito", "JMeter"],
+    core: ["Spring Security", "JWT", "JUnit"],
+  },
+  {
+    group: "Cloud & Delivery",
+    items: ["Docker", "Kubernetes", "AWS", "Azure", "Jenkins", "GitHub Actions", "Terraform", "ArgoCD", "SonarQube", "NGINX"],
+    core: ["Docker", "Kubernetes", "AWS", "Jenkins"],
   },
 ];
 
@@ -95,42 +72,40 @@ export const experience = [
     site: "https://www.esoftech.com/",
     logo: logoEsoft,
     logoBg: "light",
+    role: "Software Development Engineer",
     period: "Oct 2021 — Present",
     location: "Mumbai, India",
-    // one company, two titles — the promotion is worth showing
-    roles: [
-      { title: "Senior React Native Developer", period: "Feb 2023 — Present" },
-      { title: "React Native Developer", period: "Oct 2021 — Feb 2023" },
-    ],
-    // the job, not the projects — the Work section covers those in detail now,
-    // and repeating them here made both read thinner
+    // the job, not the systems — the Work section covers those in detail, and
+    // repeating them here made both read thinner
     summary:
-      "Every product in the Work section was built here. Mobile the whole time, senior on the team since 2023.",
+      "Every system in the Work section was built here. Backend the whole time, and Scrum Lead for a six-person team since 2023.",
     points: [
-      "Moved us onto EAS Update. A critical fix used to mean waiting on App Store review; now it's out in about half an hour.",
-      "Release prep was a manual afternoon of signing and uploading. I put it behind GitHub Actions and Fastlane, and the botched-build problem mostly went with it.",
-      "I mentor four juniors on the team. The PR checklist we use is one I wrote after getting tired of leaving the same three comments.",
-      "The briefs that keep coming back to me are offline-first sync and getting a list to hold 60fps on a three-year-old Android. Both show up across the apps above.",
+      "Led the Spring Boot 2.x → 3.3 upgrade across the microservices. Deprecated APIs cleaned up, rolled out without downtime.",
+      "Traced a run of 504 gateway errors back to a misconfigured connection pool and got the affected services back inside SLA.",
+      "Owned the audit pipeline end to end — connector failures, memory leaks and Kafka lag that only ever showed up under real production load.",
+      "Ran point as Scrum Lead for six people and mentored two juniors, mostly through code review.",
+      "Moved the nightly batch jobs onto ExecutorService and CompletableFuture so they run in parallel instead of one at a time.",
     ],
-    projects: ["StaffWorks", "RapidGST", "CareHudl", "EventsWorks", "PropNewsTime", "FixAi", "Samagra Enterprises", "SmartWMS", "Elynker", "RealEstAi", "FertilityAnswers"],
+    projects: ["Aryadhan", "CDC & Audit Pipeline", "iPulse", "StaffWorks", "CareHudl", "Catalog, Order & Checkout"],
   },
   {
     company: "Osizone Services Pvt. Ltd",
     site: "https://www.osizone.com/",
     logo: logoOsizone,
     logoBg: "dark",
-    role: "React Native Developer",
+    role: "Software Developer",
     period: "Jun 2019 — Aug 2021",
     location: "Noida, India",
-    // no chips here: the app from this job predates everything in the Work
-    // section, so there is nothing above to link a visitor to
     summary:
-      "My first job out of university. The app I built here isn't in the Work section above — it shipped before any of those.",
+      "My first job out of university, and where I learned Spring properly — one platform, two years, most of it in production.",
     points: [
-      "My first real production app: Aarogyam, used by over 100,000 patients across 12 specialties for appointments, records and billing.",
-      "We replaced eight paper workflows in the clinics with actual screens. Staff reckoned it took about 15 minutes off each visit.",
-      "I handled store submissions on both platforms, so I learned signing, provisioning and review compliance the hard way.",
+      "Built the REST APIs behind the Aarogyam healthcare platform: patient sign-up, appointments, medical records.",
+      "Designed the MySQL schema for patient and clinical data, then kept indexing and queries honest as the user base grew.",
+      "Set up role-based access with Spring Security so doctors, patients and admin staff each saw only what they needed to.",
+      "Integrated lab reports, pharmacy and SMS/email providers, which took a lot of manual follow-up off the clinics.",
+      "Handled several production releases start to finish, usually on a tight sprint.",
     ],
+    projects: ["Aarogyam"],
   },
 ];
 
@@ -142,229 +117,338 @@ export const ROLES = {
   core: { label: "Core developer", weight: 1 },
 };
 
-// Each project can carry any of: ios, android, site, github, caseStudy.
-// Only the ones you fill in get rendered as buttons — leave the rest out.
+// Backend work has no screenshots, so each system carries a `diagram` instead:
+// the services, the brokers and the stores, and which way the data actually
+// moves between them. See SystemDiagram.jsx for the layout rules — the short
+// version is that `col` runs left to right and `row` runs top to bottom, and
+// anything past four columns stops being readable.
 //
-// `description` is the product. Anything starting "I built…" belongs in
+// A node reads name / what it runs on / the one technical fact worth drawing:
+//   { id, label, sub, meta, kind, col, row }
+// An edge reads what it is over what it carries:
+//   { from, to, label, note, dashed }
+// and `facts` under the picture is the part an interviewer actually asks about
+// — ordering, delivery, what happens when it fails.
+//
+// Node kinds: client · service · broker · store · guard · chain · external.
+//
+// Text has to fit the boxes, and nothing wraps: keep `label` under ~18
+// characters, `sub` and `meta` under ~22, and edge `label`/`note` under ~19,
+// or they run out past the shape they belong to. Don't route an edge across a
+// column that already has a node in that row — it will pass behind the box.
+//
+// `description` is the system. Anything starting "I built…" belongs in
 // `contributions` instead, so what I did is never buried in the prose.
 export const projects = [
   {
-    name: "FertilityAnswers",
-    shotType: "web",
-    period: "Feb 2026 — Present",
-    stack: ["React Native", "Expo", "OpenAI API", "Pinecone"],
-    images: [shotFertility],
-    links: { site: "https://fertility.medanswers.com/" },
+    name: "Aryadhan",
+    tagline: "Commodity-backed lending on a blockchain",
+    period: "Feb 2025 — Present",
+    stack: ["Java", "Spring Boot", "Apache Kafka", "Avalanche", "REST APIs"],
+    links: { site: { isPrivate: true, label: "Partner-bank platform" } },
     description:
-      "A Q&A app for about 300 fertility specialists. Keyword search kept surfacing the wrong papers.",
+      "Commodities sitting in a warehouse get tokenised as NFTs, and partner banks lend against them. Two of the services in the middle of that are mine.",
     role: "core",
-    roleNote: "owned search and retrieval",
+    roleNote: "owned the gateway and the adapter",
     contributions: [
-      "Put a RAG pipeline behind search — Pinecone over the corpus, OpenAI answering from what came back",
-      "Answers landed a lot closer to what people were actually asking",
+      "Built the Blockchain Gateway and the Finternet Adapter in Java and Spring Boot — one talks to the banks, the other talks to the chain",
+      "Minting and collateral verification against Avalanche smart contracts, behind an API the banking side can actually use",
+      "Kafka event flows for loan requests, collateral checks and payment confirmations, so a slow chain call never blocks a bank call",
     ],
     color: "violet",
+    diagram: {
+      caption:
+        "A loan request never waits on the chain: the adapter answers the bank, Kafka carries the work, and confirmations come back the same way.",
+      nodes: [
+        { id: "bank", label: "Partner bank", sub: "Arya lending desk", meta: "REST · JSON", kind: "client", col: 0, row: 0 },
+        { id: "wh", label: "Warehouse", sub: "collateral intake", meta: "receipt → token req", kind: "client", col: 0, row: 2 },
+        { id: "adapter", label: "Finternet Adapter", sub: "Spring Boot 3.3", meta: "REST in · Kafka out", kind: "service", col: 1, row: 1 },
+        { id: "kafka", label: "Kafka", sub: "3 topics", meta: "key = loan id", kind: "broker", col: 2, row: 1 },
+        { id: "gw", label: "Blockchain Gateway", sub: "Spring Boot 3.3", meta: "async tx submit", kind: "service", col: 3, row: 0 },
+        { id: "chain", label: "Avalanche C-Chain", sub: "collateral tokens", meta: "ERC-721 · escrow", kind: "chain", col: 3, row: 2 },
+      ],
+      edges: [
+        { from: "bank", to: "adapter", label: "loan request", note: "POST /loans" },
+        { from: "wh", to: "adapter", label: "deposit", note: "warehouse receipt" },
+        { from: "adapter", to: "kafka", label: "loan.requested", note: "acks=all" },
+        { from: "kafka", to: "gw", label: "collateral.checked", note: "group: chain-gw" },
+        { from: "gw", to: "chain", label: "mint / verify", note: "one tx per token" },
+        { from: "chain", to: "kafka", label: "payment.confirmed", note: "on tx receipt", dashed: true },
+      ],
+      facts: [
+        { k: "Topics", v: "loan.requested · collateral.checked · payment.confirmed, all keyed by loan id" },
+        { k: "Latency", v: "the chain call is async — the adapter answers the bank on its own clock, not the block's" },
+        { k: "Retries", v: "at-least-once delivery, so the gateway checks whether a token already exists before it mints" },
+      ],
+    },
+  },
+  {
+    name: "CDC & Audit Pipeline",
+    tagline: "Keeping every service's copy of the truth in sync",
+    period: "Oct 2021 — Present",
+    stack: ["Java", "Spring Boot", "Debezium", "Kafka Connect", "Elasticsearch", "MongoDB"],
+    links: { site: { isPrivate: true, label: "Internal platform" } },
+    description:
+      "Services kept drifting out of sync because each one polled the others on its own schedule. This replaced all of that: the database says what changed, and everyone downstream hears it in near real time.",
+    role: "solo",
+    roleNote: "owned the pipeline end to end",
+    contributions: [
+      "Built the pipeline on Debezium, Kafka Connect and Spring Boot — row-level changes out of the OLTP databases and onto per-table topics",
+      "Wildcard search across Elasticsearch and MongoDB, so millions of records can be searched on a partial match instead of an exact one",
+      "Ran the audit side in production: connector restarts, a memory leak in a sink consumer, and consumer lag that only appeared under real load",
+      "The failures that mattered were never the ones from the test environment, so most of the work was making them visible before a user hit them",
+    ],
+    color: "teal",
+    diagram: {
+      caption:
+        "Nothing polls anything. The binlog is the source, Kafka is the fan-out, and every read model is a consumer that can be rebuilt from scratch.",
+      nodes: [
+        { id: "db", label: "MySQL · Postgres", sub: "OLTP tables", meta: "binlog / WAL on", kind: "store", col: 0, row: 1 },
+        { id: "dbz", label: "Debezium", sub: "Kafka Connect", meta: "snapshot → stream", kind: "service", col: 1, row: 1 },
+        { id: "kafka", label: "Kafka topics", sub: "one per table", meta: "key = primary key", kind: "broker", col: 2, row: 1 },
+        { id: "es", label: "Elasticsearch", sub: "wildcard search", meta: "bulk sink, batched", kind: "store", col: 3, row: 0 },
+        { id: "mongo", label: "MongoDB", sub: "read models", meta: "upsert by _id", kind: "store", col: 3, row: 1 },
+        { id: "audit", label: "Audit service", sub: "Spring Boot", meta: "group: audit-sink", kind: "service", col: 3, row: 2 },
+      ],
+      edges: [
+        { from: "db", to: "dbz", label: "binlog", note: "row-level, in order" },
+        { from: "dbz", to: "kafka", label: "cdc.<table>", note: "row events" },
+        { from: "kafka", to: "es", label: "sink", note: "bulk index" },
+        { from: "kafka", to: "mongo", label: "sink", note: "idempotent upsert" },
+        { from: "kafka", to: "audit", label: "consume", note: "own offset" },
+      ],
+      facts: [
+        { k: "Ordering", v: "topics are keyed by primary key, so two edits to the same row can't land out of order" },
+        { k: "Rebuild", v: "any read model can be thrown away and rebuilt by resetting that consumer group's offset" },
+        { k: "Recovery", v: "a connector that dies resumes from its last committed offset rather than re-snapshotting the table" },
+      ],
+    },
+  },
+  {
+    name: "iPulse",
+    tagline: "Clinic management platform",
+    period: "Jan 2025 — Present",
+    stack: ["Java", "Spring Boot", "Spring Security", "Apache Kafka", "MySQL", "Redis", "Docker"],
+    links: { site: { isPrivate: true, label: "Client platform" } },
+    description:
+      "Registration, scheduling, prescriptions and billing for clinics, in one backend. Reception is the busiest part of a clinic, so most of the design pressure was there.",
+    role: "core",
+    roleNote: "owned scheduling and notifications",
+    contributions: [
+      "Built the scheduling engine — it catches double-bookings on the way in and reshuffles the day when someone cancels",
+      "Put clinic notifications on Kafka: reminders, prescription updates and billing alerts all delivered from one pipeline rather than four code paths",
+      "Role-based access with Spring Security for admins, doctors, nurses and patients",
+      "Cached doctor schedules and patient lookups in Redis, which took the repeated reads off MySQL entirely",
+    ],
+    color: "gold",
+    diagram: {
+      caption:
+        "Reads that repeat all day come from Redis; anything that has to reach a person leaves through Kafka so a slow SMS provider never holds up a booking.",
+      nodes: [
+        { id: "app", label: "Clinic front desk", sub: "web · mobile", meta: "REST · JWT bearer", kind: "client", col: 0, row: 1 },
+        { id: "api", label: "iPulse API", sub: "Spring Boot", meta: "Spring Security · RBAC", kind: "service", col: 1, row: 1 },
+        { id: "sched", label: "Scheduling engine", sub: "conflict rules", meta: "lock per doctor + day", kind: "service", col: 2, row: 0 },
+        { id: "redis", label: "Redis", sub: "schedule cache", meta: "read-through, per day", kind: "store", col: 2, row: 1 },
+        { id: "mysql", label: "MySQL", sub: "clinical data", meta: "idx (doctor, day)", kind: "store", col: 2, row: 2 },
+        { id: "kafka", label: "Kafka", sub: "notification topics", meta: "SMS · email · in-app", kind: "broker", col: 3, row: 0 },
+      ],
+      edges: [
+        { from: "app", to: "api", label: "REST", note: "JWT bearer" },
+        { from: "api", to: "sched", label: "book slot", note: "conflict check" },
+        { from: "api", to: "redis", label: "lookup", note: "miss → MySQL" },
+        { from: "api", to: "mysql", label: "JDBC", note: "HikariCP pool" },
+        { from: "sched", to: "kafka", label: "reminder.due", note: "fan-out per channel" },
+      ],
+      facts: [
+        { k: "Double booking", v: "the lock is held per doctor and day, so two receptionists racing one slot get a booking and an error, not two bookings" },
+        { k: "Cache", v: "a write invalidates that doctor's day, not the whole doctor — otherwise a busy clinic never gets a hit" },
+        { k: "Notifications", v: "leave through Kafka, so a slow SMS provider holds up nothing at the front desk" },
+      ],
+    },
   },
   {
     name: "StaffWorks",
-    shotType: "phone",
-    period: "Jan 2023 — Aug 2023",
-    stack: ["React Native", "TypeScript", "Redux", "Socket.io"],
-    images: [sw1, sw2, sw3, sw4],
-    links: {
-      ios: "https://apps.apple.com/in/app/staffworks/id6469592461",
-      android: "https://play.google.com/store/apps/details?id=com.gigflex.staffworks",
-    },
+    tagline: "Employee management, taken off a monolith",
+    period: "Nov 2024 — Jul 2025",
+    stack: ["Java", "Spring Boot", "Spring Cloud", "MongoDB", "RabbitMQ", "Kubernetes", "JWT"],
+    links: { site: { isPrivate: true, label: "Client platform" } },
     description:
-      "Shift work for hourly staff. You see your week, accept a shift, then clock in once you're at the venue.",
-    role: "solo",
-    roleNote: "owned the app end to end",
+      "One employee system that had grown too big to deploy safely. Split into services for employee data, scheduling and payroll, and put behind a gateway.",
+    role: "lead",
+    roleNote: "led the split",
     contributions: [
-      "Geofenced clock-in — the app works out whether you're actually at the venue rather than taking your word for it",
-      "Live location and shift changes over Socket.io, holding around 5,000 people online at once on a busy evening",
-      "TypeScript throughout, Redux for state",
-    ],
-    color: "teal",
-  },
-  {
-    name: "EventsWorks",
-    shotType: "phone",
-    period: "Sep 2022 — Apr 2023",
-    stack: ["React Native", "GraphQL", "Node.js", "AWS"],
-    images: [ew1, ew2, ew3, ew4, ew5],
-    links: {
-      ios: {
-        url: "https://apps.apple.com/in/app/cincymarshals/id1473793274",
-        note: "The iOS build ships under the client's own name, CincyMarshals.",
-      },
-      android: "https://play.google.com/store/apps/details?id=com.gigflex.eventsworks",
-    },
-    description:
-      "The events side of the same business — staffing a venue, and the leave and absence requests that always land the morning of.",
-    role: "core",
-    contributions: [
-      "Scheduling and crew screens against a GraphQL API",
-      "Kept the whole crew talking in one thread instead of across four",
-      "Ships under the client's own name on iOS, as CincyMarshals",
-    ],
-    color: "gold",
-  },
-  {
-    name: "FixAi",
-    shotType: "phone",
-    period: "",
-    stack: ["React Native", "AI assistant"],
-    images: [fx1, fx2, fx3],
-    links: {
-      ios: { isPrivate: true },
-      android: "https://play.google.com/store/apps/details?id=com.fixaimobile.app",
-      site: "https://www.fixai.ca/",
-    },
-    description:
-      "Home maintenance for people who own appliances and forget they need servicing. It keeps manuals and service history for everything in the house.",
-    role: "core",
-    roleNote: "owned the assistant",
-    contributions: [
-      "The troubleshooting assistant — you describe the noise it's making and get an answer out of the documentation, in plain English",
-      "Appliance inventory and service-history screens",
-    ],
-    color: "violet",
-  },
-  {
-    name: "Samagra Enterprises",
-    shotType: "phone",
-    period: "",
-    stack: ["React Native"],
-    images: [sg1, sg2, sg3, sg4, sg5],
-    links: {
-      ios: { isPrivate: true },
-      android: { isPrivate: true },
-    },
-    description: "Rooftop solar, from the first quote to the switch being flipped.",
-    role: "core",
-    contributions: [
-      "Quotation approval in the app, with estimated bill savings shown before the customer commits",
-      "Install tracking through site survey, equipment and commissioning, so nobody has to ring to ask where it's up to",
-    ],
-    color: "gold",
-  },
-  {
-    name: "RapidGST",
-    shotType: "web",
-    period: "Jan 2026 — Present",
-    stack: ["React Native", "RabbitMQ", "AWS"],
-    images: [shotRapidGST],
-    video: videoRapidGST,
-    links: { site: "https://www.rapidgst.com/" },
-    description:
-      "Sellers were pulling numbers off three or four platforms by hand every filing cycle. This pulls it all in and files in one tap — what took an evening now takes five minutes.",
-    role: "core",
-    roleNote: "owned the offline layer",
-    contributions: [
-      "Worked on the core of the app, which about 50,000 people use a month",
-      "Wrote the offline layer — everything lands in MMKV first and syncs in the background when the connection returns, which for a lot of these users is not often",
-      "Reanimated 2 on anything that had to hold 60fps",
-      "FaceID and TouchID login with JWT refresh behind it",
+      "Broke the monolith into separate Spring Boot services, one deploy at a time, with the old paths still serving until each cut-over was proven",
+      "Cross-service JWT auth with Spring Security, plus routing and rate limiting through Spring Cloud Gateway",
+      "Moved payroll onto RabbitMQ events with dead-letter queues, because a dropped payroll message is not something you find out about quietly",
+      "Added MongoDB read replicas and better indexes, which cleared out most of the timeouts on cross-service reports",
+      "Containerised the lot and ran it on Kubernetes so payroll week can scale up on its own",
     ],
     color: "coral",
-  },
-  {
-    name: "SmartWMS",
-    shotType: "web",
-    period: "Jan 2025 — Present",
-    stack: ["React Native", "TypeScript", "Razorpay"],
-    images: [shotSmartWMS],
-    links: { site: "https://www.smartwms.in/" },
-    description: "Warehouse management SaaS for small operators — stock, orders and billing in one place.",
-    role: "solo",
-    contributions: [
-      "Dashboard, mobile app and APIs, all three mine",
-      "Multi-tenant, so most of the work that took real thought was keeping one customer's data away from the next one's",
-      "Razorpay for subscriptions",
-    ],
-    color: "teal",
+    diagram: {
+      caption:
+        "The gateway is the only public door. Payroll talks in events rather than calls, so a failed message waits in a dead-letter queue instead of vanishing.",
+      nodes: [
+        { id: "client", label: "Clients", sub: "web · mobile", meta: "REST · JWT", kind: "client", col: 0, row: 1 },
+        { id: "gw", label: "Cloud Gateway", sub: "Spring Cloud Gateway", meta: "JWT filter · rate limit", kind: "guard", col: 1, row: 1 },
+        { id: "emp", label: "Employee svc", sub: "Spring Boot", meta: "own collections", kind: "service", col: 2, row: 0 },
+        { id: "sched", label: "Scheduling svc", sub: "Spring Boot", meta: "own collections", kind: "service", col: 2, row: 1 },
+        { id: "pay", label: "Payroll svc", sub: "Spring Boot", meta: "publishes, never calls", kind: "service", col: 2, row: 2 },
+        { id: "mongo", label: "MongoDB", sub: "replica set", meta: "reports on secondary", kind: "store", col: 3, row: 0 },
+        { id: "mq", label: "RabbitMQ", sub: "payroll events", meta: "durable · manual ack", kind: "broker", col: 3, row: 2 },
+      ],
+      edges: [
+        { from: "client", to: "gw", label: "REST", note: "one public door" },
+        { from: "gw", to: "emp", label: "route", note: "/employees/**" },
+        { from: "gw", to: "sched", label: "route", note: "/shifts/**" },
+        { from: "gw", to: "pay", label: "route", note: "/payroll/**" },
+        { from: "emp", to: "mongo", label: "primary", note: "writes" },
+        { from: "sched", to: "mongo", label: "secondary", note: "for reports" },
+        { from: "pay", to: "mq", label: "payroll.run", note: "DLQ on failure" },
+      ],
+      facts: [
+        { k: "The split", v: "one service at a time, with the monolith's old routes still serving until each cut-over was proven" },
+        { k: "Reports", v: "the heavy cross-service queries read from a secondary, which is what stopped them timing out against the write path" },
+        { k: "Payroll", v: "durable messages, manual ack, dead-letter queue — a failed payroll message waits to be looked at instead of vanishing" },
+      ],
+    },
   },
   {
     name: "CareHudl",
-    shotType: "phone",
+    tagline: "Healthcare backend, built to a HIPAA audit",
     period: "May 2023 — Dec 2023",
-    stack: ["React Native", "Redux Saga", "Firebase", "FHIR API"],
-    images: [ch1, ch2],
-    links: {
-      ios: {
-        url: "https://apps.apple.com/in/developer/gigflex-llc/id1473793273",
-        label: "App Store (Gigflex LLC)",
-        note: "The iOS listing sits on the publisher's developer page and isn't available on the India store.",
-      },
-      android: "https://play.google.com/store/apps/details?id=com.gigflex.carehudl",
-    },
+    stack: ["Java", "Spring Boot", "Spring Security", "Apache Kafka", "MongoDB", "Terraform", "Docker"],
+    links: { site: { isPrivate: true, label: "Client platform" } },
     description:
-      "Care coordination for around 500 practitioners. It went through a full HIPAA audit, which shaped most of the architecture.",
+      "Care coordination for around 500 practitioners. It went through a full HIPAA audit, and that shaped the architecture more than any feature did.",
     role: "core",
+    roleNote: "owned audit and the media pipeline",
     contributions: [
-      "Contacts, chat, and audio and video calling",
-      "Offline-first throughout, because a lot of them work in buildings with no usable signal",
-      "Charting time dropped 37%",
-    ],
-    color: "gold",
-  },
-  {
-    name: "RealEstAi",
-    shotType: "web",
-    period: "",
-    stack: ["Next.js", "AI document review"],
-    images: [shotRealEstAi],
-    links: { site: "https://realestai.ca" },
-    description:
-      "Conveyancing for Alberta law firms. You drop the documents in, it reads them, cross-checks the details against each other and drafts the closing file for a lawyer to approve.",
-    role: "core",
-    contributions: [
-      "Document upload and review screens in Next.js",
-      "A file can't close until the cross-checks pass, and that gate is enforced server-side rather than in the UI — a gate in the UI isn't a gate",
-    ],
-    color: "teal",
-  },
-  {
-    name: "Elynker",
-    shotType: "web",
-    period: "Apr 2023 — Present",
-    stack: ["React Native", "AWS"],
-    images: [shotElynker],
-    links: { site: "https://www.elynker.com/homepage" },
-    description:
-      "For small business owners who don't have a marketing team: marketplace listing, a digital profile, Google Business setup, social pages. Everything they'd otherwise pay an agency for, in one place.",
-    role: "lead",
-    roleNote: "4 developers",
-    contributions: [
-      "Led four developers — sprint planning and client calls alongside my own build work",
-      "Wrote the microsite generator and the catalog tooling myself",
-    ],
-    color: "coral",
-  },
-  {
-    name: "PropNewsTime",
-    shotType: "phone",
-    period: "Aug 2023 — Present",
-    stack: ["React Native", "Node.js", "MongoDB", "AWS"],
-    images: [pn1, pn2],
-    links: {
-      ios: "https://apps.apple.com/in/app/prop-news-time/id6467655980",
-      android: "https://play.google.com/store/apps/details?id=com.propnewstimes",
-    },
-    description:
-      "Indian real estate news, aggregated daily and sorted by category. Around 5,000 people signed up in the first stretch after launch.",
-    role: "core",
-    contributions: [
-      "Feed, category sorting, and saved stories readers come back to",
-      "Node.js and MongoDB behind it, on AWS",
+      "Encrypted patient fields at the field level rather than trusting disk encryption to be the whole answer",
+      "Event-sourced the access log on Kafka, so who read which record and when is a replayable stream, not a table someone can quietly update",
+      "Streamed 200MB+ DICOM images through a processing pipeline that holds a bounded amount of memory no matter how large the study is",
+      "Booking that survives two people tapping the same slot at once, which is the one thing a clinic notices immediately",
+      "Terraform on Docker Swarm for the infrastructure, with Twilio behind telemedicine on bad connections",
     ],
     color: "violet",
+    diagram: {
+      caption:
+        "Every read of a patient record emits an event before it returns. The audit trail is derived from that stream, so it cannot drift from what happened.",
+      nodes: [
+        { id: "clin", label: "Clinicians", sub: "app · portal", meta: "REST · role scoped", kind: "client", col: 0, row: 1 },
+        { id: "api", label: "Care API", sub: "Spring Boot", meta: "Spring Security · RBAC", kind: "service", col: 1, row: 1 },
+        { id: "kafka", label: "Kafka", sub: "access events", meta: "append-only log", kind: "broker", col: 2, row: 0 },
+        { id: "crypto", label: "Field encryption", sub: "PHI columns only", meta: "per-field keys", kind: "guard", col: 2, row: 1 },
+        { id: "dicom", label: "DICOM pipeline", sub: "200MB+ studies", meta: "streamed, bounded buf", kind: "service", col: 2, row: 2 },
+        { id: "audit", label: "Audit trail", sub: "event-sourced", meta: "derived, not written", kind: "store", col: 3, row: 0 },
+        { id: "atlas", label: "MongoDB Atlas", sub: "encrypted store", meta: "ciphertext fields", kind: "store", col: 3, row: 1 },
+      ],
+      edges: [
+        { from: "clin", to: "api", label: "REST", note: "JWT · role scoped" },
+        { from: "api", to: "kafka", label: "record.read", note: "before the response" },
+        { from: "kafka", to: "audit", label: "project", note: "replayable" },
+        { from: "api", to: "crypto", label: "encrypt", note: "on the way in" },
+        { from: "crypto", to: "atlas", label: "store", note: "ciphertext only" },
+        { from: "api", to: "dicom", label: "upload", note: "chunked stream" },
+        { from: "dicom", to: "atlas", label: "object ref", note: "metadata only" },
+      ],
+      facts: [
+        { k: "Audit", v: "the event is emitted before the response returns, so the trail is derived from access rather than written alongside it and trusted" },
+        { k: "PHI", v: "encrypted field by field, which means a database dump is ciphertext rather than a spreadsheet of patients" },
+        { k: "Memory", v: "a study is streamed through a bounded buffer — a 200MB DICOM costs the same heap as a 2MB one" },
+      ],
+    },
+  },
+  {
+    name: "Catalog, Order & Checkout",
+    tagline: "The commerce services, made to hold up",
+    period: "Jan 2022 — Dec 2024",
+    stack: ["Java", "Spring Boot", "Elasticsearch", "Resilience4j", "Redis", "Jaeger"],
+    links: { site: { isPrivate: true, label: "Internal platform" } },
+    description:
+      "The search and checkout path of an e-commerce platform. Search was slow, and payment failures were quietly climbing — both turned out to be fixable without a rewrite.",
+    role: "core",
+    roleNote: "owned search and the retry path",
+    contributions: [
+      "Added Elasticsearch to the Catalog service from scratch and cut search latency by about 25%",
+      "Reworked Order and Checkout retry logic after payment failures crept up — retries with backoff, and an idempotency key so a retry can't charge twice",
+      "Put Resilience4j circuit breakers between the services, so one struggling dependency degrades instead of taking the checkout down with it",
+      "Wired up distributed tracing, which turned 'checkout feels slow' into a span I could point at",
+    ],
+    color: "teal",
+    diagram: {
+      caption:
+        "Two paths through the same storefront: search reads from an index rather than the database, and checkout only reaches the payment gateway through a breaker.",
+      nodes: [
+        { id: "store", label: "Storefront", sub: "web · app", meta: "REST", kind: "client", col: 0, row: 1 },
+        { id: "cat", label: "Catalog svc", sub: "Spring Boot", meta: "reads the index", kind: "service", col: 1, row: 0 },
+        { id: "chk", label: "Checkout svc", sub: "Spring Boot", meta: "idempotency key", kind: "service", col: 1, row: 2 },
+        { id: "es", label: "Elasticsearch", sub: "search index", meta: "p95 down ~25%", kind: "store", col: 2, row: 0 },
+        { id: "cb", label: "Resilience4j", sub: "breaker + retry", meta: "backoff, then open", kind: "guard", col: 2, row: 2 },
+        { id: "psp", label: "Payment gateway", sub: "third party", meta: "someone else's SLA", kind: "external", col: 3, row: 2 },
+      ],
+      edges: [
+        { from: "store", to: "cat", label: "search", note: "wildcard + facets" },
+        { from: "store", to: "chk", label: "pay", note: "one key per attempt" },
+        { from: "cat", to: "es", label: "query", note: "not the tables" },
+        { from: "chk", to: "cb", label: "call", note: "guarded" },
+        { from: "cb", to: "psp", label: "charge", note: "retry is safe" },
+      ],
+      facts: [
+        { k: "Search", v: "queries hit the index instead of the catalog tables, which is where the ~25% off p95 came from" },
+        { k: "Payments", v: "every retry of one checkout carries the same idempotency key, so a retry can't charge a card twice" },
+        { k: "Degrading", v: "when the gateway is slow the breaker opens and checkout fails fast rather than holding threads until the pool is gone" },
+      ],
+    },
+  },
+  {
+    name: "Aarogyam",
+    tagline: "Healthcare platform — the first one I built",
+    period: "Jun 2019 — Aug 2021",
+    stack: ["Java", "Spring Boot", "Spring Security", "MySQL", "REST APIs"],
+    links: { site: { isPrivate: true, label: "Client platform" } },
+    description:
+      "Patient sign-up, appointments and medical records for a clinic network, with labs and pharmacy hanging off the side of it. Built at Osizone, and the platform I learned Spring on.",
+    role: "core",
+    contributions: [
+      "Wrote the REST APIs for sign-up, appointments and medical records",
+      "Designed the MySQL schema for patient and clinical data, then spent the next year tuning indexes and queries as the tables filled up",
+      "Role-based access with Spring Security, so a doctor, a patient and an admin see three different versions of the same record",
+      "Integrated lab reports, pharmacy and SMS/email providers, which removed a lot of the phoning-round the clinics were doing",
+    ],
+    color: "gold",
+    diagram: {
+      caption:
+        "Authorisation sits in front of the API, not inside each controller — every request is filtered by role before it reaches a record.",
+      nodes: [
+        { id: "pat", label: "Patients", sub: "portal", meta: "role: PATIENT", kind: "client", col: 0, row: 0 },
+        { id: "doc", label: "Doctors · admin", sub: "console", meta: "role: DOCTOR / ADMIN", kind: "client", col: 0, row: 2 },
+        { id: "sec", label: "Spring Security", sub: "filter chain", meta: "role → endpoint", kind: "guard", col: 1, row: 1 },
+        { id: "api", label: "Aarogyam API", sub: "Spring Boot REST", meta: "service layer", kind: "service", col: 2, row: 1 },
+        { id: "sql", label: "MySQL", sub: "records · billing", meta: "indexed and tuned", kind: "store", col: 3, row: 0 },
+        { id: "ext", label: "Labs · pharmacy", sub: "SMS · email", meta: "one adapter each", kind: "external", col: 3, row: 2 },
+      ],
+      edges: [
+        { from: "pat", to: "sec", label: "request", note: "own records only" },
+        { from: "doc", to: "sec", label: "request", note: "assigned patients" },
+        { from: "sec", to: "api", label: "authorised", note: "filtered by role" },
+        { from: "api", to: "sql", label: "JDBC", note: "indexed reads" },
+        { from: "api", to: "ext", label: "reports", note: "async callbacks" },
+      ],
+      facts: [
+        { k: "Access", v: "the filter chain decides before a controller runs, so a check someone forgets in one handler can't leak a record" },
+        { k: "Schema", v: "patient and clinical tables, re-indexed and re-tuned as the tables filled up rather than designed once and left" },
+        { k: "Integrations", v: "labs, pharmacy and messaging each sit behind their own adapter, so one flaky provider is one class" },
+      ],
+    },
   },
 ];
 
 export const achievements = [
-  { title: "Employee of the Year, twice", detail: "at e.Soft, for mobile delivery and for mentoring" },
-  { title: "Stack Overflow", detail: "1,008 rep and 14 badges, mostly answering React Native questions. 335 days straight at one point." },
+  { title: "Employee of the Year, twice", detail: "at e.Soft, for backend delivery and for mentoring" },
+  {
+    title: "Stack Overflow",
+    detail: "1,008 rep and 14 badges, mostly answering Java and Spring questions. 335 days straight at one point.",
+  },
 ];
 
 export const education = {

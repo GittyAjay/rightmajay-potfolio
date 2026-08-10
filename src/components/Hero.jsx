@@ -115,8 +115,8 @@ export default function Hero() {
             <img src={portrait} alt={`${profile.name}, ${profile.role}`} loading="eager" />
           </div>
           <div className="hero-badge">
-            <strong>7+ yrs</strong>
-            <span>shipping RN apps</span>
+            <strong>{profile.badge.value}</strong>
+            <span>{profile.badge.label}</span>
           </div>
         </motion.div>
       </motion.div>

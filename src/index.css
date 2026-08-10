@@ -206,235 +206,326 @@ html.dark .skill-icon.is-brand {
   gap: var(--gap-card);
 }
 
-/* ---------- Project showcase: full-width alternating rows ---------- */
+/* ---------- Project showcase: one system per row ---------- */
 
 .showcase {
   display: flex;
   flex-direction: column;
 }
 
-.showcase-row {
+.sys-row {
   padding: clamp(2.5rem, 5vw, 4.5rem) 0;
   border-top: 1px solid color-mix(in srgb, var(--border) 12%, transparent);
 }
 
-.showcase-row:first-child {
+.sys-row:first-child {
   border-top: none;
   padding-top: 0;
 }
 
-.showcase-inner {
+.sys-head {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: clamp(2rem, 5vw, 5rem);
-  align-items: center;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 0.9rem 1.5rem;
 }
 
-.showcase-row.is-flipped .showcase-media {
-  order: 2;
+.sys-head .showcase-index {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
 }
 
-/* the screenshot is never cropped: contain, on a tinted stage */
-.showcase-media {
-  position: relative;
+.sys-title h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+  line-height: 1.1;
+}
+
+.sys-tagline {
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+  margin-top: 0.4rem;
+}
+
+.sys-head-meta {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: 4 / 3;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.3rem;
+  text-align: right;
+}
+
+.sys-head-meta .showcase-period {
+  margin-top: 0;
+}
+
+/* the diagram stage, on the same sticker treatment the screenshots used to get */
+.sys-panel {
+  margin: clamp(1.5rem, 3vw, 2.25rem) 0 0;
+  padding: clamp(1rem, 2.4vw, 1.75rem);
   border-radius: var(--radius-lg);
-  overflow: hidden;
-  isolation: isolate;
-  padding: clamp(1.25rem, 3vw, 2.5rem);
-  background:
-    radial-gradient(80% 70% at 50% 10%, color-mix(in srgb, var(--tint) 28%, transparent) 0%, transparent 70%),
-    color-mix(in srgb, var(--tint) 8%, var(--bg-raised));
   border: 2.5px solid var(--border);
   box-shadow: 8px 8px 0 rgba(var(--shadow-color), 1);
+  background:
+    radial-gradient(70% 120% at 50% 0%, color-mix(in srgb, var(--tint) 22%, transparent) 0%, transparent 70%),
+    color-mix(in srgb, var(--tint) 7%, var(--bg-raised));
   transition: transform 0.4s var(--ease-spring), box-shadow 0.4s var(--ease-spring);
 }
 
-.showcase-media:hover {
+.sys-panel:hover {
   transform: translate(-4px, -4px);
   box-shadow: 12px 12px 0 rgba(var(--shadow-color), 1);
 }
 
-.showcase-media.is-phone {
-  aspect-ratio: 5 / 6;
+.sys-panel figcaption {
+  margin-top: 1.05rem;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  max-width: 78ch;
 }
 
-.showcase-media.is-web {
-  aspect-ratio: 16 / 11;
+/* the decisions behind the drawing — the part an interviewer actually asks
+   about, so it sits with the diagram rather than down in the prose */
+.sys-facts {
+  list-style: none;
+  margin: 1.1rem 0 0;
+  padding: 0.95rem 0 0;
+  border-top: 1px solid color-mix(in srgb, var(--border) 14%, transparent);
+  display: grid;
+  gap: 0.55rem;
 }
 
-/* ---------- Device frame + auto-cycling screenshots ---------- */
-
-.device {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.sys-facts li {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
   gap: 0.9rem;
-  height: 100%;
-  width: 100%;
-  justify-content: center;
+  align-items: baseline;
 }
 
-.device-frame {
-  position: relative;
-  background: #0d0b12;
-  box-shadow:
-    0 30px 60px -22px rgba(0, 0, 0, 0.7),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+.sys-fact-key {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tint, var(--violet));
 }
 
-/* phone: tall bezel with a pill notch */
-.device-phone .device-frame {
-  height: 100%;
-  aspect-ratio: 9 / 19.5;
-  max-width: 100%;
-  border-radius: 34px;
-  padding: 9px;
-}
-
-.device-notch {
-  position: absolute;
-  top: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 30%;
-  height: 15px;
-  border-radius: 999px;
-  background: #0d0b12;
-  z-index: 3;
-}
-
-/* web: browser window with a title bar */
-.device-web .device-frame {
-  width: 100%;
-  border-radius: 14px;
-  padding: 0;
-  overflow: hidden;
-}
-
-.device-bar {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  height: 26px;
-  padding: 0 10px;
-  background: #17141f;
-}
-
-.device-bar i {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.22);
-}
-
-.device-screen {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: #0d0b12;
-}
-
-.device-phone .device-screen {
-  border-radius: 26px;
-}
-
-.device-screen video {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 0;
-  background: #0d0b12;
-}
-
-.device-web .device-screen video {
-  height: auto;
-  aspect-ratio: 16 / 8;
-}
-
-.device-screen img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 0;
-  display: block;
-  opacity: 0;
-  transform: scale(1.03);
-  transition: opacity 0.85s ease, transform 4s ease-out;
-}
-
-.device-screen img.is-current {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* single-image projects: nothing to cross-fade, just show it */
-.device-screen img:only-child {
-  opacity: 1;
-  transform: none;
-}
-
-.device-web .device-screen {
-  height: auto;
-  aspect-ratio: 16 / 8;
-}
-
-.device-web .device-screen img {
-  position: relative;
-  object-position: 50% 0;
-}
-
-/* story-style progress bars */
-.device-progress {
-  display: flex;
-  gap: 5px;
-  width: min(60%, 160px);
-}
-
-.device-progress span {
-  position: relative;
-  flex: 1;
-  height: 3px;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--border) 22%, transparent);
-  overflow: hidden;
-}
-
-.device-progress span i {
-  position: absolute;
-  inset: 0;
-  border-radius: 999px;
-  background: var(--tint);
-  transform-origin: left;
-  transform: scaleX(0);
-}
-
-.device-progress span.is-active i {
-  animation-name: fill-bar;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards;
-}
-
-@keyframes fill-bar {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .device-progress span.is-active i {
-    animation: none;
-    transform: scaleX(1);
+@media (max-width: 700px) {
+  .sys-facts li {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
   }
 }
 
-/* group divider between the app rows and the web grid */
+.sys-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.85fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+  align-items: start;
+}
+
+.sys-main {
+  min-width: 0;
+}
+
+.sys-main .showcase-desc {
+  margin-top: 0;
+  max-width: 60ch;
+}
+
+.sys-aside {
+  min-width: 0;
+}
+
+.sys-aside .showcase-stack {
+  margin-top: 0;
+}
+
+.sys-aside .project-links {
+  margin-top: 1.25rem;
+  padding-top: 0;
+  border-top: none;
+}
+
+/* below this the two text columns leave the aside too narrow for a stack chip
+   to sit on one line, and the head meta reads better left-aligned */
+@media (max-width: 900px) {
+  .sys-head,
+  .sys-body {
+    grid-template-columns: 1fr;
+  }
+  .sys-head-meta {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+/* ---------- The architecture diagram ---------- */
+
+.sysd {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+
+/* a diagram that shrinks to fit a phone is a diagram nobody can read, so
+   narrow screens scroll it sideways at full size instead */
+.sysd-scroll {
+  /* a flex child defaults to min-width:auto, which here means the 620px the
+     svg asks for — that pushes the whole page wide instead of scrolling */
+  min-width: 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sysd-svg {
+  display: block;
+  width: 100%;
+  min-width: 800px;
+  height: auto;
+}
+
+.sysd-node-label {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  fill: var(--ink);
+}
+
+.sysd-node-sub {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  fill: var(--ink-soft);
+}
+
+/* the third line — the one technical fact about the box. Dimmer than the
+   other two so a node still reads name-first at a glance */
+.sysd-node-meta {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  fill: var(--ink-soft);
+  opacity: 0.72;
+}
+
+.sysd-node-box {
+  fill: color-mix(in srgb, var(--kind) 16%, var(--bg-raised));
+  stroke: var(--border);
+  stroke-width: 2;
+}
+
+/* one accent per kind, shared by the node fill and the legend swatch. The
+   palette only has four colours, so the two that would collide — anything
+   guarding a boundary, and anything outside ours — are dashed instead */
+.sysd-node.is-client,
+.sysd-legend li.is-client { --kind: var(--gold); }
+.sysd-node.is-service,
+.sysd-legend li.is-service { --kind: var(--violet); }
+.sysd-node.is-broker,
+.sysd-legend li.is-broker { --kind: var(--coral); }
+.sysd-node.is-store,
+.sysd-legend li.is-store { --kind: var(--teal); }
+.sysd-node.is-guard,
+.sysd-legend li.is-guard { --kind: var(--gold); }
+.sysd-node.is-chain,
+.sysd-legend li.is-chain { --kind: var(--violet); }
+.sysd-node.is-external,
+.sysd-legend li.is-external { --kind: var(--ink-soft); }
+
+.sysd-node.is-guard .sysd-node-box,
+.sysd-node.is-chain .sysd-node-box,
+.sysd-node.is-external .sysd-node-box {
+  stroke-dasharray: 7 5;
+}
+
+.sysd-edge {
+  fill: none;
+  stroke: color-mix(in srgb, var(--ink) 36%, transparent);
+  stroke-width: 2;
+}
+
+.sysd-edge.is-dashed {
+  stroke-dasharray: 6 6;
+}
+
+.sysd-arrow {
+  fill: color-mix(in srgb, var(--ink) 36%, transparent);
+}
+
+/* the travelling dot: a second copy of the line with a single short dash on it,
+   so stopping the animation leaves the static edge intact underneath */
+.sysd-flow {
+  fill: none;
+  stroke: var(--tint, var(--violet));
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 9 191;
+  opacity: 0;
+}
+
+.sysd.is-live .sysd-flow {
+  opacity: 0.95;
+  animation: sysd-run 2.8s linear infinite;
+}
+
+@keyframes sysd-run {
+  from { stroke-dashoffset: 200; }
+  to   { stroke-dashoffset: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sysd.is-live .sysd-flow {
+    opacity: 0;
+  }
+}
+
+.sysd-edge-label {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  fill: var(--ink-soft);
+  /* punches the label out of the line it sits on */
+  paint-order: stroke;
+  stroke: var(--bg-raised);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+/* the second line of an edge label — what the arrow carries, under what it is */
+.sysd-edge-note {
+  font-size: 8.5px;
+  opacity: 0.72;
+}
+
+.sysd-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.05rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sysd-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+
+.sysd-legend li span {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  border: 1.5px solid var(--border);
+  background: color-mix(in srgb, var(--kind) 40%, var(--bg-raised));
+}
+
+/* group divider above the systems list */
 .group-label {
   display: flex;
   align-items: baseline;
@@ -459,108 +550,12 @@ html.dark .skill-icon.is-brand {
   color: var(--ink-soft);
 }
 
-.web-block {
-  margin-top: clamp(3rem, 6vw, 5rem);
-}
-
-.web-grid {
-  display: grid;
-  /* 420px min keeps this at two columns in the 1080px container, so four
-     cards land as a clean 2x2 instead of 3 + 1 orphan */
-  grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
-  gap: var(--gap-card);
-  padding: 3px;
-  margin: -3px;
-}
-
-.web-card {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  padding: 0;
-}
-
-.web-card-media {
-  padding: clamp(1rem, 2vw, 1.5rem) clamp(1rem, 2vw, 1.5rem) 0;
-  background:
-    radial-gradient(90% 80% at 50% 0%, color-mix(in srgb, var(--tint) 26%, transparent) 0%, transparent 72%),
-    color-mix(in srgb, var(--tint) 7%, var(--bg-raised));
-  border-bottom: 2.5px solid var(--border);
-}
-
-/* browser frame sits flush to the bottom edge, like a window peeking up */
-.web-card-media .device-frame {
-  border-radius: 12px 12px 0 0;
-  box-shadow: 0 -12px 40px -14px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.12);
-}
-
-.web-card-body {
-  padding: var(--pad-card);
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.web-card-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.web-card-head h3 {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-}
-
-.web-card-head .showcase-period {
-  margin-top: 0;
-}
-
-.web-card .showcase-desc {
-  font-size: 0.95rem;
-  margin-top: 0.9rem;
-  max-width: none;
-}
-
-.web-card .showcase-stack {
-  margin-top: 1.1rem;
-  /* margin-top:auto on .project-links collapses to 0 once the card is full,
-     so the gap above its divider has to come from this side */
-  margin-bottom: 1.35rem;
-}
-
-.web-card .project-links {
-  margin-top: auto;
-  padding-top: 1.15rem;
-}
-
-/* projects with no screenshot: text spans the full row instead of an empty stage */
-.showcase-inner.is-textonly {
-  grid-template-columns: 1fr;
-}
-
-.showcase-inner.is-textonly .showcase-desc {
-  max-width: 62ch;
-}
-
-.showcase-body {
-  min-width: 0;
-}
-
 .showcase-index {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   letter-spacing: 0.16em;
-  color: var(--violet);
+  color: var(--tint, var(--violet));
   margin-bottom: 0.85rem;
-}
-
-.showcase-body h3 {
-  font-family: var(--font-display);
-  font-size: clamp(1.7rem, 3.2vw, 2.4rem);
-  line-height: 1.1;
 }
 
 .showcase-period {
@@ -761,10 +756,6 @@ html.dark .skill-icon.is-brand {
   color: var(--ink-soft);
 }
 
-.web-card-body .role-line {
-  margin-top: 0.7rem;
-}
-
 .showcase-desc {
   color: var(--ink-soft);
   font-size: 1.02rem;
@@ -831,31 +822,6 @@ html.dark .skill-icon.is-brand {
   padding: 0.3rem 0.7rem 0.3rem 0.55rem;
 }
 
-.showcase-body .project-links {
-  margin-top: 1.5rem;
-  padding-top: 0;
-  border-top: none;
-}
-
-/* 1024, not 800: below roughly this width the two-column row leaves the text
-   column so narrow that headings clip and body copy breaks every three words,
-   while the screenshot shrinks to a thumbnail. One column much sooner. */
-@media (max-width: 1024px) {
-  .showcase-inner {
-    grid-template-columns: 1fr;
-    gap: 1.75rem;
-  }
-  /* image always leads on mobile, regardless of desktop side */
-  .showcase-row.is-flipped .showcase-media {
-    order: 0;
-  }
-  .showcase-media.is-phone {
-    aspect-ratio: 1 / 1;
-  }
-  .showcase-media.is-web {
-    aspect-ratio: 3 / 2;
-  }
-}
 
 .project-links {
   display: flex;
@@ -1583,73 +1549,15 @@ html.dark .aura {
 }
 
 /* fallback for browsers that won't render a PDF inline (most phones) */
-.cv-pages {
-  display: grid;
-  gap: var(--gap-card);
-  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+.cv-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.1rem;
   padding: var(--pad-card);
-}
-
-.cv-page {
-  display: block;
-  padding: 0;
-  border: 2px solid var(--border);
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  background: #fff;
-  cursor: zoom-in;
-  font: inherit;
-  position: relative;
-}
-
-.cv-page img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.cv-page span {
-  position: absolute;
-  bottom: 0.5rem;
-  right: 0.6rem;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  background: var(--ink);
-  color: var(--bg);
-  padding: 0.15rem 0.5rem;
-  border-radius: 999px;
-}
-
-.cv-lightbox {
-  position: fixed;
-  inset: 0;
-  z-index: 60;
-  background: rgba(12, 10, 18, 0.88);
-  overflow: auto;
-  padding: clamp(1rem, 4vw, 3rem);
-  cursor: zoom-out;
-}
-
-.cv-lightbox img {
-  display: block;
-  width: min(900px, 100%);
-  margin: 0 auto;
-  border-radius: var(--radius-sm);
-}
-
-.cv-close {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  font: inherit;
-  font-weight: 700;
-  font-size: 0.85rem;
-  padding: 0.5rem 1rem;
-  border-radius: 999px;
-  border: 2px solid #fff;
-  background: transparent;
-  color: #fff;
-  cursor: pointer;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 @media (max-width: 700px) {

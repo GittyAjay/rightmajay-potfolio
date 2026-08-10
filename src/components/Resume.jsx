@@ -43,8 +43,8 @@ export default function Resume() {
       <div className="container">
         <div className="section-head">
           <p className="eyebrow">04 / CV</p>
-          <h2>The whole thing, if you'd rather read it</h2>
-          <p className="sub">Two pages. Read it here, or take a copy. Same PDF either way.</p>
+          <h2>The CV, if you'd rather read it</h2>
+          <p className="sub">Two pages. Read it here or take a copy.</p>
         </div>
 
         <motion.div

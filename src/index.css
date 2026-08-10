@@ -326,6 +326,18 @@ html.dark .skill-icon.is-brand {
   align-items: start;
 }
 
+/* the projects with no diagram. They get a tighter row and a wider text
+   column, so the page has two weights of project on it instead of five
+   identical ones */
+.sys-row.is-plain {
+  padding-block: clamp(2rem, 3.5vw, 3rem);
+}
+
+.sys-row.is-plain .sys-body {
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 0.8fr);
+  margin-top: 1.35rem;
+}
+
 .sys-main {
   min-width: 0;
 }

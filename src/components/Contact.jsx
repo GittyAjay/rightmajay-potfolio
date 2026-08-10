@@ -42,7 +42,7 @@ export default function Contact() {
           Want to talk about a project?
         </h2>
         <p style={{ color: "var(--bg)", opacity: 0.7, marginTop: "1rem", fontSize: "1.05rem" }}>
-          Email is the surest way to reach me. LinkedIn works too, I just check it less.
+          Email is the best way to reach me. LinkedIn works too, I check it less often.
         </p>
         <div style={{ display: "flex", gap: "1rem", justifyContent: "center", marginTop: "2rem", flexWrap: "wrap" }}>
           <a

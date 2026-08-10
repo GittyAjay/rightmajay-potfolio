@@ -8,9 +8,7 @@ export default function Experience() {
         <div className="section-head">
           <p className="eyebrow">02 / Experience</p>
           <h2>Where I've worked</h2>
-          <p className="sub">
-            Two companies in seven years. Each one lists the systems above that came out of it.
-          </p>
+          <p className="sub">Two companies in seven years.</p>
         </div>
 
         <div className="stack">

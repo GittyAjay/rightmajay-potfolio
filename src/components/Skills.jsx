@@ -12,8 +12,7 @@ export default function Skills() {
           <p className="eyebrow">03 / Stack</p>
           <h2>What I actually use</h2>
           <p className="sub">
-            Not an exhaustive list. These are the ones I'd be comfortable being handed a production
-            incident in on day one — and the solid ones are what I'm in most weeks.
+            Not a complete list. The solid chips are the ones I use most weeks.
           </p>
         </div>
         <div className="card-grid skills-grid">

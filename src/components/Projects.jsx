@@ -77,7 +77,7 @@ function Contributions({ items, color }) {
   if (!items?.length) return null;
   return (
     <div className="contributions" style={{ "--accent": `var(--${color})` }}>
-      <p className="contributions-label">Some of what I built</p>
+      <p className="contributions-label">What I did</p>
       <ul>
         {items.map((c) => (
           <li key={c}>{c}</li>
@@ -111,17 +111,14 @@ export default function Projects() {
           <p className="eyebrow">01 / Work</p>
           <h2>Systems I've built</h2>
           <p className="sub">
-            Backend work doesn't screenshot, so each one is drawn instead — the services, the
-            topics and the stores, and which way the data actually moves. Every one says what I did
-            on it: sole developer, team lead, or the specific pieces I owned.
+            Five systems from my time at e.Soft. Each says what I did on it and what it was built
+            with. Three have a diagram, where the shape of the thing is the part worth seeing.
           </p>
         </div>
 
         <p className="group-label">
           <span>Production systems</span>
-          <em>
-            {projects.length} systems · Java · Spring Boot · Kafka
-          </em>
+          <em>Java · Spring Boot · Kafka</em>
         </p>
       </div>
 
@@ -129,7 +126,7 @@ export default function Projects() {
         {projects.map((p, i) => (
           <motion.article
             key={p.name}
-            className="sys-row"
+            className={`sys-row${p.diagram ? "" : " is-plain"}`}
             style={{ "--tint": `var(--${p.color})` }}
             initial={false}
             whileInView={{ opacity: 1, y: 0 }}

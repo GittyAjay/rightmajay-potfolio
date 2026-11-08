@@ -28,12 +28,14 @@ const aliases = {
   Redux: "Redux Toolkit",
   "Socket.IO": "Socket.io",
   MERN: "MongoDB",
+  "React Native": "React.js",
 };
 
 // which glyph a group falls back to
 export const groupGlyph = {
   Languages: "code",
   Frontend: "code",
+  Mobile: "code",
   Backend: "code",
   Databases: "db",
   "AI & GenAI": "spark",

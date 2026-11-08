@@ -33,13 +33,19 @@ export default function Extras() {
           style={{ background: "var(--teal-soft)" }}
         >
           <p className="eyebrow" style={{ marginBottom: "0.75rem" }}>Education</p>
-          <strong style={{ fontSize: "0.95rem" }}>{education.degree}</strong>
-          <p style={{ color: "var(--ink-soft)", fontSize: "0.85rem", marginTop: "0.3rem" }}>
-            {education.school}, {education.location}
-          </p>
-          <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--ink-soft)", marginTop: "0.5rem" }}>
-            {education.period}
-          </p>
+          <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "0.9rem" }}>
+            {education.map((e) => (
+              <li key={e.degree}>
+                <strong style={{ fontSize: "0.95rem" }}>{e.degree}</strong>
+                <p style={{ color: "var(--ink-soft)", fontSize: "0.85rem", marginTop: "0.3rem" }}>
+                  {e.school}, {e.location}
+                </p>
+                <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--ink-soft)", marginTop: "0.3rem" }}>
+                  {e.period}
+                </p>
+              </li>
+            ))}
+          </ul>
         </motion.div>
       </div>
     </section>

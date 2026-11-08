@@ -2,9 +2,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { profile } from "../data/content.js";
 import cv1 from "../assets/cv-1.jpg";
-import cv2 from "../assets/cv-2.jpg";
 
-const pages = [cv1, cv2];
+const pages = [cv1];
 
 /**
  * The CV itself, on the page. Desktop browsers get the real PDF through

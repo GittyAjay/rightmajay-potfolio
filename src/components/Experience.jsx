@@ -9,7 +9,7 @@ export default function Experience() {
           <p className="eyebrow">02 / Experience</p>
           <h2>Where I've worked</h2>
           <p className="sub">
-            Two companies in seven years. Each one lists the products above that came out of it.
+            Five years at e.Soft Technologies, promoted to senior in 2023. The products above that came out of it are listed below.
           </p>
         </div>
 

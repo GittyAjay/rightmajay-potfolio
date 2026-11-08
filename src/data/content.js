@@ -7,32 +7,29 @@ import longSmartWMS from "../assets/projects/smartwms-long.jpg";
 import longAryadhan from "../assets/projects/aryadhan-long.jpg";
 import longFixAi from "../assets/projects/fixai-long.jpg";
 
-// employer logos, saved locally rather than hotlinked off their sites.
-// both are transparent PNGs that only work on one kind of backdrop — eSoft's
-// wordmark is dark grey, Osizone's is white — so each carries the `logoBg` it
-// needs and gets that plate in both themes.
+// employer logo, saved locally rather than hotlinked. It's a transparent PNG
+// with a dark grey wordmark, so it carries the `logoBg` plate it needs.
 import logoEsoft from "../assets/logos/esoft.png";
-import logoOsizone from "../assets/logos/osizone.png";
 
 export const profile = {
   name: "Ajay Kumar Pandey",
-  role: "Senior Full Stack Developer",
-  tagline: "Full stack developer, seven years in.",
+  role: "Senior Software Engineer",
+  tagline: "Web and mobile, five years in.",
   blurb:
-    "Seven years of MERN and Next.js. The last two have been mostly AI work: document pipelines for law firms, a RAG assistant, GST filing that has to come out right the first time. Two of the platforms below I built alone. On one I ran a team of four.",
+    "Five years shipping production web (Next.js, Node.js) and iOS/Android (React Native) products in fintech, healthcare and legal-tech. I'm comfortable owning a product end to end, from API design to App Store release. Lately that's meant putting LLMs and RAG pipelines into live client products.",
   email: "rightmajay@gmail.com",
   phone: "+91-6392363003",
   // served from /public — downloads as the filename below
   resume: {
     url: "/Full_Stack_developer.pdf",
-    filename: "Ajay-Kumar-Pandey-Full-Stack.pdf",
+    filename: "Ajay-Kumar-Pandey-Resume.pdf",
   },
   links: {
     linkedin: "https://www.linkedin.com/in/rightmajay/",
     // rightmajay is a 404 — the account is GittyAjay
     github: "https://github.com/GittyAjay",
     // r8majay.web.app is dead (404) — this is the live one
-    site: "https://ajayonlive.vercel.app",
+    site: "https://ajaypandeyfullstack.vercel.app/",
   },
 };
 
@@ -48,38 +45,43 @@ export const skills = [
   },
   {
     group: "Frontend",
-    items: ["React.js", "Next.js 14", "Redux Toolkit", "SSR / SSG", "TailwindCSS", "Context API", "Material-UI"],
+    items: ["React.js", "Next.js 14", "Redux Toolkit", "Zustand", "SSR / SSG", "TailwindCSS", "Material-UI"],
     core: ["React.js", "Next.js 14", "Redux Toolkit"],
   },
   {
+    group: "Mobile",
+    items: ["React Native", "Expo", "Reanimated", "EAS Build / Update", "Fastlane", "Offline-first sync", "App Store & Play Store"],
+    core: ["React Native", "Expo", "EAS Build / Update"],
+  },
+  {
     group: "Backend",
-    items: ["Express.js", "REST APIs", "BullMQ", "Socket.io", "NestJS", "GraphQL"],
+    items: ["Express.js", "REST APIs", "BullMQ", "Socket.io", "NestJS", "GraphQL", "WebRTC", "RabbitMQ"],
     core: ["Express.js", "REST APIs", "BullMQ"],
   },
   {
     group: "Databases",
-    items: ["MongoDB", "PostgreSQL", "Prisma ORM", "Redis", "MySQL"],
+    items: ["MongoDB", "PostgreSQL", "Prisma ORM", "Redis", "MySQL", "SQLite", "MMKV"],
     core: ["MongoDB", "PostgreSQL", "Prisma ORM"],
   },
   {
     group: "AI & GenAI",
-    items: ["OpenAI GPT-4", "RAG pipelines", "Vector databases", "Claude API", "Embeddings"],
-    core: ["OpenAI GPT-4", "RAG pipelines", "Vector databases"],
+    items: ["OpenAI API", "Claude API", "RAG pipelines", "Embeddings", "Pinecone"],
+    core: ["OpenAI API", "Claude API", "RAG pipelines"],
   },
   {
     group: "Auth & Security",
-    items: ["NextAuth.js v5", "RBAC", "JWT", "TOTP MFA", "Rate limiting", "bcrypt", "Helmet"],
+    items: ["NextAuth.js v5", "RBAC", "TOTP MFA", "JWT", "Multi-tenant isolation", "Audit logging", "Rate limiting"],
     core: ["NextAuth.js v5", "RBAC", "JWT"],
   },
   {
     group: "Cloud & DevOps",
-    items: ["AWS (EC2, S3, Lambda, CloudFront)", "Docker", "GitHub Actions", "Azure App Service", "Nginx"],
+    items: ["AWS (EC2, S3, Lambda, CloudFront)", "Azure", "Docker", "GitHub Actions", "Nginx", "Avalanche (AVAX)"],
     core: ["AWS (EC2, S3, Lambda, CloudFront)", "Docker", "GitHub Actions"],
   },
   {
     group: "Testing & Quality",
-    items: ["Jest", "React Testing Library", "Sentry", "ESLint"],
-    core: ["Jest", "Sentry"],
+    items: ["Jest", "Detox", "React Testing Library", "Sentry", "ESLint"],
+    core: ["Jest", "Detox"],
   },
 ];
 
@@ -89,38 +91,25 @@ export const experience = [
     site: "https://www.esoftech.com/",
     logo: logoEsoft,
     logoBg: "light",
-    role: "Senior Full Stack Developer",
+    role: "Senior Software Engineer",
+    roles: [
+      { title: "Senior Software Engineer", period: "Feb 2023 — Present" },
+      { title: "Software Engineer", period: "Oct 2021 — Feb 2023" },
+    ],
     period: "Oct 2021 — Present",
     location: "Mumbai, India",
     // the job, not the projects — the Work section already covers those in
     // detail, and repeating them here just made both read thinner
     summary:
-      "Nine of the products in the Work section were built here. I take architecture on new builds and stay on them through delivery.",
+      "Most of the products in the Work section were built here, on web and mobile. I take architecture on new builds and stay on them through delivery.",
     points: [
-      "Team lead on Elynker — four developers, sprint planning and client calls alongside my own build work.",
-      "Code review for four juniors. Production bugs are down from where they were, and I think the reviews are most of the reason.",
-      "The last two years have been mostly AI work — document pipelines and RAG, in products clients actually pay for rather than prototypes.",
-      "Auth and permissions across the products: NextAuth.js v5, role-based access, TOTP MFA, audit logging.",
-      "SSR and SSG on everything SEO-facing. Lighthouse sits in the 90s.",
+      "Owned architecture and delivery of RealEstAi, including the GPT-4 and Claude pipeline that pulls structured data out of legal PDFs.",
+      "Built and maintain StaffWorks for 5,000+ concurrent mobile users — geofenced clock-in over Socket.io, WebRTC calls, a React Native app on both stores.",
+      "Cut critical mobile fix turnaround from days to under 30 minutes with EAS OTA updates; iOS and Android releases automated with GitHub Actions and Fastlane.",
+      "Led a team of four on Elynker — client calls, sprint planning and hands-on development.",
+      "Designed a 22-level RBAC system with TOTP MFA and audit logging on NextAuth.js v5. I mentor four junior developers and own the team's PR review checklist.",
     ],
     projects: ["RealEstAi", "Aryadhan", "RapidGST", "Elynker", "FertilityAnswers", "SmartWMS", "FixAi", "CareHudl", "StaffWorks"],
-  },
-  {
-    company: "Osizone Services Pvt. Ltd",
-    site: "https://www.osizone.com/",
-    logo: logoOsizone,
-    logoBg: "dark",
-    role: "Software Developer",
-    period: "Jun 2019 — Aug 2021",
-    location: "Noida, India",
-    summary:
-      "My first job out of university, and both products here were mine alone — architecture through deployment, nobody else on the repo.",
-    points: [
-      "Learned video the hard way: streaming, transcoding and DRM, with nobody more senior on hand to ask.",
-      "Both products moved real money and gated real access, so payments and authorisation were mine to get right.",
-      "Talked to the clients myself, which is where I learned to ask what a feature is for before building it.",
-    ],
-    projects: ["Adroit", "Arogyam"],
   },
 ];
 
@@ -149,14 +138,14 @@ export const projects = [
     name: "Aryadhan",
     tier: "featured",
     period: "Feb 2025 — Present",
-    stack: ["Node.js", "Express.js", "BullMQ", "MongoDB", "Avalanche (AVAX)", "Webhooks"],
+    stack: ["Node.js", "Express.js", "BullMQ", "MongoDB", "Avalanche (AVAX)", "NFT", "Webhooks"],
     images: [longAryadhan],
     scrollShot: true,
     links: { site: "https://www.arya.ag/" },
     description:
-      "Loans against commodities sitting in a warehouse, with four partner banks on it so far.",
+      "Commodity-backed lending on blockchain — loans against goods sitting in a warehouse, live with four partner banks.",
     role: "core",
-    roleNote: "owned the Finternet Gateway",
+    roleNote: "owned the Finternet Gateway · team of 7+",
     contributions: [
       "Built the Finternet Gateway end to end — the APIs that take data out of the Aryadhan system and put it on chain",
       "Wallet creation, NFT minting, and pledging or burning tokens as loans get issued and settled",
@@ -168,18 +157,19 @@ export const projects = [
     name: "RapidGST",
     tier: "featured",
     period: "Oct 2022 — Present",
-    stack: ["Next.js", "Redux Toolkit", "Prisma", "BullMQ", "MongoDB", "AWS"],
+    stack: ["Next.js", "React Native", "Prisma", "BullMQ", "RabbitMQ", "MongoDB", "Redis", "AWS"],
     images: [longRapidGST],
     scrollShot: true,
     links: { site: "https://www.rapidgst.com/" },
     description:
-      "GST filing for people selling on Amazon, Flipkart and Meesho. Nothing filed on it has come back rejected from the GST portal yet.",
+      "GST filing for people selling on Amazon, Flipkart and Meesho — 50,000+ monthly active users across the web app and a mobile companion.",
     role: "core",
-    roleNote: "owned the invoice pipeline",
+    roleNote: "owned the invoice pipeline · team of 4–6",
     contributions: [
       "Wrote the parser that reads each marketplace's invoice export and finds the right fields — the three of them lay out a spreadsheet very differently",
       "Validation for HSN codes, state codes and GSTINs on the way through",
-      "Moved the filing APIs onto BullMQ, so a job survives a page refresh or lost signal",
+      "Moved the filing APIs onto BullMQ, so a job keeps processing if the user drops offline",
+      "Built the React Native companion app that syncs seller data over RabbitMQ — one-tap submission took filing from hours to under 5 minutes",
     ],
     color: "coral",
   },
@@ -205,17 +195,18 @@ export const projects = [
     name: "FertilityAnswers",
     tier: "featured",
     period: "Feb 2026 — Present",
-    stack: ["Node.js", "OpenAI API", "Pinecone", "RAG"],
+    stack: ["React Native", "Expo", "TypeScript", "OpenAI API", "Pinecone", "Redis", "AWS"],
     images: [longFertility],
     scrollShot: true,
     links: { site: "https://fertility.medanswers.com/" },
     description:
-      "A question and answer platform for about 300 fertility specialists. Search was keyword-based and kept returning the wrong papers.",
+      "An AI-powered Q&A app, on iOS and Android, for 300+ fertility specialists. Search was keyword-based and kept returning the wrong papers.",
     role: "core",
     roleNote: "owned search and retrieval",
     contributions: [
       "Replaced keyword search with retrieval — embeddings over the corpus in Pinecone, OpenAI answering from whatever came back",
       "Results landed much closer to what people were actually asking",
+      "Cross-platform React Native app, shipped through EAS Build with staged OTA updates",
     ],
     color: "violet",
   },
@@ -243,17 +234,18 @@ export const projects = [
     name: "SmartWMS",
     tier: "featured",
     period: "Jan 2025 — Present",
-    stack: ["Node.js", "React", "TypeScript", "Razorpay"],
+    stack: ["React", "React Native", "Node.js", "TypeScript", "Razorpay"],
     images: [longSmartWMS],
     scrollShot: true,
     links: { site: "https://www.smartwms.in/" },
     description:
-      "Warehouse management for small operators — stock, orders and billing in one place.",
+      "Multi-tenant warehouse management SaaS for small operators — stock, orders, GST billing and delivery in one place, on web and mobile.",
     role: "solo",
     contributions: [
-      "Dashboard, APIs and billing, all of it mine",
-      "Multi-tenant, so most of the work that took real thought was keeping one customer's data away from the next one's",
-      "Razorpay for subscriptions",
+      "Web dashboard, mobile app and backend, all of it mine",
+      "Per-tenant data isolation and role-based access — keeping one customer's data away from the next one's took the most thought",
+      "A GST e-invoicing engine: IRN registration, signed QR codes and e-Way Bills",
+      "Warehouse app for barcode receiving, picking, packing and proof-of-delivery; Razorpay for subscriptions",
     ],
     color: "teal",
   },
@@ -291,11 +283,12 @@ export const projects = [
   {
     name: "StaffWorks",
     tier: "more",
-    period: "Oct 2021 — Feb 2023",
-    stack: ["MERN", "Socket.io", "Redis", "Docker", "WebRTC"],
-    description: "Scheduling for hourly staff, with managers and field crews on opposite ends of it.",
+    period: "Oct 2021 — Present",
+    stack: ["MERN", "React Native", "Socket.io", "Redis", "Docker", "WebRTC"],
+    description: "Workforce platform for hourly staff with 5,000+ concurrent mobile users — managers and field crews on opposite ends of it.",
     role: "core",
     contributions: [
+      "React Native app shipped to the App Store and Play Store",
       "Clock-in and clock-out by proximity, over Socket.io geofencing, rather than on the honour system",
       "WebRTC calls between managers and field staff",
       "Role-based access with an audit trail of who changed what",
@@ -334,14 +327,22 @@ export const projects = [
 ];
 
 export const achievements = [
-  { title: "Two platforms built alone", detail: "Adroit and Arogyam, architecture through deployment, nobody else on the repo" },
+  { title: "Employee of the Year ×2", detail: "e.Soft Technologies, for mobile delivery and mentoring" },
   { title: "Team lead on Elynker", detail: "four developers, sprint planning and client calls alongside the build" },
   { title: "AI in production", detail: "GPT-4 and Claude doing document work and RAG conversations in live client products" },
 ];
 
-export const education = {
-  school: "Mahatma Gandhi Kashi Vidyapith",
-  location: "Varanasi, India",
-  degree: "Bachelor of Computer Applications (BCA)",
-  period: "Feb 2016 — May 2019",
-};
+export const education = [
+  {
+    school: "Galgotias College of Engineering and Technology",
+    location: "Greater Noida, India",
+    degree: "Master of Computer Applications (MCA), 72.95%",
+    period: "2022",
+  },
+  {
+    school: "Mahatma Gandhi Kashi Vidyapith",
+    location: "Varanasi, India",
+    degree: "Bachelor of Computer Applications (BCA)",
+    period: "2019",
+  },
+];
